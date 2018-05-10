@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CCClassRoom/&#x9009;&#x62e9;&#x5165;&#x53e3;/CCLoginScanViewController.m"
+            timestampString = "541155334.2915159"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "-parseCodeStr:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CCClassRoom/&#x9009;&#x62e9;&#x5165;&#x53e3;/CCLoginScanViewController.m"
+            timestampString = "541155356.408486"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "-parseCodeStr:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CCLoginScanViewController parseCodeStr:]"
+                  moduleName = "CCClassRoom"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cc/Desktop/%E5%B0%8F%E7%8F%AD%E8%AF%BE/ClassSDK/branches/MoveSocketToBase/CCClassRoom/CCClassRoom/%E9%80%89%E6%8B%A9%E5%85%A5%E5%8F%A3/CCLoginScanViewController.m"
+                  timestampString = "541392129.747753"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "239"
+                  endingLineNumber = "239"
+                  offsetFromSymbolStart = "1896">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42-[CCLoginScanViewController parseCodeStr:]_block_invoke.260"
+                  moduleName = "CCClassRoom"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cc/Desktop/%E5%B0%8F%E7%8F%AD%E8%AF%BE/ClassSDK/branches/MoveSocketToBase/CCClassRoom/CCClassRoom/%E9%80%89%E6%8B%A9%E5%85%A5%E5%8F%A3/CCLoginScanViewController.m"
+                  timestampString = "541392129.750965"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "240"
+                  endingLineNumber = "240"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CCClassRoom/&#x9009;&#x62e9;&#x5165;&#x53e3;/CCLoginScanViewController.m"
+            timestampString = "541155387.1222121"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "-parseCodeStr:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CCClassRoom/until/&#x81ea;&#x5b9a;&#x4e49;&#x63a7;&#x4ef6;/CCDrawBitmapView.m"
+            timestampString = "541391678.3910871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "-drawRect:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CCClassRoom/until/&#x81ea;&#x5b9a;&#x4e49;&#x63a7;&#x4ef6;/CCDocDrawView.m"
+            timestampString = "541392123.6838239"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "-drawRect:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

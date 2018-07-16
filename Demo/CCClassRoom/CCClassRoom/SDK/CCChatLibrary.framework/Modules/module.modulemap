@@ -1,0 +1,6 @@
+framework module CCChatLibrary {
+  umbrella header "CCChatLibrary.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module CCDocLibrary {
+  umbrella header "CCDocLibrary.h"
+
+  export *
+  module * { export * }
+}

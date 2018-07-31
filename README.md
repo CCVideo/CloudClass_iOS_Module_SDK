@@ -1,5 +1,5 @@
 # CloudClass_iOS_FullFeature_SDK
-CC视频云课堂 iOS端全功能版SDK
+CC视频云课堂 iOS端组件化SDK
 
 [基础版SDK](https://github.com/CCVideo/CloudClass_iOS_FullFeature_SDK/wiki/%E5%9F%BA%E7%A1%80%E7%89%88SDK)
 

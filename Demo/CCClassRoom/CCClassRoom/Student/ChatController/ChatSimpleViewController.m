@@ -86,8 +86,12 @@
     self.arrMessage = [NSMutableArray array];
     [self initBaseSDKComponent];
     [self.ccChatManager getChatHistoryData:^(BOOL result, NSError *error, id info) {
-        NSArray *responArr = info;
-        [weakSelf.arrMessage addObjectsFromArray:responArr];
+        NSArray *chatArray = info[@"chatLog"];
+        NSTimeInterval timeStartLive = [info[@"startLiveTime"]doubleValue];
+
+        self.title = [NSString stringWithFormat:@"startLiveTime:%f",timeStartLive];
+        NSLog(@"timeStartLive___%f",timeStartLive);
+        [weakSelf.arrMessage addObjectsFromArray:chatArray];
         [weakSelf.tableView reloadData];
     }];
 }

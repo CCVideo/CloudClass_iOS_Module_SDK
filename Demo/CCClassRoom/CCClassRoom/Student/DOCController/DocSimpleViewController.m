@@ -17,18 +17,57 @@
 @property(nonatomic,strong)CCStreamerBasic *stremer;
 @property(nonatomic,strong)CCDocVideoView   *ccVideoView;
 
+@property(nonatomic,assign)BOOL isDocBig;
+
 @end
 
 @implementation DocSimpleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _isDocBig = YES;
     self.view.backgroundColor = [UIColor lightGrayColor];
+#pragma mark ButtonCreate
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 80, 40);
+    [btn setBackgroundColor:[UIColor orangeColor]];
+    [btn setTitle:@"切换" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    UIBarButtonItem *rightTtem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = rightTtem;
 
     //组件关联
     [self initBaseSDKComponent];
     [self initUI];
     // Do any additional setup after loading the view.
+}
+
+- (void)buttonClick
+{
+    NSLog(@"change clicked");
+
+    if (_isDocBig)
+    {
+        [self changeDocSmall];
+    }
+    else
+    {
+        [self changeDocBig];
+    }
+    _isDocBig = !_isDocBig;
+}
+
+- (void)changeDocSmall
+{
+    int width = SCREEN_WIDTH * 0.6;
+    CGRect frame = CGRectMake(80, 80, width, (9/16.0)*(width));
+    [self.ccVideoView setDocFrame:frame];
+}
+- (void)changeDocBig
+{
+    CGRect frame = CGRectMake(0, 80, SCREEN_WIDTH, (9/16.0)*(SCREEN_WIDTH));
+    [self.ccVideoView setDocFrame:frame];
 }
 
 - (void)initUI
@@ -44,7 +83,6 @@
     [self.ccVideoView startDocView];
 }
 
-
 - (CCStreamerBasic *)stremer
 {
     if (!_stremer) {
@@ -57,7 +95,7 @@
 - (CCDocVideoView *)ccVideoView
 {
     if (!_ccVideoView) {
-        CGRect frame = CGRectMake(0, 100, SCREEN_WIDTH, (9/16.0)*(SCREEN_WIDTH));
+        CGRect frame = CGRectMake(0, 80, SCREEN_WIDTH, (9/16.0)*(SCREEN_WIDTH));
         _ccVideoView = [[CCDocVideoView alloc]initWithFrame:frame];
         _ccVideoView.tag = 1000;
         [_ccVideoView addObserverNotify];

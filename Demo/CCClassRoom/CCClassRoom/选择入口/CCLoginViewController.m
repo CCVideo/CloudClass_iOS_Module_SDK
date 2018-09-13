@@ -270,6 +270,7 @@
         {
             [weakSelf.loadingView removeFromSuperview];
              NSLog(@"__%s__%d__%@", __func__, __LINE__, error);
+            [weakSelf streamLoginFail:error];
         }
     }];
 }

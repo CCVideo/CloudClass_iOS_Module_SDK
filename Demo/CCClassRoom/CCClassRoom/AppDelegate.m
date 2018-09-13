@@ -28,7 +28,7 @@
     config.viewControllerTrackingEnable = true;
     
     config.reportLogLevel = BuglyLogLevelWarn;
-    [Bugly startWithAppId:@"836cf1e003" config:config];
+    [Bugly startWithAppId:@"70f4bb406e" config:config];
     
     return YES;
 }

@@ -16,6 +16,8 @@
 //PPT动画展示
 //初始化View
 -(instancetype)initWithFrame:(CGRect)frame;
+/** 设置frame */
+- (void)setDocFrame:(CGRect)frame;
 //添加监听
 - (void)addObserverNotify;
 //移除监听
@@ -26,5 +28,6 @@
 
 //事件处理
 - (void)onSocketReceive:(NSString *)event value:(id)object;
+
 
 @end

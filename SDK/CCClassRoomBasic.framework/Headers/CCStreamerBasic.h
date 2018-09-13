@@ -138,6 +138,13 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  */
 - (void)send:(NSString *)name par:(NSDictionary *)par;
 
+/*!
+ 发送Publish消息
+ 
+ @param par  数据
+ */
+- (void)sendPublishMessage:(NSDictionary *)par;
+
 /**
  添加observer
  */
@@ -497,6 +504,11 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  */
 - (CCRoom *)getRoomInfo;
 
+/*!
+ @method
+ @abstract 获取当前CCSpeaker
+ @return 当前流信息
+ */
 - (CCSpeaker *)getSpeakInfo;
 
 /**
@@ -522,15 +534,37 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  */
 - (void)realsesAllStream;
 
+/*!
+ @method 数据初始化
+ */
 - (void)clearData;
 
+/*!
+ 是否是自己下麦
+ */
 @property (assign, nonatomic) BOOL callStopLianMaiByStudent;//学生自己下麦
-
+/** 流管理 */
 @property (strong, nonatomic) NSMutableArray *subedStream;
 @property (strong, nonatomic) NSMutableArray *removedStream;
 @property (strong, nonatomic) NSMutableArray *allStream;
 @property (strong, nonatomic) NSMutableArray *notiStreamS;
 @property (strong, nonatomic) CCStreamView *preView;
 
+#pragma mark 新旁听功能
+/**
+ @method
+ @abstract 旁听接口
+ @param uid 用户id
+ @param token token
+ @param isp 节点
+ */
+- (void)joinAudit:(NSString *)uid token:(NSString *)token isp:(NSString *)isp complete:(CCComletionBlock)complete;
+
+/**
+ @method
+ @abstract 创建socket连接
+ @param events
+ */
+- (void)auditCreateSocket:(NSArray *)events;
 
 @end

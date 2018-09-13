@@ -89,7 +89,10 @@ typedef enum{
  * @constant CCSocketEvent_VoteSend 投票内容
  * @constant CCSocketEvent_VoteReply 投票回复
  * @constant CCSocketEvent_VoteEnd 投票结束
- 
+ * @constant CCSocketEvent_UserJoin 有用户加入房间
+ * @constant CCSocketEvent_UserExit 有用户离开房间
+ * @constant CCSocketEvent_PublishMessage 公聊消息
+ * @constant CCSocketEvent_UserHandUp 用户举手
  */
 typedef enum{
     CCSocketEvent_Chat,
@@ -143,6 +146,10 @@ typedef enum{
     CCSocketEvent_VoteSend,
     CCSocketEvent_VoteReply,
     CCSocketEvent_VoteEnd,
+    CCSocketEvent_UserJoin,
+    CCSocketEvent_UserExit,
+    CCSocketEvent_PublishMessage,
+    CCSocketEvent_UserHandUp,
     
 }CCSocketEvent;
 /*!
@@ -478,5 +485,37 @@ extern NSString* const CCNotiNeedLoginOut;
  @abstract 暖场动画
  */
 @property (strong, nonatomic, readonly) NSDictionary *warmVideoDic;
+
+#pragma mark -- 旁听者
+/**
+ * 旁听者
+ **/
+@property(nonatomic,copy,readonly)NSString *login_userId;
+@property(nonatomic,copy,readonly)NSString *login_Token;
+@property(nonatomic,copy,readonly)NSString *login_isp;
+#pragma mark strong
+//@property(nonatomic,assign,readonly)BOOL allow_chat;
+//@property(nonatomic,copy,readonly) NSString *room_name;
+//@property(nonatomic,copy,readonly)NSString *room_desc;
+@property(nonatomic,strong,readonly)NSArray *array_chat_server;
+@property(nonatomic,strong,readonly)NSArray *array_doc_server;
+@property(nonatomic,copy,readonly)NSString *room_id;
+@property(nonatomic,strong,readonly)NSDictionary *media;
+//@property(nonatomic,copy,readonly)NSString *rtmpUrl;
+
+@property(nonatomic,copy,readonly)NSString *live_id;
+@property(nonatomic,copy,readonly)NSString *live_last;
+//@property(nonatomic,copy,readonly)NSString *live_startTime;
+//@property(nonatomic,assign,readonly)CCLiveStatus  live_status;
+
+//@property(nonatomic,copy,readonly)NSString *user_id;
+//@property(nonatomic,copy,readonly)NSString *user_name;
+//@property(nonatomic,copy,readonly)NSString *user_role;
+@property(nonatomic,copy,readonly)NSString *user_roomId;
+//@property(nonatomic,copy,readonly)NSString *user_sessionId;
+//add
+@property(nonatomic,assign,readonly)BOOL user_allow_chat;
+
+@property(nonatomic,strong,readonly)NSDictionary *warm_video;
 
 @end

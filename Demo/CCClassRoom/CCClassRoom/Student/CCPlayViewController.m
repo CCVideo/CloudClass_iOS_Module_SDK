@@ -77,7 +77,8 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     SDK_Function_PM_CCClassType_Auto, //自由连麦
     SDK_Function_PM_CCClassType_Rotate, //自动连麦
     SDK_Function_PM_Get_CCClassType, //房间连麦类型
-    SDK_Function_PM_XiaMai  //下麦
+    SDK_Function_PM_XiaMai,  //下麦
+    SDK_Function_Publish_Message //发送公聊消息
 };
 
 @implementation CCPlayViewController
@@ -102,7 +103,8 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
                       @"Room_自由连麦",
                       @"Room_自动连麦",
                       @"获取直播间连麦类型",
-                      @"下麦"];
+                      @"下麦",
+                      @"send publish"];
     }
     return _arraySDK;
 }
@@ -628,9 +630,6 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
 - (void)onServerDisconnected
 {
     CCLog(@"%s__%d", __func__, __LINE__);
-    [self.stremer leave:^(BOOL result, NSError *error, id info) {
-        
-    }];
     WS(ws);
     dispatch_async(dispatch_get_main_queue(), ^{
         [ws.navigationController popViewControllerAnimated:NO];
@@ -783,7 +782,19 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     if (row == SDK_Function_PM_XiaMai) {
         [self com_pm_xiamai];
     }
+    if (row == SDK_Function_Publish_Message) {
+        [self publishMessage];
+    }
 }
+#pragma mark - 发送公共消息
+- (void)publishMessage
+{
+    float num = arc4random() + 10.0;
+    NSString *str = [NSString stringWithFormat:@"随机数：%f",num];
+    NSDictionary *message = @{@"value":str};
+    [self.stremer sendPublishMessage:message];
+}
+
 #pragma mark -- 发起事件
 #pragma mark - 白板
 //白板
@@ -1042,6 +1053,30 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     else if(event == CCSocketEvent_PublishEnd)
     {
         
+    }
+    else if(event == CCSocketEvent_UserHandUp)
+    {
+        NSString *name = value[@"name"];
+        NSString *str = [NSString stringWithFormat:@"<%@> 举手了！",name];
+        [self showMessage:str];
+    }
+    else if(event == CCSocketEvent_PublishMessage)
+    {
+        NSString *val = value[@"value"];
+        NSString *smessage = [NSString stringWithFormat:@"收到消息:%@",val];
+        [self showMessage:smessage];
+    }
+    else if(event == CCSocketEvent_UserJoin)
+    {
+        NSString *uname = value[@"name"];
+        NSString *msg = [NSString stringWithFormat:@"<%@> 加入房间!",uname];
+        [self showMessage:msg];
+    }
+    else if(event == CCSocketEvent_UserExit)
+    {
+        NSString *uname = value[@"name"];
+        NSString *msg = [NSString stringWithFormat:@"<%@> 离开房间!",uname];
+        [self showMessage:msg];
     }
 }
 

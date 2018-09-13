@@ -83,4 +83,11 @@ typedef enum{
  @return 参数
  */
 - (NSDictionary<NSString*,NSString*>*)attributes;
+
+/**
+ @method
+ @abstract 设置流参数
+ */
+- (void)setAttributes:(NSDictionary<NSString *,NSString *>*)attributes;
+
 @end

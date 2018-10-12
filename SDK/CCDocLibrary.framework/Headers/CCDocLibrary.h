@@ -18,7 +18,7 @@ FOUNDATION_EXPORT double CCDocLibraryVersionNumber;
 //! Project version string for CCDocLibrary.
 FOUNDATION_EXPORT const unsigned char CCDocLibraryVersionString[];
 
-//version 3.1.0
+//current version 3.1.0
 // In this header, you should import all the public headers of your framework using statements like #import <CCDocLibrary/PublicHeader.h>
 
 

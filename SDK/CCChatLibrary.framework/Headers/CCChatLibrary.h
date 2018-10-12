@@ -18,7 +18,7 @@ FOUNDATION_EXPORT double CCChatLibraryVersionNumber;
 //! Project version string for CCChatLibrary.
 FOUNDATION_EXPORT const unsigned char CCChatLibraryVersionString[];
 
-//version 3.1.0
+//current version 3.1.0
 // In this header, you should import all the public headers of your framework using statements like #import <CCChatLibrary/PublicHeader.h>
 
 

@@ -13,9 +13,12 @@
 @interface CCLoginViewController : CCBaseViewController
 @property (strong, nonatomic) NSString *roomID;
 @property (strong, nonatomic) NSString *userID;
+@property (assign, nonatomic) CCRole roleType;
 @property (assign, nonatomic) BOOL needPassword;
 @property (assign, nonatomic) BOOL isLandSpace;//是否横屏
 @property (strong, nonatomic) NSArray *serverModels;
+
+
 @end
 
 @interface CCServerModel : NSObject

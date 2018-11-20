@@ -4,18 +4,28 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CCClassRoom/Student/CCPlayViewController.m"
-            timestampString = "561018932.1643569"
+            filePath = "../CCClassRoomBasic/CCClassRoomBasic/Atlas/CCDepend/MQTTClient/CCMQTTClientManage.m"
+            timestampString = "564217291.262863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1045"
-            endingLineNumber = "1045"
-            landmarkName = "-receiveSocketEvent:"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "-connectTo:token:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CCClassRoom/Student/CCPlayViewController.m"
-            timestampString = "561018932.164432"
+            filePath = "../CCClassRoomBasic/CCClassRoomBasic/Basic/CCStreamerBasic.m"
+            timestampString = "564389686.112982"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1071"
-            endingLineNumber = "1071"
-            landmarkName = "-receiveSocketEvent:"
+            startingLineNumber = "659"
+            endingLineNumber = "659"
+            landmarkName = "-joinWithAccountID:sessionID:config:areaCode:events:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,29 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../CC_DOC/CCDocLibrary/CCDocLibrary/CCDocVideoView/DocView/CCDocDrawView.m"
-            timestampString = "558331258.448194"
+            filePath = "../../CC_DOC/CCDocLibrary/CCDocLibrary/CCDocVideoView/Model/CCDocManager.m"
+            timestampString = "564312582.852682"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "CCDocDrawView"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../CC_DOC/CCDocLibrary/CCDocLibrary/CCDocVideoView/DocView/CCDocDrawView.m"
-            timestampString = "558331258.448679"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "955"
-            endingLineNumber = "955"
-            landmarkName = "-drawBeeLine:webHeight:"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "-onPageChange:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,29 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../CC_DOC/CCDocLibrary/CCDocLibrary/CCDocVideoView/DocView/CCDocDrawView.m"
-            timestampString = "558331258.448963"
+            filePath = "../../CC_DOC/CCDocLibrary/CCDocLibrary/CCDocVideoView/Model/CCDocManager.m"
+            timestampString = "564312582.852782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "984"
-            endingLineNumber = "984"
-            landmarkName = "-drawBeeLine:webHeight:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CCClassRoom/&#x9009;&#x62e9;&#x5165;&#x53e3;/CCLoginViewController.m"
-            timestampString = "558238035.878027"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
-            landmarkName = "-streamLoginFail:"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "-onPageChange:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +84,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CCClassRoom/Student/DOCController/DocSimpleViewController.m"
-            timestampString = "558341745.2472399"
+            timestampString = "564389686.1132801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-changeDocBig"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
+            landmarkName = "-revokeClicked"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,28 +100,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CCClassRoom/Student/DOCController/DocSimpleViewController.m"
-            timestampString = "558341745.247316"
+            timestampString = "564389686.115177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-changeDocSmall"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../CC_Chat/CCChatLibrary/CCChatLibrary/ChatView/Model/CCChatManager.m"
-            timestampString = "558424609.687463"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "676"
-            endingLineNumber = "676"
-            landmarkName = "-dealChatToPushFormat:"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-changeRotate:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -153,108 +115,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../CC_Chat/CCChatLibrary/CCChatLibrary/ChatView/Model/CCChatManager.m"
-            timestampString = "558424609.687538"
+            filePath = "CCClassRoom/Student/DOCController/DocSimpleViewController.m"
+            timestampString = "564389686.1153491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "665"
-            endingLineNumber = "665"
-            landmarkName = "-dealChatToPushFormat:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../CC_Chat/CCChatLibrary/CCChatLibrary/ChatView/Model/CCChatManager.m"
-            timestampString = "558424609.6875989"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "654"
-            endingLineNumber = "654"
-            landmarkName = "-getChatHistoryData:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CCClassRoom/Student/ChatController/ChatSimpleViewController.m"
-            timestampString = "558422714.981956"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-initFunction"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ChatSimpleViewController initFunction]"
-                  moduleName = "CCClassRoom"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cc/Desktop/CloudClass_iOS_Module_3.1.0/Demo/CCClassRoom/CCClassRoom/Student/ChatController/ChatSimpleViewController.m"
-                  timestampString = "561018932.714982"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "232">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[ChatSimpleViewController initFunction]_block_invoke"
-                  moduleName = "CCClassRoom"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cc/Desktop/CloudClass_iOS_Module_3.1.0/Demo/CCClassRoom/CCClassRoom/Student/ChatController/ChatSimpleViewController.m"
-                  timestampString = "561018932.718356"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_"
-                  moduleName = "CCClassRoom"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cc/Desktop/CloudClass_iOS_Module_3.1.0/Demo/CCClassRoom/CCClassRoom/Student/ChatController/ChatSimpleViewController.m"
-                  timestampString = "561018932.72121"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "10">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CCClassRoom/Student/ChatController/ChatSimpleViewController.m"
-            timestampString = "558422714.982749"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-initFunction"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "-changeRotate:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

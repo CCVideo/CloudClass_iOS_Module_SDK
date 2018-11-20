@@ -24,6 +24,7 @@
 		420AE3731EB33B37006DEA05 /* CCStreamerModeTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AE3651EB33B37006DEA05 /* CCStreamerModeTile.m */; };
 		420AE3781EB33B37006DEA05 /* CCStreamShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AE36F1EB33B37006DEA05 /* CCStreamShowView.m */; };
 		420DFC981E49D6CE0026B031 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 420DFC971E49D6CE0026B031 /* libstdc++.tbd */; };
+		420E42C9217893BB00E226E2 /* DocUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 420E42C8217893BB00E226E2 /* DocUI.bundle */; };
 		421521A31E34B73D00CE1580 /* CCLoginScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 421521A21E34B73D00CE1580 /* CCLoginScanViewController.m */; };
 		42152E1E1F4ACBBC00C16385 /* STDPingServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 42152E1B1F4ACBBC00C16385 /* STDPingServices.m */; };
 		42152E1F1F4ACBBC00C16385 /* STSimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 42152E1D1F4ACBBC00C16385 /* STSimplePing.m */; };
@@ -76,6 +77,7 @@
 		429FD4521F723F8500D2888E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429FD4511F723F8500D2888E /* SystemConfiguration.framework */; };
 		42B845A81F1F09B1003E3CD5 /* CCVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B845A51F1F09B1003E3CD5 /* CCVoteView.m */; };
 		42B845A91F1F09B1003E3CD5 /* CCVoteResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B845A71F1F09B1003E3CD5 /* CCVoteResultView.m */; };
+		42B867552192E46400451067 /* drag@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B867542192E46400451067 /* drag@3x.png */; };
 		42BD09A11E306C100067F7B7 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BD09A01E306C100067F7B7 /* VideoToolbox.framework */; };
 		42BD09A51E306C450067F7B7 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BD09A41E306C450067F7B7 /* libicucore.tbd */; };
 		42C0F7441F0CC48500C4B254 /* XXLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0F7431F0CC48500C4B254 /* XXLinkLabel.m */; };
@@ -149,6 +151,7 @@
 		420AE36E1EB33B37006DEA05 /* CCStreamShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStreamShowView.h; sourceTree = "<group>"; };
 		420AE36F1EB33B37006DEA05 /* CCStreamShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCStreamShowView.m; sourceTree = "<group>"; };
 		420DFC971E49D6CE0026B031 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		420E42C8217893BB00E226E2 /* DocUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DocUI.bundle; sourceTree = "<group>"; };
 		421521A11E34B73D00CE1580 /* CCLoginScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLoginScanViewController.h; sourceTree = "<group>"; };
 		421521A21E34B73D00CE1580 /* CCLoginScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLoginScanViewController.m; sourceTree = "<group>"; };
 		42152E181F4ACA5F00C16385 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
@@ -239,6 +242,7 @@
 		42B845A51F1F09B1003E3CD5 /* CCVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCVoteView.m; sourceTree = "<group>"; };
 		42B845A61F1F09B1003E3CD5 /* CCVoteResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCVoteResultView.h; sourceTree = "<group>"; };
 		42B845A71F1F09B1003E3CD5 /* CCVoteResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCVoteResultView.m; sourceTree = "<group>"; };
+		42B867542192E46400451067 /* drag@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drag@3x.png"; sourceTree = "<group>"; };
 		42BD09A01E306C100067F7B7 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		42BD09A21E306C300067F7B7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		42BD09A41E306C450067F7B7 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -467,6 +471,7 @@
 		42748D801EA9A7DD00596AC7 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				420E42C8217893BB00E226E2 /* DocUI.bundle */,
 				42EFE4CE20F72694008BB4BD /* CCBarleyLibrary.framework */,
 				42EFE4C820F6EFBB008BB4BD /* CCChatLibrary.framework */,
 				424214A420F60A2E0036EDAD /* CCDocLibrary.framework */,
@@ -533,6 +538,7 @@
 				4281F9071E2F6E1B007C1080 /* AppDelegate.m */,
 				4200714C1E2F796900A19C10 /* DefinePrefixHeader.pch */,
 				425A3F8E1F55450800CB1D22 /* Assets.xcassets */,
+				42B867542192E46400451067 /* drag@3x.png */,
 				42EFE4CA20F6F5FC008BB4BD /* picc.png */,
 				4281F90C1E2F6E1B007C1080 /* Main.storyboard */,
 				4281F9111E2F6E1B007C1080 /* LaunchScreen.storyboard */,
@@ -650,7 +656,7 @@
 				TargetAttributes = {
 					4281F8FF1E2F6E1B007C1080 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = P92BH8WWP5;
+						DevelopmentTeam = TX67Q8A5U5;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -683,6 +689,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B867552192E46400451067 /* drag@3x.png in Resources */,
+				420E42C9217893BB00E226E2 /* DocUI.bundle in Resources */,
 				4281F9131E2F6E1B007C1080 /* LaunchScreen.storyboard in Resources */,
 				42EFE4CB20F6F5FC008BB4BD /* picc.png in Resources */,
 				4254FC4E1F3DAC2C0080F0BB /* TZImagePickerController.bundle in Resources */,
@@ -929,7 +937,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing DreamWindows Digital Technology Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = P92BH8WWP5;
+				DEVELOPMENT_TEAM = TX67Q8A5U5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -960,7 +968,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.class.room12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamwindows.room;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -975,7 +983,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing DreamWindows Digital Technology Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = P92BH8WWP5;
+				DEVELOPMENT_TEAM = TX67Q8A5U5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1006,7 +1014,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.class.room12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamwindows.room;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

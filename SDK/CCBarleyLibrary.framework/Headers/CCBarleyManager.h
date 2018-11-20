@@ -33,7 +33,10 @@
 - (void)addBasicClient:(CCStreamerBasic *)basic;
 //排麦socket event
 - (void)onSocketReceive:(NSString *)event value:(id)object;
-
+/** socket 收到消息 */
+- (void)onSocketReceive:(NSString *)message onTopic:(NSString *)topic;
+//设置日志开关
++ (void)setLogState:(BOOL)open;
 #pragma mark
 #pragma mark -- 与老师互动接口
 /*!

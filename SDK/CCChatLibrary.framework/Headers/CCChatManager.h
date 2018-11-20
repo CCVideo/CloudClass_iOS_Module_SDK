@@ -32,7 +32,8 @@
 
 //socket event -- chat
 - (void)onSocketReceive:(NSString *)event value:(id)object;
-
+//设置日志开关
++ (void)setLogState:(BOOL)open;
 #pragma mark - socket 聊天 send message
 /*!
  @method

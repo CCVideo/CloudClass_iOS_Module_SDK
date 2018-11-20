@@ -10,5 +10,9 @@
 
 @interface DocSimpleViewController : CCBaseViewController
 
+/**
+user_id
+*/
+@property (copy, nonatomic) NSString *user_id;
 
 @end

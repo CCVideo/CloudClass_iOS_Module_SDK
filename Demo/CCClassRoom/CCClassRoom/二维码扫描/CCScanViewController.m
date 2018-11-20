@@ -238,7 +238,7 @@
             SaveToUserDefaults(PLAYBACK_USERID,userId);
             SaveToUserDefaults(PLAYBACK_ROOMID,roomId);
         }
-        if (![role isEqualToString:@"talker"] && ![role isEqualToString:@"presenter"])
+        if (![role isEqualToString:@"talker"] && ![role isEqualToString:@"presenter"] && ![role isEqualToString:@"assistant"])
         {
             [UIAlertView bk_showAlertViewWithTitle:@"" message:@"请使用直播播放客户端启动" cancelButtonTitle:@"知道了" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
                [ws.session startRunning];

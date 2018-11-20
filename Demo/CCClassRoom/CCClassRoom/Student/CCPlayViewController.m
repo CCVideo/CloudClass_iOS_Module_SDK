@@ -680,6 +680,7 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
         if (result)
         {
             [weakSelf.streamView showStreamView:info];
+            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionAllowBluetooth error:nil];
         }
         else
         {
@@ -739,6 +740,20 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     
     NSString *authSessionID = self.info[@"data"][@"sessionid"];
     NSString *user_id = self.info[@"data"][@"userid"];
+    
+//    [self.stremer joinWithAccountID:@"6634678BEDA5BB7D" sessionID:@"1A6730B1C671339F4597FBC77604BB37EC1E96A9CB7F00C2EE813D5B7D0E17EB9216025D5316F796C1B50331DBDC2F9A" config:config areaCode:nil events:nil completion:^(BOOL result, NSError *error, id info) {
+//        [weakSelf.loadingView removeFromSuperview];
+//        if (result)
+//        {
+//            [self com_pm_rotate:NO];
+//        }
+//        else
+//        {
+//            [self.navigationController popViewControllerAnimated:NO];
+//        }
+//    }];
+//    return;
+    
     [self.stremer joinWithAccountID:self.viewerId sessionID:authSessionID config:config areaCode:nil events:@[] completion:^(BOOL result, NSError *error, id info) {
         [weakSelf.loadingView removeFromSuperview];
         if (result)
@@ -801,6 +816,8 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
 - (void)com_DOC
 {
     DocSimpleViewController *docController = [DocSimpleViewController new];
+    NSString *user_id = self.info[@"data"][@"userid"];
+    docController.user_id = user_id;
     [self.navigationController pushViewController:docController animated:YES];
 }
 #pragma mark - 聊天
@@ -1008,7 +1025,7 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     id value = noti.userInfo[@"value"];
     NSLog(@"%s__%@__%@", __func__, noti.name, @(event));
   
-   if (event == CCSocketEvent_LianmaiStateUpdate)
+    if (event == CCSocketEvent_LianmaiStateUpdate)
     {
         NSLog(@"%d", __LINE__);
     }
@@ -1077,6 +1094,24 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
         NSString *uname = value[@"name"];
         NSString *msg = [NSString stringWithFormat:@"<%@> 离开房间!",uname];
         [self showMessage:msg];
+    }
+    else if (event == CCSocketEvent_ReciveDrawStateChanged)
+    {
+        //授权标注事件
+        __unused CCUser *user = noti.userInfo[@"user"];
+        if (user.user_drawState)
+        {
+            //被授权标注..客户开展后续自己的业务
+        }
+    }
+    else if (event == CCSocketEvent_ReciveAnssistantChange)
+    {
+        //设为讲师事件
+        __unused CCUser *user = noti.userInfo[@"user"];
+        if (user.user_AssistantState)
+        {
+            //被设为讲师..客户开展后续自己的业务
+        }
     }
 }
 

@@ -236,7 +236,6 @@
 
 -(void)loginAction
 {
-    
     SaveToUserDefaults(KK_Login_Username, self.textFieldUserName.text);
     SaveToUserDefaults(KK_Login_Pwd, self.textFieldUserPassword.text);
     
@@ -261,7 +260,9 @@
 //    self.roomID = @"23804F8EBD3BB1F59C33DC5901307461";
 //    self.textFieldUserPassword.text = @"111";
 //    self.textFieldUserName.text = @"CC";
-    [self authWithRoomID:self.roomID userID:self.userID role:1 password:self.textFieldUserPassword.text nickName:self.textFieldUserName.text completion:^(BOOL result, NSError *error, id info) {
+    CCRole roleLocal = self.roleType;
+    
+    [self authWithRoomID:self.roomID userID:self.userID role:roleLocal password:self.textFieldUserPassword.text nickName:self.textFieldUserName.text completion:^(BOOL result, NSError *error, id info) {
         if (result)
         {
             [weakSelf streamLoginSuccess:info];
@@ -436,15 +437,6 @@
             [_loginBtn.layer setBorderColor:[CCRGBAColor(255,71,0,0.6) CGColor]];
         }
     }
-    
-//    if(StrNotEmpty(_textFieldUserName.text) && StrNotEmpty(_textFieldUserPassword.text))
-//    {
-//        self.loginBtn.enabled = YES;
-//        [_loginBtn.layer setBorderColor:[CCRGBAColor(255,71,0,1) CGColor]];
-//    } else {
-//        self.loginBtn.enabled = NO;
-//        [_loginBtn.layer setBorderColor:[CCRGBAColor(255,71,0,0.6) CGColor]];
-//    }
     
     NSString *toBeString = TextField.text;
     int length = [CCLoginViewController convertToInt:toBeString];

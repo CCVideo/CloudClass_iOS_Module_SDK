@@ -21,7 +21,8 @@
 @class CCSpeaker;
 
 #define PUBLISHTIMEOUT 40
-
+//网络检测
+typedef void(^CCNetDomainBlcok)(BOOL result,float time ,NSString *domain);
 /*!
  * @brief    流视图填充方式枚举
  */
@@ -39,6 +40,22 @@ typedef enum{
      */
     CCVideoLandscape,
 }CCVideoOriMode;
+
+//流状态
+typedef NS_ENUM(NSInteger,CCBlaskStatus) {
+    CCBlaskStatus_Init = 1000, //初始状态
+    CCBlaskStatus_isOK, //流正常
+    CCBlaskStatus_isLoading, //正在加载流
+    CCBlaskStatus_isBlack //流异常（黑流）
+};
+
+//直播录制状态
+typedef NS_ENUM(NSInteger,CCRecordType) {
+    CCRecordType_Start, //正在录制
+    CCRecordType_Pause, //暂停录制
+    CCRecordType_Resume,//继续录制
+    CCRecordType_End    //停止录制
+};
 
 /**
  @brief 异步请求闭包回调
@@ -108,6 +125,18 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  socket重连成功
  */
 - (void)onSocketReconnected:(NSString *)nsp;
+
+/**
+ @brief Triggers when a message is received.
+ @param senderId Sender's ID.
+ @param message Message received.
+ */
+- (void)onMessageReceivedFrom:(NSString*)senderId message:(NSString*)message;
+
+/**
+ socket 收到消息
+ */
+- (void)onSocketReceive:(NSString *)message onTopic:(NSString *)topic;
 @end
 
 
@@ -144,6 +173,13 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @param par  数据
  */
 - (void)sendPublishMessage:(NSDictionary *)par;
+
+/*!
+ 发送消息(没有消息内容)
+ 
+ @param message 消息名称
+ */
+- (void)sendMQTT:(NSString *)message;
 
 /**
  添加observer
@@ -186,7 +222,6 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  */
 @property (assign, nonatomic) CCVideoOriMode videoMode;
 
-@property (strong, nonatomic) NSString *userVersion;
 #pragma mark - observer
 
 /**
@@ -203,6 +238,11 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  初始化CCStreamerBasic实例
  */
 + (instancetype)sharedStreamer;
+
+/**
+ * 黑流检测监听事件
+ */
+- (void)onStreamStatsListener:(CCComletionBlock)completion;
 
 #pragma mark - 配置socket重连参数
 
@@ -437,6 +477,14 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @return 操作结果
  */
 - (BOOL)startLive:(CCComletionBlock)completion;
+/*!
+ @method
+ @abstract 开启直播
+ @param record 是否开启直播录制
+ @param completion 回调闭包
+ @return 操作结果
+ */
+- (BOOL)startLiveWithRecord:(BOOL)record completion:(CCComletionBlock)completion;
 #pragma mark - 查询直播间状态
 /*!
  @method
@@ -539,6 +587,45 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  */
 - (void)clearData;
 
+#pragma mark -- 音视频操作
+/*!
+ @method
+ @abstract 订阅音频流
+ @param stream 流
+ @param completion 回调
+ */
+- (void)playAudio:(CCStream*)stream completion:(CCComletionBlock)completion;
+
+/*!
+ @method
+ @abstract 取消订阅音频流
+ @param stream 流
+ @param completion 回调
+ */- (void)pauseAudio:(CCStream*)stream completion:(CCComletionBlock)completion;
+
+/*!
+ @method
+ @abstract 订阅视频流
+ @param stream 流
+ @param completion 回调
+ */
+- (void)playVideo:(CCStream*)stream completion:(CCComletionBlock)completion;
+/*!
+ @method
+ @abstract 取消订阅音频流
+ @param stream 流
+ @param completion 回调
+ */
+- (void)pauseVideo:(CCStream*)stream completion:(CCComletionBlock)completion;
+#pragma mark - 直播录制相关
+/*!
+ @method
+ @abstract 直播录制相关
+ @param completion 回调
+ @return 操作结果
+ */
+- (BOOL)recordTo:(CCRecordType)type completion:(CCComletionBlock)completion;
+
 /*!
  是否是自己下麦
  */
@@ -563,8 +650,15 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
 /**
  @method
  @abstract 创建socket连接
- @param events
+ @param events events
  */
 - (void)auditCreateSocket:(NSArray *)events;
+
+/**
+ @method
+ @auditCreateSocketForPlayback 创建socket连接
+ */
+- (void)auditCreateSocketForPlayback:(NSDictionary *)room;
+
 
 @end

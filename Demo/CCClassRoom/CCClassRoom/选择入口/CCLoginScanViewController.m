@@ -11,6 +11,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import "CCLoginViewController.h"
 
+//角色定义
+#define KKEY_CCRole_Teacher         @"presenter"
+#define KKEY_CCRole_Student         @"talker"
+#define KKEY_CCRole_Watcher         @"audience"
+#define KKEY_CCRole_Inspector       @"inspector"
+#define KKEY_CCRole_Assistant       @"assistant"
+
 @interface CCLoginScanViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *versionLabel;
 
@@ -23,7 +30,6 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ScanSuccess:) name:@"ScanSuccess" object:nil];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
 //    CFShow((__bridge CFTypeRef)(infoDictionary));
@@ -38,15 +44,15 @@
     NSString *userId = noti.userInfo[@"userID"];
     NSString *roomId = noti.userInfo[@"roomID"];
     NSString *role = noti.userInfo[@"role"];
+    CCRole roleType = [self roleFromRoleString:role];
     
-//    userId = @"83F203DAC2468694";
-//    roomId = @"23804F8EBD3BB1F59C33DC5901307461";
-        CCLoginViewController *liveVC = [[CCLoginViewController alloc] init];
-        liveVC.needPassword = YES;
-        SaveToUserDefaults(LIVE_ROOMID, roomId);
-        liveVC.userID = userId;
-        liveVC.roomID = roomId;
-        [self.navigationController pushViewController:liveVC animated:YES];
+    CCLoginViewController *liveVC = [[CCLoginViewController alloc] init];
+    liveVC.needPassword = YES;
+    SaveToUserDefaults(LIVE_ROOMID, roomId);
+    liveVC.userID = userId;
+    liveVC.roomID = roomId;
+    liveVC.roleType = roleType;
+    [self.navigationController pushViewController:liveVC animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -114,4 +120,30 @@
 
 - (IBAction)touchCopu:(id)sender {
 }
+
+- (CCRole)roleFromRoleString:(NSString *)roleString
+{
+    if ([roleString isEqualToString:KKEY_CCRole_Teacher])
+    {
+        return CCRole_Teacher;
+    }
+    if ([roleString isEqualToString:KKEY_CCRole_Student])
+    {
+        return CCRole_Student;
+    }
+    if ([roleString isEqualToString:KKEY_CCRole_Watcher])
+    {
+        return CCRole_Watcher;
+    }
+    if ([roleString isEqualToString:KKEY_CCRole_Inspector])
+    {
+        return CCRole_Inspector;
+    }
+    if ([roleString isEqualToString:KKEY_CCRole_Assistant])
+    {
+        return CCRole_Assistant;
+    }
+    return 0;
+}
+
 @end

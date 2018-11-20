@@ -14,7 +14,6 @@ FOUNDATION_EXPORT double CCClassRoomBasicVersionNumber;
 //! Project version string for CCClassRoomBasic.
 FOUNDATION_EXPORT const unsigned char CCClassRoomBasicVersionString[];
 
-//current version 3.1.0
 // In this header, you should import all the public headers of your framework using statements like #import <CCClassRoomBasic/PublicHeader.h>
 
 #ifndef CCClassRoomBasic_h

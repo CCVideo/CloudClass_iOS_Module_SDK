@@ -58,24 +58,28 @@ typedef enum{
  @abstract 关闭音频
  */
 - (void)disableAudio;
+- (void)disableAudio:(NSString *)uid withPusher:(BOOL)push;
 
 /*!
  @method
  @abstract 关闭视频
  */
 - (void)disableVideo;
+- (void)disableVideo:(NSString *)uid withPusher:(BOOL)push;
 
 /*!
  @method
  @abstract 开启音频
  */
 - (void)enableAudio;
+- (void)enableAudio:(NSString *)uid withPusher:(BOOL)push;
 
 /*!
  @method
  @abstract 开启视频
  */
 - (void)enableVideo;
+- (void)enableVideo:(NSString *)uid withPusher:(BOOL)push;
 
 /**
  @method

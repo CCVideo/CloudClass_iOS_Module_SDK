@@ -31,12 +31,14 @@ typedef enum{
  * @constant CCRole_Student     互动者
  * @constant CCRole_Watcher     观看者
  * @constant CCRole_Inspector   隐身者
+ * @constant CCRole_Assistant   助教者
  */
 typedef enum{
     CCRole_Teacher,
     CCRole_Student,
     CCRole_Watcher,
-    CCRole_Inspector
+    CCRole_Inspector,
+    CCRole_Assistant
 }CCRole;
 /*!
  * @brief    skocket.io被动通知事件枚举
@@ -488,34 +490,80 @@ extern NSString* const CCNotiNeedLoginOut;
 
 #pragma mark -- 旁听者
 /**
- * 旁听者
- **/
+ @property
+ @abstract 登录userid
+ */
 @property(nonatomic,copy,readonly)NSString *login_userId;
+/**
+ @property
+ @abstract 登录token
+ */
 @property(nonatomic,copy,readonly)NSString *login_Token;
+/**
+ @property
+ @abstract 登录节点
+ */
 @property(nonatomic,copy,readonly)NSString *login_isp;
 #pragma mark strong
-//@property(nonatomic,assign,readonly)BOOL allow_chat;
-//@property(nonatomic,copy,readonly) NSString *room_name;
-//@property(nonatomic,copy,readonly)NSString *room_desc;
+/**
+ @property
+ @abstract 聊天服务器地址
+ */
 @property(nonatomic,strong,readonly)NSArray *array_chat_server;
+/**
+ @property
+ @abstract 文档服务器地址
+ */
 @property(nonatomic,strong,readonly)NSArray *array_doc_server;
+/**
+ @property
+ @abstract 房间id
+ */
 @property(nonatomic,copy,readonly)NSString *room_id;
+/**
+ @property
+ @abstract 插播视频数据
+ */
 @property(nonatomic,strong,readonly)NSDictionary *media;
-//@property(nonatomic,copy,readonly)NSString *rtmpUrl;
-
+/**
+ @property
+ @abstract 直播id
+ */
 @property(nonatomic,copy,readonly)NSString *live_id;
+/**
+ @property
+ @abstract 已经开播时间
+ */
 @property(nonatomic,copy,readonly)NSString *live_last;
-//@property(nonatomic,copy,readonly)NSString *live_startTime;
-//@property(nonatomic,assign,readonly)CCLiveStatus  live_status;
-
-//@property(nonatomic,copy,readonly)NSString *user_id;
-//@property(nonatomic,copy,readonly)NSString *user_name;
-//@property(nonatomic,copy,readonly)NSString *user_role;
+/**
+ @property
+ @abstract 用户房间id
+ */
 @property(nonatomic,copy,readonly)NSString *user_roomId;
-//@property(nonatomic,copy,readonly)NSString *user_sessionId;
-//add
+/**
+ @property
+ @abstract 用户是否允许聊天
+ */
 @property(nonatomic,assign,readonly)BOOL user_allow_chat;
-
+/**
+ @property
+ @abstract 暖场视频数据
+ */
 @property(nonatomic,strong,readonly)NSDictionary *warm_video;
+/**
+ @property
+ @abstract 房间是否开启助教功能
+ */
+@property (assign, nonatomic, readonly) BOOL  room_assist_on;
+/**
+ @property
+ @abstract 房间是否开启手动录制功能
+ */
+@property (assign, nonatomic, readonly) BOOL  room_manual_record;
+/**
+ @property
+ @abstract mqtt请求地址
+ */
+@property(nonatomic,copy,readonly)NSString *mq_server;
 
 @end

@@ -1,28 +1,29 @@
-# mark
+# ChangeLog
 
 --- version 3.3.0 ---
 
-## 一 CCBarleyLibrary
+## 一、 CCBarleyLibrary
 
-一、功能修改
-1、无；
+### 功能修改
+无；
 
-二、接口变更 
-1、无；
+### 接口变更 
+无；
 
-## --- CCChatLibrary
+## 二、 CCChatLibrary
 
-一、功能修改
-1、无；
+### 功能修改
+无；
 
-二、接口变更 
-1、无；
+### 接口变更 
+无；
 
-## --- CCClassRoomBasic
+## 三、 CCClassRoomBasic
 
-一、功能修改
- 1、增加异常监听上报功能；
-二、接口变更 
+### 功能修改
+ 增加异常监听上报功能；
+ 
+### 接口变更 
 
 ```C++
 /*!
@@ -42,15 +43,15 @@
 
 ```
 
-## --- CCDocLibrary
+## 四、 CCDocLibrary
 
-一、功能修改
+### 功能修改
 1、增加房间文档获取；
 2、增加房间文档取消关联；
 3、增加文档翻页
 4、文档加载流程优化为分步加载；
 
-二、接口变更 
+### 接口变更 
 
 ```C++
 /** 文档环境初始化 */
@@ -63,7 +64,7 @@
 - (void)setDocBackGroundColor:(UIColor *)color;
 ```
 
-#pragma mark -- 文档相关
+## 五、文档相关
 
 ```C++
 /*!
@@ -101,7 +102,7 @@
 - (NSString *)docCurrentDocId;
 ```
 
-#pragma mark -- 文档切换相关API
+## 六、文档切换相关API
 
 ```C++
 /** 切换到白板 */

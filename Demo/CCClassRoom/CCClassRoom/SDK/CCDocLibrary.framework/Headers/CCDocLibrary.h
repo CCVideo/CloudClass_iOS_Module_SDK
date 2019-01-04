@@ -10,7 +10,8 @@
 
 //ADD DEPEND LIBRARY HERE
 #import <CCClassRoomBasic/CCClassRoomBasic.h>
-#import "CCDocVideoView.h"
+#import <CCDocLibrary/CCDocVideoView.h>
+#import <CCDocLibrary/CCDoc.h>
 
 //! Project version number for CCDocLibrary.
 FOUNDATION_EXPORT double CCDocLibraryVersionNumber;

@@ -7,6 +7,7 @@
 //
 
 #import "Utility.h"
+#import <UIAlertView+BlocksKit.h>
 
 @implementation Utility
 /**
@@ -123,5 +124,15 @@
     
     return attributeString;
 }
+
++ (void)showMessage:(NSString *)msg
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIAlertView bk_showAlertViewWithTitle:@"提示" message:msg cancelButtonTitle:@"知道了" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            
+        }];
+    });
+}
+
 
 @end

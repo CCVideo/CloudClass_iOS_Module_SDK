@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "CCDocLibrary.h"
+#import "CCDoc.h"
 
 @interface CCDocVideoView : UIView<CCStreamerBasicDelegate>
-
+/** 关联base库 */
 - (void)addBasicClient:(CCStreamerBasic *)basic;
+/** 文档环境初始化 */
+- (void)initDocEnvironment;
+/** 设置文档竖屏支持优先（主要反映在白板部分） */
+- (void)setDocPortrait:(BOOL)portrait;
+/** 开始加载文档 */
 - (void)startDocView;
+/** 设置文档区域背景色 */
+- (void)setDocBackGroundColor:(UIColor *)color;
 //PPT动画展示
 //初始化View
 -(instancetype)initWithFrame:(CGRect)frame;
@@ -63,11 +71,56 @@
 /** 取消授权标注 */
 - (BOOL)cancleAuthUserDraw:(NSString *)userId;
 
+#pragma mark -- 文档相关
+/*!
+ @method
+ @abstract 获取房间机构文档
+ @param roomID 房间ID(缺省为当前登录的房间ID)
+ @param userID 房间ID(缺省为当前登录的房间userID)
+ @param docID  文档ID（可选）
+ @param docName 文档名字(可选)
+ @param page    请求页码（获取指定页，默认返回第一页<可选>）
+ @param size    请求每页条目数（每页的数据条数，默认每页50<可选>）
+ @param completion 回调
+ @return 操作结果
+ */
+- (BOOL)getRelatedRoomDocs:(NSString *)roomID
+                    userID:(NSString *)userID
+                     docID:(NSString *)docID
+                   docName:(NSString *)docName
+                pageNumber:(int)page
+                  pageSize:(int)size
+                completion:(CCComletionBlock)completion;
+
+/*!
+ @method
+ @abstract 删除机构文档
+ @param docID 文档ID
+ @param roomID 房间ID(缺省为当前登录的房间ID)
+ @param userID 房间ID(缺省为当前登录的房间userID)
+ @param completion 回调
+ @return 操作结果
+ */
+- (BOOL)unReleatedDoc:(NSString *)docID roomID:(NSString *)roomID userID:(NSString *)userID completion:(CCComletionBlock)completion;
+
+/** 获取当前文档 */
+- (NSString *)docCurrentDocId;
+#pragma mark -- 文档切换相关API
+/** 切换到白板 */
+- (void)docPageToWhiteBoard;
+/** 切换到另一个文档 */
+- (void)docChangeTo:(CCDoc *)doc;
+/** 向前翻页 */
+- (void)docPageToFront;
+/** 回退翻页 */
+- (void)docPageToBack;
+
 #pragma mark -- 回放相关API
 /** 清屏 */
 - (void)clearAllDrawViews;
 /** 是否是回放 playback --- 回放 */
 @property (copy, nonatomic)NSString *docSource;
 
+- (void)onSocketReceivePlayback:(NSDictionary *)dataDic;
 
 @end

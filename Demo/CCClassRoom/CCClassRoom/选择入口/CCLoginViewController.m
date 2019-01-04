@@ -537,7 +537,6 @@
     }
     //Chenfy..TODO
     //'0': 教师 '1': 互动者 '2': 旁听者
-    role = 1;
     NSString *url = @"https://ccapi.csslcloud.net/api/room/auth";
     NSDictionary *par = @{
                           @"roomid": roomID,

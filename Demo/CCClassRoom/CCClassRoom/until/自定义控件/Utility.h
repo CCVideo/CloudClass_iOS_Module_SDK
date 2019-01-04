@@ -23,4 +23,6 @@
  */
 + (NSMutableAttributedString *)exchangeString:(NSString *)string withText:(NSString *)text imageName:(NSString *)imageName;
 
++ (void)showMessage:(NSString *)msg;
+
 @end

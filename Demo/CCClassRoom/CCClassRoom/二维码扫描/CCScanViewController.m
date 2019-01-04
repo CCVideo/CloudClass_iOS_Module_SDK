@@ -15,6 +15,7 @@
 #import <UIAlertView+BlocksKit.h>
 #import <LBXZBarWrapper.h>
 #import "TZImagePickerController.h"
+#import "Utility.h"
 
 @interface CCScanViewController ()<AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, TZImagePickerControllerDelegate>
 
@@ -189,8 +190,35 @@
     _scanLine = nil;
 }
 
+-(void)parseCodeStr:(NSString *)result
+{
+    WS(weakSelf);
+    NSString *originUrl = result;
+    // 快捷方式获得session对象
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURL *url = [NSURL URLWithString:result];
+    NSString *originHost = [url host];
+    // 通过URL初始化task,在block内部可以直接对返回的数据进行处理
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSURL *url = [response URL];
+        if (error || !url)
+        {
+            [Utility showMessage:@"扫描地址异常！"];
+            return ;
+        }
+        NSString *newHost = [url host];
+        NSString *finalUrl = [originUrl stringByReplacingOccurrencesOfString:originHost withString:newHost];
+        NSLog(@"real request url :%@",finalUrl);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf parseCodeStrAfter:finalUrl];
+        });
+    }];
+    [task resume];
+}
 
--(void)parseCodeStr:(NSString *)result {
+-(void)parseCodeStrAfter:(NSString *)result {
     NSLog(@"result = %@",result);
     NSURL *url = [NSURL URLWithString:result];
     NSString *host = url.host;

@@ -12,6 +12,7 @@
 #import "CCExceptionHandler.h"
 #import <Bugly/Bugly.h>
 #import <OpenGLES/ES2/gl.h>
+#import <CCClassRoomBasic/CCClassRoomBasic.h>
 
 @interface AppDelegate ()
 
@@ -23,15 +24,26 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [SDImageCache sharedImageCache].shouldDecompressImages = NO;
 //    [SULogger start];
+//    BuglyConfig *config = [[BuglyConfig alloc] init];
+//    config.debugMode = true;
+//    config.viewControllerTrackingEnable = true;
+//
+//    config.reportLogLevel = BuglyLogLevelWarn;
+//    [Bugly startWithAppId:@"70f4bb406e" config:config];
+
+    [CCStreamerBasic setCrashListen:YES log:YES];
     
-    BuglyConfig *config = [[BuglyConfig alloc] init];
-    config.debugMode = true;
-    config.viewControllerTrackingEnable = true;
-    
-    config.reportLogLevel = BuglyLogLevelWarn;
-    [Bugly startWithAppId:@"70f4bb406e" config:config];
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self crashTest_20181226];
+    });
     return YES;
+}
+/** crash异常测试 */
+- (void)crashTest_20181226
+{
+    return;
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:2];
+    [arr removeObjectAtIndex:5];
 }
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window

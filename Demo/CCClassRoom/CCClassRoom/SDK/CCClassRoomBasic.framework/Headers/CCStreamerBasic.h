@@ -239,6 +239,20 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  */
 + (instancetype)sharedStreamer;
 
+/*!
+ * @method
+ * @abstract 异常检测
+ * @param exception 崩溃异常
+ * @param log log记录
+ */
++ (void)setCrashListen:(BOOL)exception log:(BOOL)log;
+
+/*!
+ * @method
+ * @abstract log上报
+ */
+- (void)reportLogInfo;
+
 /**
  * 黑流检测监听事件
  */
@@ -335,6 +349,15 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @return 操作结果
  */
 - (BOOL)publish:(CCComletionBlock)completion;
+#pragma mark -- 推流失败重推
+/*!
+ @method
+ @abstract 重新推流
+ @param completion 回调闭包
+ @return 操作结果
+ */
+- (BOOL)rePublish:(CCComletionBlock)completion;
+
 #pragma mark - 停止推流
 /*!
  @method
@@ -398,6 +421,14 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @return 操作结果
  */
 - (BOOL)leave:(CCComletionBlock)completion;
+#pragma mark - inner method
+/*!
+ @method
+ @abstract 退出房间
+ @param sessionId sessionId
+ @param completion 回调闭包
+ */
+- (void)userLogout:(NSString *)sessionId response:(CCComletionBlock)completion;
 #pragma mark - 合屏
 /*!
  @method
@@ -493,6 +524,7 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @return 操作结果
  */
 - (BOOL)getLiveStatus:(CCComletionBlock)completion;
+
 #pragma mark - 设置日志是否开启(默认开启)
 /*!
  @method

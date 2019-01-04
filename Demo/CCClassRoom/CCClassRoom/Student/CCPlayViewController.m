@@ -22,16 +22,12 @@
 #import "TZImagePickerController.h"
 #import "CCLoginViewController.h"
 #import "CCPlayViewController+ActiveAndUnActive.h"
-
 //组件化测试
 #import "DocSimpleViewController.h"
 #import "ChatSimpleViewController.h"
-
 #pragma mark -- 组件化
 //排麦
 #import <CCBarleyLibrary/CCBarleyLibrary.h>
-//#import <CCBarleyLibrary/CCBarleyManager.h>
-
 #define infomationViewClassRoomIconLeft 3
 #define infomationViewErrorwRight 9.f
 #define infomationViewHandupImageViewRight 16.f
@@ -39,6 +35,11 @@
 #define infomationViewHostNamelabelRight 0.f
 
 #define TeacherNamedDelTime 0
+/*********************************************/
+/** 功能测试 */
+//推流重试
+#define PUBLISH_RETRY    0
+/*********************************************/
 
 @interface CCPlayViewController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate, CCStreamerBasicDelegate, UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic,strong)CCStreamShowView     *streamView;
@@ -66,6 +67,9 @@
 @property(nonatomic,copy)NSString *gapUserId;
 @property(nonatomic,assign)NSInteger       micStatus;//0:默认状态  1:排麦中   2:连麦中
 
+@property(nonatomic,copy)NSString *token;
+@property(nonatomic,copy)NSString *accountId;
+@property(nonatomic,copy)NSString *roomId;
 @end
 
 //SDK测试范畴
@@ -78,7 +82,8 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     SDK_Function_PM_CCClassType_Rotate, //自动连麦
     SDK_Function_PM_Get_CCClassType, //房间连麦类型
     SDK_Function_PM_XiaMai,  //下麦
-    SDK_Function_Publish_Message //发送公聊消息
+    SDK_Function_Publish_Message, //发送公聊消息
+    SDK_Function_ReportLog  //信息上报
 };
 
 @implementation CCPlayViewController
@@ -104,7 +109,8 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
                       @"Room_自动连麦",
                       @"获取直播间连麦类型",
                       @"下麦",
-                      @"send publish"];
+                      @"send publish",
+                      @"日志上报"];
     }
     return _arraySDK;
 }
@@ -135,7 +141,7 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
 - (void)initBaseSDKComponent
 {
     self.stremer = [CCStreamerBasic sharedStreamer];
-    self.stremer.videoMode = CCVideoPortrait;
+    self.stremer.videoMode = CCVideoChangeByInterface;
     [self.stremer addObserver:self];
     
     //排麦
@@ -275,6 +281,10 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
         [self tableView_BASE:tableView didSelectRowAtIndexPath:indexPath];
         return;
     }
+#if PUBLISH_RETRY
+    [self localRepublish];
+    return;
+#endif
     [self tableView_COM:tableView didSelectRowAtIndexPath:indexPath];
 }
 #pragma mark - tableview didSelect
@@ -483,18 +493,28 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
 
 - (void)leave
 {
+    [self leaveDelay];
+    return;
+    
+    __weak typeof(self) weakSelf = self;
+    [self.stremer userLogout:self.token response:^(BOOL result, NSError *error, id info) {
+        [self.stremer leave:^(BOOL result, NSError *error, id info) {
+                CCLog(@"%s__%d", __func__, __LINE__);
+                [weakSelf.stremer clearData];
+                [weakSelf.stremer realsesAllStream];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+        }];
+    }];
+}
+#pragma mark -- 添加了延迟强制退出
+- (void)leaveDelay
+{
     __weak typeof(self) weakSelf = self;
     [self.stremer leave:^(BOOL result, NSError *error, id info) {
-        if (result)
-        {
-            CCLog(@"%s__%d", __func__, __LINE__);
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-        }
-        else
-        {
-            [weakSelf showError:error];
-        }
     }];
+    [weakSelf.stremer clearData];
+    [weakSelf.stremer realsesAllStream];
+    [weakSelf.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)updateRtmpUrl
@@ -680,7 +700,12 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
         if (result)
         {
             [weakSelf.streamView showStreamView:info];
-            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionAllowBluetooth error:nil];
+            AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+            
+            [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionAllowBluetooth error:nil];
+            
+            //默认情况下扬声器播放
+            [audioSession setActive:YES error:nil];
         }
         else
         {
@@ -741,7 +766,12 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     NSString *authSessionID = self.info[@"data"][@"sessionid"];
     NSString *user_id = self.info[@"data"][@"userid"];
     
-//    [self.stremer joinWithAccountID:@"6634678BEDA5BB7D" sessionID:@"1A6730B1C671339F4597FBC77604BB37EC1E96A9CB7F00C2EE813D5B7D0E17EB9216025D5316F796C1B50331DBDC2F9A" config:config areaCode:nil events:nil completion:^(BOOL result, NSError *error, id info) {
+    self.token = authSessionID;
+    self.accountId = self.viewerId;
+    self.roomId = GetFromUserDefaults(LIVE_ROOMID);
+
+    
+//    [self.stremer joinWithAccountID:@"6634678BEDA5BB7D" sessionID:@"08D0269E7C952B48F398A774FCC31C637D0B1A89F43AEBA61BCA8ECA08D20562C1448C83864E5EF5C9463B2D6B63C41F" config:config areaCode:nil events:nil completion:^(BOOL result, NSError *error, id info) {
 //        [weakSelf.loadingView removeFromSuperview];
 //        if (result)
 //        {
@@ -753,6 +783,7 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
 //        }
 //    }];
 //    return;
+
     
     [self.stremer joinWithAccountID:self.viewerId sessionID:authSessionID config:config areaCode:nil events:@[] completion:^(BOOL result, NSError *error, id info) {
         [weakSelf.loadingView removeFromSuperview];
@@ -799,6 +830,9 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     }
     if (row == SDK_Function_Publish_Message) {
         [self publishMessage];
+    }
+    if (row == SDK_Function_ReportLog) {
+        [[CCStreamerBasic sharedStreamer]reportLogInfo];
     }
 }
 #pragma mark - 发送公共消息
@@ -951,10 +985,30 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
                 [weakSelf showError:error];
             }
         }];
-
-        
     }];
 }
+/** 推流重试 */
+#pragma mark -- 本地流重推
+- (void)localRepublish
+{
+    [self.stremer rePublish:^(BOOL result, NSError *error, id info) {
+        if (result)
+        {
+            self.localStreamID = self.stremer.localStreamID;
+            CCLog(@"%s__%d", __func__, __LINE__);
+            //推流成功，更新用户排麦状态
+            [self.ccBarelyManager updateUserState:self.room.user_id roomID:nil publishResult:YES streamID:self.localStreamID completion:^(BOOL result, NSError *error, id info) {
+                
+            }];
+        }
+        else
+        {
+            [self showError:error];
+        }
+    }];
+}
+
+
 
 - (void)com_startPreview:(CCComletionBlock)completion
 {
@@ -1031,7 +1085,7 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     }
     else if (event == CCSocketEvent_KickFromRoom)
     {
-      
+        //当前用户被踢出房间
     }
     else if (event == CCSocketEvent_LianmaiModeChanged)
     {
@@ -1042,7 +1096,7 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
         NSLog(@"%d", __LINE__);
         WS(weakSelf);
         [UIAlertView bk_showAlertViewWithTitle:@"消息" message:@"收到老师上麦邀请" cancelButtonTitle:@"拒绝" otherButtonTitles:@[@"接受"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            CCLog(@"chenfy--%d",buttonIndex);
+            CCLog(@"chenfy--%ld",(long)buttonIndex);
             if (buttonIndex == 1)
             {
                 [weakSelf com_accept_invite];
@@ -1071,12 +1125,6 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     {
         
     }
-    else if(event == CCSocketEvent_UserHandUp)
-    {
-        NSString *name = value[@"name"];
-        NSString *str = [NSString stringWithFormat:@"<%@> 举手了！",name];
-        [self showMessage:str];
-    }
     else if(event == CCSocketEvent_PublishMessage)
     {
         NSString *val = value[@"value"];
@@ -1085,15 +1133,24 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
     }
     else if(event == CCSocketEvent_UserJoin)
     {
-        NSString *uname = value[@"name"];
+        CCUser *user = value[@"user"];
+        NSString *uname = user.user_name;
         NSString *msg = [NSString stringWithFormat:@"<%@> 加入房间!",uname];
         [self showMessage:msg];
     }
     else if(event == CCSocketEvent_UserExit)
     {
-        NSString *uname = value[@"name"];
+        CCUser *user = value[@"user"];
+        NSString *uname = user.user_name;
         NSString *msg = [NSString stringWithFormat:@"<%@> 离开房间!",uname];
         [self showMessage:msg];
+    }
+    else if(event == CCSocketEvent_UserHandUp)
+    {
+        CCUser *user = value[@"user"];
+        NSString *name = user.user_name;
+        NSString *str = [NSString stringWithFormat:@"<%@> 举手了！",name];
+        [self showMessage:str];
     }
     else if (event == CCSocketEvent_ReciveDrawStateChanged)
     {
@@ -1186,5 +1243,6 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
         }
     }
 }
+
 
 @end

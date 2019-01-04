@@ -12,7 +12,6 @@
 #import <CCClassRoomBasic/CCClassRoomBasic.h>
 #import "CCBarleyManager.h"
 
-
 //! Project version number for CCBarleyLibrary.
 FOUNDATION_EXPORT double CCBarleyLibraryVersionNumber;
 

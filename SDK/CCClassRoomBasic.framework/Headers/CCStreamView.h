@@ -53,7 +53,8 @@ typedef enum{
 - (id)initWithStream:(CCStream *)stream;
 - (id)initWithPreView:(UIView *)preView stream:(CCStream *)stream;
 - (id)initWithStream:(CCStream *)stream videoView:(UIView *)videoView;
-
+/** 切换流数据源 */
+-(void)switchToStream:(CCStream *)stream;
 /**
  设置流的方向
 
@@ -61,4 +62,8 @@ typedef enum{
  */
 - (void)setCameraViewTransform:(CGAffineTransform)transform;
 - (UIImage*)snapshot;
+/**
+ 设置相机镜像反转
+ */
+- (void)setCameraViewMirror:(BOOL)mirror;
 @end

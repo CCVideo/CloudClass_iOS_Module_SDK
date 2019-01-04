@@ -55,7 +55,6 @@
 		4265C4861ED2806800552261 /* CCCollectionViewCellSpeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 4265C4851ED2806800552261 /* CCCollectionViewCellSpeak.m */; };
 		426715761ED7C0F800C77E04 /* CCExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 426715751ED7C0F800C77E04 /* CCExceptionHandler.m */; };
 		4268EE4A1E3310EA0022F1C8 /* CCPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4268EE491E3310EA0022F1C8 /* CCPlayViewController.m */; };
-		427046371EFBA2E00000AF5E /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427046361EFBA2E00000AF5E /* Bugly.framework */; };
 		42748D951EA9F52C00596AC7 /* ZZCircleProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 42748D941EA9F52C00596AC7 /* ZZCircleProgress.m */; };
 		4278F3781ED678CE00B9AA52 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4278F3771ED678CE00B9AA52 /* libz.tbd */; };
 		4278F3891ED6B98C00B9AA52 /* SULogboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4278F3861ED6B98C00B9AA52 /* SULogboard.m */; };
@@ -81,8 +80,8 @@
 		42BD09A11E306C100067F7B7 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BD09A01E306C100067F7B7 /* VideoToolbox.framework */; };
 		42BD09A51E306C450067F7B7 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BD09A41E306C450067F7B7 /* libicucore.tbd */; };
 		42C0F7441F0CC48500C4B254 /* XXLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0F7431F0CC48500C4B254 /* XXLinkLabel.m */; };
-		42C96EE71F712D9A00800AE5 /* CCClassRoomBasic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C96EE51F712D8B00800AE5 /* CCClassRoomBasic.framework */; };
-		42C96EE81F712D9A00800AE5 /* CCClassRoomBasic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C96EE51F712D8B00800AE5 /* CCClassRoomBasic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42CE1BE121C3C609000C6714 /* CCClassRoomBasic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C96EE51F712D8B00800AE5 /* CCClassRoomBasic.framework */; };
+		42CE1BE221C3C609000C6714 /* CCClassRoomBasic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C96EE51F712D8B00800AE5 /* CCClassRoomBasic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42EB95BA1EE0002000B925B1 /* PopoverAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EB95B51EE0002000B925B1 /* PopoverAction.m */; };
 		42EB95BB1EE0002000B925B1 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EB95B71EE0002000B925B1 /* PopoverView.m */; };
 		42EB95BC1EE0002000B925B1 /* PopoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EB95B91EE0002000B925B1 /* PopoverViewCell.m */; };
@@ -104,8 +103,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				42C96EE81F712D9A00800AE5 /* CCClassRoomBasic.framework in Embed Frameworks */,
 				42EFE4CD20F6F684008BB4BD /* CCChatLibrary.framework in Embed Frameworks */,
+				42CE1BE221C3C609000C6714 /* CCClassRoomBasic.framework in Embed Frameworks */,
 				424214B720F60F680036EDAD /* CCDocLibrary.framework in Embed Frameworks */,
 				42EFE4D120F72AB2008BB4BD /* CCBarleyLibrary.framework in Embed Frameworks */,
 			);
@@ -206,7 +205,6 @@
 		426715751ED7C0F800C77E04 /* CCExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCExceptionHandler.m; sourceTree = "<group>"; };
 		4268EE481E3310EA0022F1C8 /* CCPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlayViewController.h; sourceTree = "<group>"; };
 		4268EE491E3310EA0022F1C8 /* CCPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPlayViewController.m; sourceTree = "<group>"; };
-		427046361EFBA2E00000AF5E /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		42748D931EA9F52C00596AC7 /* ZZCircleProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCircleProgress.h; sourceTree = "<group>"; };
 		42748D941EA9F52C00596AC7 /* ZZCircleProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCircleProgress.m; sourceTree = "<group>"; };
 		4278F3771ED678CE00B9AA52 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -277,11 +275,10 @@
 				429FD44A1F723F4A00D2888E /* GLKit.framework in Frameworks */,
 				4278F3781ED678CE00B9AA52 /* libz.tbd in Frameworks */,
 				420DFC981E49D6CE0026B031 /* libstdc++.tbd in Frameworks */,
-				427046371EFBA2E00000AF5E /* Bugly.framework in Frameworks */,
-				42C96EE71F712D9A00800AE5 /* CCClassRoomBasic.framework in Frameworks */,
 				42BD09A51E306C450067F7B7 /* libicucore.tbd in Frameworks */,
 				42EFE4CF20F72694008BB4BD /* CCBarleyLibrary.framework in Frameworks */,
 				42BD09A11E306C100067F7B7 /* VideoToolbox.framework in Frameworks */,
+				42CE1BE121C3C609000C6714 /* CCClassRoomBasic.framework in Frameworks */,
 				C96C23124F46DE41C9DDC767 /* libPods-CCClassRoom.a in Frameworks */,
 				42EFE4D020F72AB2008BB4BD /* CCBarleyLibrary.framework in Frameworks */,
 				42EFE4CC20F6F684008BB4BD /* CCChatLibrary.framework in Frameworks */,
@@ -341,7 +338,6 @@
 				4243C5931E764CB300568C69 /* CCBaseTableViewController.m */,
 				42FC8E2C1F4135B90030EE7D /* CCWeakProxy.h */,
 				42FC8E2D1F4135B90030EE7D /* CCWeakProxy.m */,
-				427046361EFBA2E00000AF5E /* Bugly.framework */,
 			);
 			path = until;
 			sourceTree = "<group>";

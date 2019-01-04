@@ -262,6 +262,10 @@ extern NSString* const TeacherSecondStreamViewName;
  * @brief 老师高拍仪用户ID宏定义
  */
 extern NSString* const TeacherSecondStreamViewUserID;
+/*!
+ * @brief 旁听CDN推流失败通知
+ */
+extern NSString* const CCNotiCDNPushError;
 
 /*!
  * @brief 异步请求闭包回调.
@@ -565,5 +569,9 @@ extern NSString* const CCNotiNeedLoginOut;
  @abstract mqtt请求地址
  */
 @property(nonatomic,copy,readonly)NSString *mq_server;
-
+/**
+ @property
+ @abstract cdn推流设置
+ */
+@property(nonatomic,assign,readonly)NSInteger room_pubcdn_switch;
 @end

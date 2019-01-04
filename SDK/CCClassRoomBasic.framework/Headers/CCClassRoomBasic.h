@@ -32,3 +32,4 @@ FOUNDATION_EXPORT const unsigned char CCClassRoomBasicVersionString[];
 #import <CCClassRoomBasic/CCAudioSenderStatus.h>
 
 #endif
+

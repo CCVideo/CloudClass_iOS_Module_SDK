@@ -1,32 +1,30 @@
-#mark
+# mark
 
----- version 3.3.0 ----
+--- version 3.3.0 ---
 
-##--- CCBarleyLibrary
+## 一 CCBarleyLibrary
 
-******************************************************************
 一、功能修改
 1、无；
 
 二、接口变更 
 1、无；
 
-##--- CCChatLibrary
+## --- CCChatLibrary
 
-******************************************************************
 一、功能修改
 1、无；
 
 二、接口变更 
 1、无；
 
-##--- CCClassRoomBasic
-
-/******************************************************************/
+## --- CCClassRoomBasic
 
 一、功能修改
  1、增加异常监听上报功能；
 二、接口变更 
+
+```C++
 /*!
  * @method
  * @abstract 异常检测
@@ -42,9 +40,10 @@
  */
 - (void)reportLogInfo;
 
-##--- CCDocLibrary
+```
 
-******************************************************************
+## --- CCDocLibrary
+
 一、功能修改
 1、增加房间文档获取；
 2、增加房间文档取消关联；
@@ -53,6 +52,7 @@
 
 二、接口变更 
 
+```C++
 /** 文档环境初始化 */
 - (void)initDocEnvironment;
 /** 设置文档竖屏支持优先（主要反映在白板部分） */
@@ -61,7 +61,11 @@
 - (void)startDocView;
 /** 设置文档区域背景色 */
 - (void)setDocBackGroundColor:(UIColor *)color;
+```
+
 #pragma mark -- 文档相关
+
+```C++
 /*!
  @method
  @abstract 获取房间机构文档
@@ -95,7 +99,11 @@
 
 /** 获取当前文档 */
 - (NSString *)docCurrentDocId;
+```
+
 #pragma mark -- 文档切换相关API
+
+```C++
 /** 切换到白板 */
 - (void)docPageToWhiteBoard;
 /** 切换到另一个文档 */
@@ -104,3 +112,5 @@
 - (void)docPageToFront;
 /** 回退翻页 */
 - (void)docPageToBack;
+```
+

@@ -1,0 +1,932 @@
+\hypertarget{interface_c_c_streamer_basic}{}\section{C\+C\+Streamer\+Basic Class Reference}
+\label{interface_c_c_streamer_basic}\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+
+
+业务逻辑基本类  
+
+
+
+
+{\ttfamily \#import $<$C\+C\+Streamer\+Basic.\+h$>$}
+
+Inheritance diagram for C\+C\+Streamer\+Basic\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_c_c_streamer_basic}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_ad25d3d5930be6f375133272c6ff30324}{add\+Observer\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_a3b6770a7d93808beee1672f04c9090cb}{remove\+Observer\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_ad2772456b583a89888dba4f3157482a9}{report\+Log\+Info}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_a3df60b5ba3cc43eb471ec439e571be95}{on\+Stream\+Stats\+Listener\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a33e6149b5a9e325bf2f69fff6b1353d5}{config\+Reconnection\+Attempts\+:reconnection\+Delay\+:reconnection\+Delay\+Max\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a6f342af6416873ec1608a4f270cec09e}{set\+Camera\+Type\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_ad9fbe9111472b624255976c998a7a16f}{set\+Server\+Domain\+:area\+:}
+\item 
+(N\+S\+String $\ast$) -\/ \hyperlink{interface_c_c_streamer_basic_a78dad7e95f697219990fb73486db9807}{get\+Server\+Domain}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_a719419e4a1d870d984373391e67eec27}{start\+Preview\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a67d4c1109da3c868368a0af1dc66ddf5}{stop\+Preview\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a637f17e6b34cda147b5f737f89faa9b5}{join\+With\+Account\+I\+D\+:session\+I\+D\+:config\+:area\+Code\+:events\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a56a0d95094f6c4b9faf2e6c526bf6222}{login\+With\+Account\+I\+D\+:session\+I\+D\+:area\+Code\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_af1d3dce7b83deb25b77dd079f0992f67}{join\+With\+Config\+:events\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a2a7f9c89eb1279f7bde5f664e333e935}{publish\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_ada5f0d8268f6a10829e0784ded531b78}{re\+Publish\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a9c3e78ba904db41009fe422519f91e54}{un\+Publish\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a10f88cc1192212c402fbf441e58f0e21}{subcribe\+With\+Stream\+:quality\+Level\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a84d647ce0824c172ae3a9ee95676ccb6}{unsubscribe\+With\+Stream\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a3eb486f4cd40fa8e532c05cfa2baf197}{get\+Connection\+Stats\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a56e16b52ed8d9e0c4c497187a09fbd8d}{get\+Region\+:mixed\+Stream\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a1f2409d6635e84569dbefe576e7aca1e}{set\+Region\+:region\+:mixed\+Stream\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_ab78edee32e3ccd7b1e6d8a46b517dc38}{leave\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_a55bf0d02dbd791b32f53a0ea55680f04}{user\+Logout\+:response\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_aa665ff886f80c70e60419839c1f05c38}{mix\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_abcce3e26c170dbec38736c07d35df8d6}{unmix\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a1030eaa7f4c49132b426ab4f20385ec6}{add\+External\+Output\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a1180df52bef6dacd8a85009cb4c84185}{remove\+External\+Output\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_af73255187458b1385508cef508131458}{update\+External\+Output\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_ad36a7eef2a31f2e909d3159e6ba607ce}{stream\+:video\+State\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a8ccee83dc711f33ce27abb63140efab2}{stream\+:audio\+State\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a1371108bb07a2af44edfda771ab62683}{stop\+Live\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_ad9f91717c4dd487f254ace9a7237af4d}{start\+Live\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a1a7e5e90d65f3a07b6de817b120e6f2a}{start\+Live\+With\+Record\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a572cf57c93623e0eaf87514737db5729}{get\+Live\+Status\+:}
+\item 
+(A\+V\+Capture\+Session $\ast$) -\/ \hyperlink{interface_c_c_streamer_basic_a0b681453aaf24a0424619fa488381313}{get\+Capture\+Session}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_a566714939c10eebc3def763308ad2e41}{get\+Room\+Desc\+With\+Roon\+I\+D\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_ac4a54455af6e7d3974a59892244df2df}{get\+Room\+Server\+With\+Account\+I\+D\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_ab32594777e441a8edf1f93b1135d9204}{kick\+User\+From\+Room\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_a67b341f9bc16e13c97c41543078d33f5}{reconnect\+Atlas\+:}
+\item 
+(\hyperlink{interface_c_c_room}{C\+C\+Room} $\ast$) -\/ \hyperlink{interface_c_c_streamer_basic_a3d9a24ed847067f8f71c815d5ce6c60e}{get\+Room\+Info}
+\item 
+(\hyperlink{interface_c_c_speaker}{C\+C\+Speaker} $\ast$) -\/ \hyperlink{interface_c_c_streamer_basic_a93ffb49f4b1a3cbbbeb89ec1927f60b7}{get\+Speak\+Info}
+\item 
+(\hyperlink{interface_c_c_user}{C\+C\+User} $\ast$) -\/ \hyperlink{interface_c_c_streamer_basic_aca867160cb49c555e62bd5b18e7ed279}{get\+U\+Ser\+Info\+With\+User\+I\+D\+:}
+\item 
+(\hyperlink{interface_c_c_user}{C\+C\+User} $\ast$) -\/ \hyperlink{interface_c_c_streamer_basic_ad0c98fb251203fb7531ecdabbe3ae84f}{get\+User\+Info\+With\+Stream\+I\+D\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_a1023b14df6914c3190d89c5cddbea14c}{realses\+All\+Stream}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_ae3d13a9970f532c7bd630f98ecfc00bd}{clear\+Data}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_a6ed3877a3e3d2a4a9cb3be32b566b261}{play\+Audio\+:completion\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_a78af8bc6810731775ba13a3272c6f93e}{pause\+Audio\+:completion\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_afe7bec4a43b1b497fec36b061c0ea090}{play\+Video\+:completion\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_a52ea0a4735f76f199f6d314e2cc159ad}{pause\+Video\+:completion\+:}
+\item 
+(B\+O\+OL) -\/ \hyperlink{interface_c_c_streamer_basic_aae5fa8e92538f309f2eac0d0bd194d2f}{record\+To\+:completion\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_a3c49ff3e0e96a1001913c6cd9a0ebc36}{join\+Audit\+:token\+:isp\+:complete\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_ad0107408438386061abe80c874918287}{audit\+Create\+Socket\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_streamer_basic_af982e16a8c40013832a86f96d9af7d62}{audit\+Create\+Socket\+For\+Playback\+:}
+\end{DoxyCompactItemize}
+\subsection*{Class Methods}
+\begin{DoxyCompactItemize}
+\item 
+(instancetype) + \hyperlink{interface_c_c_streamer_basic_a8bb923e9c31c4bb3a75e22117464d0aa}{shared\+Streamer}
+\item 
+(void) + \hyperlink{interface_c_c_streamer_basic_ac720b0a4b258eebdc14ab97bac4dc42d}{set\+Crash\+Listen\+:log\+:}
+\item 
+(void) + \hyperlink{interface_c_c_streamer_basic_a7a39b2d3550aba9f219aa0fb9d88e860}{set\+Log\+State\+:}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{interface_c_c_streamer_basic_ac8814cbe4938b42bf489b7ebc8ffd77a}\label{interface_c_c_streamer_basic_ac8814cbe4938b42bf489b7ebc8ffd77a}} 
+B\+O\+OL {\bfseries is\+Use\+Pai\+Mai}
+\item 
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a7131b8057bb5b7c25c9f5feb99730392}\label{interface_c_c_streamer_basic_a7131b8057bb5b7c25c9f5feb99730392}} 
+N\+S\+String $\ast$ \hyperlink{interface_c_c_streamer_basic_a7131b8057bb5b7c25c9f5feb99730392}{room\+ID}
+\begin{DoxyCompactList}\small\item\em 房间\+ID \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a6e9029d25812601192ebe58f5c7bea9b}\label{interface_c_c_streamer_basic_a6e9029d25812601192ebe58f5c7bea9b}} 
+N\+S\+String $\ast$ \hyperlink{interface_c_c_streamer_basic_a6e9029d25812601192ebe58f5c7bea9b}{account\+ID}
+\begin{DoxyCompactList}\small\item\em 账号\+ID \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interface_c_c_streamer_basic_abd3c846494a1767a08d3b1a69bbec1ad}\label{interface_c_c_streamer_basic_abd3c846494a1767a08d3b1a69bbec1ad}} 
+N\+S\+String $\ast$ \hyperlink{interface_c_c_streamer_basic_abd3c846494a1767a08d3b1a69bbec1ad}{user\+ID}
+\begin{DoxyCompactList}\small\item\em 用户\+ID \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interface_c_c_streamer_basic_afda2ecae0d4306e6a150baaad72babb6}\label{interface_c_c_streamer_basic_afda2ecae0d4306e6a150baaad72babb6}} 
+N\+S\+String $\ast$ \hyperlink{interface_c_c_streamer_basic_afda2ecae0d4306e6a150baaad72babb6}{local\+Stream\+ID}
+\begin{DoxyCompactList}\small\item\em 推流\+ID \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a8b77f73f4bf1f194b8eeaeef38d1246d}\label{interface_c_c_streamer_basic_a8b77f73f4bf1f194b8eeaeef38d1246d}} 
+C\+C\+Video\+Ori\+Mode \hyperlink{interface_c_c_streamer_basic_a8b77f73f4bf1f194b8eeaeef38d1246d}{video\+Mode}
+\begin{DoxyCompactList}\small\item\em 流方向 \end{DoxyCompactList}\item 
+B\+O\+OL \hyperlink{interface_c_c_streamer_basic_aa682504571afd589ebd01253fa47f016}{call\+Stop\+Lian\+Mai\+By\+Student}
+\item 
+N\+S\+Mutable\+Array $\ast$ \hyperlink{interface_c_c_streamer_basic_aa37da66cdd8a8790bfafd4b7bd5cac1d}{subed\+Stream}
+\item 
+\mbox{\Hypertarget{interface_c_c_streamer_basic_ade20cd09c942d8d757f36a58f5bbeafb}\label{interface_c_c_streamer_basic_ade20cd09c942d8d757f36a58f5bbeafb}} 
+N\+S\+Mutable\+Array $\ast$ {\bfseries removed\+Stream}
+\item 
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a91b72ad1cc66d4d95b74e76e93a7f4e9}\label{interface_c_c_streamer_basic_a91b72ad1cc66d4d95b74e76e93a7f4e9}} 
+N\+S\+Mutable\+Array $\ast$ {\bfseries all\+Stream}
+\item 
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a1475f3c49106369cdb5f0c505afd5dcd}\label{interface_c_c_streamer_basic_a1475f3c49106369cdb5f0c505afd5dcd}} 
+N\+S\+Mutable\+Array $\ast$ {\bfseries noti\+StreamS}
+\item 
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a8eff4e259f9398452ee12b58805905af}\label{interface_c_c_streamer_basic_a8eff4e259f9398452ee12b58805905af}} 
+\hyperlink{interface_c_c_stream_view}{C\+C\+Stream\+View} $\ast$ {\bfseries pre\+View}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+业务逻辑基本类 
+
+\subsection{Method Documentation}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a1030eaa7f4c49132b426ab4f20385ec6}\label{interface_c_c_streamer_basic_a1030eaa7f4c49132b426ab4f20385ec6}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!add\+External\+Output\+:completion\+:@{add\+External\+Output\+:completion\+:}}
+\index{add\+External\+Output\+:completion\+:@{add\+External\+Output\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{add\+External\+Output\+:completion\+:()}{addExternalOutput:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) add\+External\+Output\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{url }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+设置第三方推流地址 
+\begin{DoxyParams}{Parameters}
+{\em url} & 第三方推流地址(rtmp地址) \\
+\hline
+{\em completion} & 结果 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_ad25d3d5930be6f375133272c6ff30324}\label{interface_c_c_streamer_basic_ad25d3d5930be6f375133272c6ff30324}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!add\+Observer\+:@{add\+Observer\+:}}
+\index{add\+Observer\+:@{add\+Observer\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{add\+Observer\+:()}{addObserver:()}}
+{\footnotesize\ttfamily -\/ (void) add\+Observer\+: \begin{DoxyParamCaption}\item[{(id$<$ C\+C\+Streamer\+Basic\+Delegate $>$)}]{observer }\end{DoxyParamCaption}}
+
+添加observer \mbox{\Hypertarget{interface_c_c_streamer_basic_ad0107408438386061abe80c874918287}\label{interface_c_c_streamer_basic_ad0107408438386061abe80c874918287}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!audit\+Create\+Socket\+:@{audit\+Create\+Socket\+:}}
+\index{audit\+Create\+Socket\+:@{audit\+Create\+Socket\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{audit\+Create\+Socket\+:()}{auditCreateSocket:()}}
+{\footnotesize\ttfamily -\/ (void) audit\+Create\+Socket\+: \begin{DoxyParamCaption}\item[{(N\+S\+Array $\ast$)}]{events }\end{DoxyParamCaption}}
+
+创建socket连接 
+\begin{DoxyParams}{Parameters}
+{\em events} & events \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_af982e16a8c40013832a86f96d9af7d62}\label{interface_c_c_streamer_basic_af982e16a8c40013832a86f96d9af7d62}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!audit\+Create\+Socket\+For\+Playback\+:@{audit\+Create\+Socket\+For\+Playback\+:}}
+\index{audit\+Create\+Socket\+For\+Playback\+:@{audit\+Create\+Socket\+For\+Playback\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{audit\+Create\+Socket\+For\+Playback\+:()}{auditCreateSocketForPlayback:()}}
+{\footnotesize\ttfamily -\/ (void) audit\+Create\+Socket\+For\+Playback\+: \begin{DoxyParamCaption}\item[{(N\+S\+Dictionary $\ast$)}]{room }\end{DoxyParamCaption}}
+
+创建socket连接 \mbox{\Hypertarget{interface_c_c_streamer_basic_ae3d13a9970f532c7bd630f98ecfc00bd}\label{interface_c_c_streamer_basic_ae3d13a9970f532c7bd630f98ecfc00bd}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!clear\+Data@{clear\+Data}}
+\index{clear\+Data@{clear\+Data}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{clear\+Data()}{clearData()}}
+{\footnotesize\ttfamily -\/ (void) clear\+Data \begin{DoxyParamCaption}{ }\end{DoxyParamCaption}}
+
+数据初始化 \mbox{\Hypertarget{interface_c_c_streamer_basic_a33e6149b5a9e325bf2f69fff6b1353d5}\label{interface_c_c_streamer_basic_a33e6149b5a9e325bf2f69fff6b1353d5}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!config\+Reconnection\+Attempts\+:reconnection\+Delay\+:reconnection\+Delay\+Max\+:@{config\+Reconnection\+Attempts\+:reconnection\+Delay\+:reconnection\+Delay\+Max\+:}}
+\index{config\+Reconnection\+Attempts\+:reconnection\+Delay\+:reconnection\+Delay\+Max\+:@{config\+Reconnection\+Attempts\+:reconnection\+Delay\+:reconnection\+Delay\+Max\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{config\+Reconnection\+Attempts\+:reconnection\+Delay\+:reconnection\+Delay\+Max\+:()}{configReconnectionAttempts:reconnectionDelay:reconnectionDelayMax:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) config\+Reconnection\+Attempts\+: \begin{DoxyParamCaption}\item[{(N\+S\+Integer)}]{count }\item[{reconnectionDelay:(float)}]{delay }\item[{reconnectionDelayMax:(float)}]{delay\+Max }\end{DoxyParamCaption}}
+
+配置socket重连参数(要在login之前配置) 
+\begin{DoxyParams}{Parameters}
+{\em count} & 重连次数(5) \\
+\hline
+{\em delay} & 重连间隔(1000ms) \\
+\hline
+{\em delay\+Max} & 重连最大间隔(5000ms) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a0b681453aaf24a0424619fa488381313}\label{interface_c_c_streamer_basic_a0b681453aaf24a0424619fa488381313}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+Capture\+Session@{get\+Capture\+Session}}
+\index{get\+Capture\+Session@{get\+Capture\+Session}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+Capture\+Session()}{getCaptureSession()}}
+{\footnotesize\ttfamily -\/ (A\+V\+Capture\+Session $\ast$) get\+Capture\+Session \begin{DoxyParamCaption}{ }\end{DoxyParamCaption}}
+
+获取相机对象 \begin{DoxyReturn}{Returns}
+相机对象 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a3eb486f4cd40fa8e532c05cfa2baf197}\label{interface_c_c_streamer_basic_a3eb486f4cd40fa8e532c05cfa2baf197}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+Connection\+Stats\+:completion\+:@{get\+Connection\+Stats\+:completion\+:}}
+\index{get\+Connection\+Stats\+:completion\+:@{get\+Connection\+Stats\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+Connection\+Stats\+:completion\+:()}{getConnectionStats:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) get\+Connection\+Stats\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+获取流状态 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a572cf57c93623e0eaf87514737db5729}\label{interface_c_c_streamer_basic_a572cf57c93623e0eaf87514737db5729}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+Live\+Status\+:@{get\+Live\+Status\+:}}
+\index{get\+Live\+Status\+:@{get\+Live\+Status\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+Live\+Status\+:()}{getLiveStatus:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) get\+Live\+Status\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+查询直播间状态 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a56e16b52ed8d9e0c4c497187a09fbd8d}\label{interface_c_c_streamer_basic_a56e16b52ed8d9e0c4c497187a09fbd8d}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+Region\+:mixed\+Stream\+:completion\+:@{get\+Region\+:mixed\+Stream\+:completion\+:}}
+\index{get\+Region\+:mixed\+Stream\+:completion\+:@{get\+Region\+:mixed\+Stream\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+Region\+:mixed\+Stream\+:completion\+:()}{getRegion:mixedStream:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) get\+Region\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{mixedStream:(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{mixed\+Steam }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+获取布局位置 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a566714939c10eebc3def763308ad2e41}\label{interface_c_c_streamer_basic_a566714939c10eebc3def763308ad2e41}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+Room\+Desc\+With\+Roon\+I\+D\+:completion\+:@{get\+Room\+Desc\+With\+Roon\+I\+D\+:completion\+:}}
+\index{get\+Room\+Desc\+With\+Roon\+I\+D\+:completion\+:@{get\+Room\+Desc\+With\+Roon\+I\+D\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+Room\+Desc\+With\+Roon\+I\+D\+:completion\+:()}{getRoomDescWithRoonID:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) get\+Room\+Desc\+With\+Roon\+I\+D\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{room\+ID }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+获取直播间简介 
+\begin{DoxyParams}{Parameters}
+{\em room\+ID} & 房间\+ID \\
+\hline
+{\em completion} & 回调 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a3d9a24ed847067f8f71c815d5ce6c60e}\label{interface_c_c_streamer_basic_a3d9a24ed847067f8f71c815d5ce6c60e}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+Room\+Info@{get\+Room\+Info}}
+\index{get\+Room\+Info@{get\+Room\+Info}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+Room\+Info()}{getRoomInfo()}}
+{\footnotesize\ttfamily -\/ (\hyperlink{interface_c_c_room}{C\+C\+Room} $\ast$) get\+Room\+Info \begin{DoxyParamCaption}{ }\end{DoxyParamCaption}}
+
+获取当前\+C\+C\+Room \begin{DoxyReturn}{Returns}
+当前房间信息 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_ac4a54455af6e7d3974a59892244df2df}\label{interface_c_c_streamer_basic_ac4a54455af6e7d3974a59892244df2df}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+Room\+Server\+With\+Account\+I\+D\+:completion\+:@{get\+Room\+Server\+With\+Account\+I\+D\+:completion\+:}}
+\index{get\+Room\+Server\+With\+Account\+I\+D\+:completion\+:@{get\+Room\+Server\+With\+Account\+I\+D\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+Room\+Server\+With\+Account\+I\+D\+:completion\+:()}{getRoomServerWithAccountID:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) get\+Room\+Server\+With\+Account\+I\+D\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{account\+Id }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+获取节点列表 
+\begin{DoxyParams}{Parameters}
+{\em account\+Id} & 用户账号\+ID \\
+\hline
+{\em completion} & 回调 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a78dad7e95f697219990fb73486db9807}\label{interface_c_c_streamer_basic_a78dad7e95f697219990fb73486db9807}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+Server\+Domain@{get\+Server\+Domain}}
+\index{get\+Server\+Domain@{get\+Server\+Domain}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+Server\+Domain()}{getServerDomain()}}
+{\footnotesize\ttfamily -\/ (N\+S\+String $\ast$) get\+Server\+Domain \begin{DoxyParamCaption}{ }\end{DoxyParamCaption}}
+
+获取访问域名 \begin{DoxyReturn}{Returns}
+域名 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a93ffb49f4b1a3cbbbeb89ec1927f60b7}\label{interface_c_c_streamer_basic_a93ffb49f4b1a3cbbbeb89ec1927f60b7}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+Speak\+Info@{get\+Speak\+Info}}
+\index{get\+Speak\+Info@{get\+Speak\+Info}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+Speak\+Info()}{getSpeakInfo()}}
+{\footnotesize\ttfamily -\/ (\hyperlink{interface_c_c_speaker}{C\+C\+Speaker} $\ast$) get\+Speak\+Info \begin{DoxyParamCaption}{ }\end{DoxyParamCaption}}
+
+获取当前\+C\+C\+Speaker \begin{DoxyReturn}{Returns}
+当前流信息 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_ad0c98fb251203fb7531ecdabbe3ae84f}\label{interface_c_c_streamer_basic_ad0c98fb251203fb7531ecdabbe3ae84f}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+User\+Info\+With\+Stream\+I\+D\+:@{get\+User\+Info\+With\+Stream\+I\+D\+:}}
+\index{get\+User\+Info\+With\+Stream\+I\+D\+:@{get\+User\+Info\+With\+Stream\+I\+D\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+User\+Info\+With\+Stream\+I\+D\+:()}{getUserInfoWithStreamID:()}}
+{\footnotesize\ttfamily -\/ (\hyperlink{interface_c_c_user}{C\+C\+User} $\ast$) get\+User\+Info\+With\+Stream\+I\+D\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{stream\+ID }\end{DoxyParamCaption}}
+
+获取用户
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream\+ID} & 流\+ID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+用户 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_aca867160cb49c555e62bd5b18e7ed279}\label{interface_c_c_streamer_basic_aca867160cb49c555e62bd5b18e7ed279}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!get\+U\+Ser\+Info\+With\+User\+I\+D\+:@{get\+U\+Ser\+Info\+With\+User\+I\+D\+:}}
+\index{get\+U\+Ser\+Info\+With\+User\+I\+D\+:@{get\+U\+Ser\+Info\+With\+User\+I\+D\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{get\+U\+Ser\+Info\+With\+User\+I\+D\+:()}{getUSerInfoWithUserID:()}}
+{\footnotesize\ttfamily -\/ (\hyperlink{interface_c_c_user}{C\+C\+User} $\ast$) get\+U\+Ser\+Info\+With\+User\+I\+D\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{user\+ID }\end{DoxyParamCaption}}
+
+获取用户
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+ID} & 用户\+ID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+用户 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a3c49ff3e0e96a1001913c6cd9a0ebc36}\label{interface_c_c_streamer_basic_a3c49ff3e0e96a1001913c6cd9a0ebc36}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!join\+Audit\+:token\+:isp\+:complete\+:@{join\+Audit\+:token\+:isp\+:complete\+:}}
+\index{join\+Audit\+:token\+:isp\+:complete\+:@{join\+Audit\+:token\+:isp\+:complete\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{join\+Audit\+:token\+:isp\+:complete\+:()}{joinAudit:token:isp:complete:()}}
+{\footnotesize\ttfamily -\/ (void) join\+Audit\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{uid }\item[{token:(N\+S\+String $\ast$)}]{token }\item[{isp:(N\+S\+String $\ast$)}]{isp }\item[{complete:(C\+C\+Comletion\+Block)}]{complete }\end{DoxyParamCaption}}
+
+旁听接口 
+\begin{DoxyParams}{Parameters}
+{\em uid} & 用户id \\
+\hline
+{\em token} & token \\
+\hline
+{\em isp} & 节点 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a637f17e6b34cda147b5f737f89faa9b5}\label{interface_c_c_streamer_basic_a637f17e6b34cda147b5f737f89faa9b5}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!join\+With\+Account\+I\+D\+:session\+I\+D\+:config\+:area\+Code\+:events\+:completion\+:@{join\+With\+Account\+I\+D\+:session\+I\+D\+:config\+:area\+Code\+:events\+:completion\+:}}
+\index{join\+With\+Account\+I\+D\+:session\+I\+D\+:config\+:area\+Code\+:events\+:completion\+:@{join\+With\+Account\+I\+D\+:session\+I\+D\+:config\+:area\+Code\+:events\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{join\+With\+Account\+I\+D\+:session\+I\+D\+:config\+:area\+Code\+:events\+:completion\+:()}{joinWithAccountID:sessionID:config:areaCode:events:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) join\+With\+Account\+I\+D\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{account\+ID }\item[{sessionID:(N\+S\+String $\ast$)}]{session\+ID }\item[{config:(\hyperlink{interface_c_c_encode_config}{C\+C\+Encode\+Config} $\ast$)}]{config }\item[{areaCode:(N\+S\+String $\ast$)}]{area\+Code }\item[{events:(N\+S\+Array $\ast$)}]{event }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+登录接口(login和join的合集) 
+\begin{DoxyParams}{Parameters}
+{\em account\+ID} & 账号\+ID \\
+\hline
+{\em session\+ID} & session\+ID \\
+\hline
+{\em area\+Code} & 节点 \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_af1d3dce7b83deb25b77dd079f0992f67}\label{interface_c_c_streamer_basic_af1d3dce7b83deb25b77dd079f0992f67}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!join\+With\+Config\+:events\+:completion\+:@{join\+With\+Config\+:events\+:completion\+:}}
+\index{join\+With\+Config\+:events\+:completion\+:@{join\+With\+Config\+:events\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{join\+With\+Config\+:events\+:completion\+:()}{joinWithConfig:events:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) join\+With\+Config\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_encode_config}{C\+C\+Encode\+Config} $\ast$)}]{config }\item[{events:(N\+S\+Array $\ast$)}]{event }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+登录接口 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_ab32594777e441a8edf1f93b1135d9204}\label{interface_c_c_streamer_basic_ab32594777e441a8edf1f93b1135d9204}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!kick\+User\+From\+Room\+:@{kick\+User\+From\+Room\+:}}
+\index{kick\+User\+From\+Room\+:@{kick\+User\+From\+Room\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{kick\+User\+From\+Room\+:()}{kickUserFromRoom:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) kick\+User\+From\+Room\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{user\+ID }\end{DoxyParamCaption}}
+
+踢出房间 
+\begin{DoxyParams}{Parameters}
+{\em user\+ID} & 用户\+ID\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_ab78edee32e3ccd7b1e6d8a46b517dc38}\label{interface_c_c_streamer_basic_ab78edee32e3ccd7b1e6d8a46b517dc38}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!leave\+:@{leave\+:}}
+\index{leave\+:@{leave\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{leave\+:()}{leave:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) leave\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+退出 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a56a0d95094f6c4b9faf2e6c526bf6222}\label{interface_c_c_streamer_basic_a56a0d95094f6c4b9faf2e6c526bf6222}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!login\+With\+Account\+I\+D\+:session\+I\+D\+:area\+Code\+:completion\+:@{login\+With\+Account\+I\+D\+:session\+I\+D\+:area\+Code\+:completion\+:}}
+\index{login\+With\+Account\+I\+D\+:session\+I\+D\+:area\+Code\+:completion\+:@{login\+With\+Account\+I\+D\+:session\+I\+D\+:area\+Code\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{login\+With\+Account\+I\+D\+:session\+I\+D\+:area\+Code\+:completion\+:()}{loginWithAccountID:sessionID:areaCode:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) login\+With\+Account\+I\+D\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{account\+ID }\item[{sessionID:(N\+S\+String $\ast$)}]{session\+ID }\item[{areaCode:(N\+S\+String $\ast$)}]{area\+Code }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+登录接口 
+\begin{DoxyParams}{Parameters}
+{\em account\+ID} & 账号\+ID \\
+\hline
+{\em session\+ID} & session\+ID \\
+\hline
+{\em area\+Code} & 节点 \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_aa665ff886f80c70e60419839c1f05c38}\label{interface_c_c_streamer_basic_aa665ff886f80c70e60419839c1f05c38}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!mix\+:@{mix\+:}}
+\index{mix\+:@{mix\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{mix\+:()}{mix:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) mix\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+合屏 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a3df60b5ba3cc43eb471ec439e571be95}\label{interface_c_c_streamer_basic_a3df60b5ba3cc43eb471ec439e571be95}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!on\+Stream\+Stats\+Listener\+:@{on\+Stream\+Stats\+Listener\+:}}
+\index{on\+Stream\+Stats\+Listener\+:@{on\+Stream\+Stats\+Listener\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{on\+Stream\+Stats\+Listener\+:()}{onStreamStatsListener:()}}
+{\footnotesize\ttfamily -\/ (void) on\+Stream\+Stats\+Listener\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+黑流检测监听事件 \mbox{\Hypertarget{interface_c_c_streamer_basic_a78af8bc6810731775ba13a3272c6f93e}\label{interface_c_c_streamer_basic_a78af8bc6810731775ba13a3272c6f93e}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!pause\+Audio\+:completion\+:@{pause\+Audio\+:completion\+:}}
+\index{pause\+Audio\+:completion\+:@{pause\+Audio\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{pause\+Audio\+:completion\+:()}{pauseAudio:completion:()}}
+{\footnotesize\ttfamily -\/ (void) pause\+Audio\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+取消订阅音频流 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em completion} & 回调 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a52ea0a4735f76f199f6d314e2cc159ad}\label{interface_c_c_streamer_basic_a52ea0a4735f76f199f6d314e2cc159ad}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!pause\+Video\+:completion\+:@{pause\+Video\+:completion\+:}}
+\index{pause\+Video\+:completion\+:@{pause\+Video\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{pause\+Video\+:completion\+:()}{pauseVideo:completion:()}}
+{\footnotesize\ttfamily -\/ (void) pause\+Video\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+取消订阅音频流 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em completion} & 回调 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a6ed3877a3e3d2a4a9cb3be32b566b261}\label{interface_c_c_streamer_basic_a6ed3877a3e3d2a4a9cb3be32b566b261}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!play\+Audio\+:completion\+:@{play\+Audio\+:completion\+:}}
+\index{play\+Audio\+:completion\+:@{play\+Audio\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{play\+Audio\+:completion\+:()}{playAudio:completion:()}}
+{\footnotesize\ttfamily -\/ (void) play\+Audio\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+订阅音频流 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em completion} & 回调 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_afe7bec4a43b1b497fec36b061c0ea090}\label{interface_c_c_streamer_basic_afe7bec4a43b1b497fec36b061c0ea090}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!play\+Video\+:completion\+:@{play\+Video\+:completion\+:}}
+\index{play\+Video\+:completion\+:@{play\+Video\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{play\+Video\+:completion\+:()}{playVideo:completion:()}}
+{\footnotesize\ttfamily -\/ (void) play\+Video\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+订阅视频流 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em completion} & 回调 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a2a7f9c89eb1279f7bde5f664e333e935}\label{interface_c_c_streamer_basic_a2a7f9c89eb1279f7bde5f664e333e935}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!publish\+:@{publish\+:}}
+\index{publish\+:@{publish\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{publish\+:()}{publish:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) publish\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+开始推流 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a1023b14df6914c3190d89c5cddbea14c}\label{interface_c_c_streamer_basic_a1023b14df6914c3190d89c5cddbea14c}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!realses\+All\+Stream@{realses\+All\+Stream}}
+\index{realses\+All\+Stream@{realses\+All\+Stream}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{realses\+All\+Stream()}{realsesAllStream()}}
+{\footnotesize\ttfamily -\/ (void) realses\+All\+Stream \begin{DoxyParamCaption}{ }\end{DoxyParamCaption}}
+
+释放所有已订阅的流(学生退出超时调用) \mbox{\Hypertarget{interface_c_c_streamer_basic_a67b341f9bc16e13c97c41543078d33f5}\label{interface_c_c_streamer_basic_a67b341f9bc16e13c97c41543078d33f5}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!reconnect\+Atlas\+:@{reconnect\+Atlas\+:}}
+\index{reconnect\+Atlas\+:@{reconnect\+Atlas\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{reconnect\+Atlas\+:()}{reconnectAtlas:()}}
+{\footnotesize\ttfamily -\/ (void) reconnect\+Atlas\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+出发重连 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_aae5fa8e92538f309f2eac0d0bd194d2f}\label{interface_c_c_streamer_basic_aae5fa8e92538f309f2eac0d0bd194d2f}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!record\+To\+:completion\+:@{record\+To\+:completion\+:}}
+\index{record\+To\+:completion\+:@{record\+To\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{record\+To\+:completion\+:()}{recordTo:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) record\+To\+: \begin{DoxyParamCaption}\item[{(C\+C\+Record\+Type)}]{type }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+直播录制相关 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a1180df52bef6dacd8a85009cb4c84185}\label{interface_c_c_streamer_basic_a1180df52bef6dacd8a85009cb4c84185}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!remove\+External\+Output\+:completion\+:@{remove\+External\+Output\+:completion\+:}}
+\index{remove\+External\+Output\+:completion\+:@{remove\+External\+Output\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{remove\+External\+Output\+:completion\+:()}{removeExternalOutput:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) remove\+External\+Output\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{url }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+移除第三方推流地址 
+\begin{DoxyParams}{Parameters}
+{\em url} & 第三方推流地址(rtmp地址) \\
+\hline
+{\em completion} & 结果 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a3b6770a7d93808beee1672f04c9090cb}\label{interface_c_c_streamer_basic_a3b6770a7d93808beee1672f04c9090cb}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!remove\+Observer\+:@{remove\+Observer\+:}}
+\index{remove\+Observer\+:@{remove\+Observer\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{remove\+Observer\+:()}{removeObserver:()}}
+{\footnotesize\ttfamily -\/ (void) remove\+Observer\+: \begin{DoxyParamCaption}\item[{(id$<$ C\+C\+Streamer\+Basic\+Delegate $>$)}]{observer }\end{DoxyParamCaption}}
+
+移除observer \mbox{\Hypertarget{interface_c_c_streamer_basic_ad2772456b583a89888dba4f3157482a9}\label{interface_c_c_streamer_basic_ad2772456b583a89888dba4f3157482a9}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!report\+Log\+Info@{report\+Log\+Info}}
+\index{report\+Log\+Info@{report\+Log\+Info}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{report\+Log\+Info()}{reportLogInfo()}}
+{\footnotesize\ttfamily -\/ (void) report\+Log\+Info \begin{DoxyParamCaption}{ }\end{DoxyParamCaption}}
+
+log上报 \mbox{\Hypertarget{interface_c_c_streamer_basic_ada5f0d8268f6a10829e0784ded531b78}\label{interface_c_c_streamer_basic_ada5f0d8268f6a10829e0784ded531b78}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!re\+Publish\+:@{re\+Publish\+:}}
+\index{re\+Publish\+:@{re\+Publish\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{re\+Publish\+:()}{rePublish:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) re\+Publish\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+重新推流 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a6f342af6416873ec1608a4f270cec09e}\label{interface_c_c_streamer_basic_a6f342af6416873ec1608a4f270cec09e}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!set\+Camera\+Type\+:@{set\+Camera\+Type\+:}}
+\index{set\+Camera\+Type\+:@{set\+Camera\+Type\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{set\+Camera\+Type\+:()}{setCameraType:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) set\+Camera\+Type\+: \begin{DoxyParamCaption}\item[{(A\+V\+Capture\+Device\+Position)}]{pos }\end{DoxyParamCaption}}
+
+设置摄像头  切换摄像头 
+\begin{DoxyParams}{Parameters}
+{\em pos} & 摄像头位置 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_ac720b0a4b258eebdc14ab97bac4dc42d}\label{interface_c_c_streamer_basic_ac720b0a4b258eebdc14ab97bac4dc42d}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!set\+Crash\+Listen\+:log\+:@{set\+Crash\+Listen\+:log\+:}}
+\index{set\+Crash\+Listen\+:log\+:@{set\+Crash\+Listen\+:log\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{set\+Crash\+Listen\+:log\+:()}{setCrashListen:log:()}}
+{\footnotesize\ttfamily + (void) set\+Crash\+Listen\+: \begin{DoxyParamCaption}\item[{(B\+O\+OL)}]{exception }\item[{log:(B\+O\+OL)}]{log }\end{DoxyParamCaption}}
+
+异常检测 
+\begin{DoxyParams}{Parameters}
+{\em exception} & 崩溃异常 \\
+\hline
+{\em log} & log记录 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a7a39b2d3550aba9f219aa0fb9d88e860}\label{interface_c_c_streamer_basic_a7a39b2d3550aba9f219aa0fb9d88e860}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!set\+Log\+State\+:@{set\+Log\+State\+:}}
+\index{set\+Log\+State\+:@{set\+Log\+State\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{set\+Log\+State\+:()}{setLogState:()}}
+{\footnotesize\ttfamily + (void) set\+Log\+State\+: \begin{DoxyParamCaption}\item[{(B\+O\+OL)}]{state }\end{DoxyParamCaption}}
+
+设置日志是否开启(默认开启) 
+\begin{DoxyParams}{Parameters}
+{\em state} & 状态 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a1f2409d6635e84569dbefe576e7aca1e}\label{interface_c_c_streamer_basic_a1f2409d6635e84569dbefe576e7aca1e}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!set\+Region\+:region\+:mixed\+Stream\+:completion\+:@{set\+Region\+:region\+:mixed\+Stream\+:completion\+:}}
+\index{set\+Region\+:region\+:mixed\+Stream\+:completion\+:@{set\+Region\+:region\+:mixed\+Stream\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{set\+Region\+:region\+:mixed\+Stream\+:completion\+:()}{setRegion:region:mixedStream:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) set\+Region\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{region:(N\+S\+String $\ast$)}]{region\+ID }\item[{mixedStream:(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{mixed\+Steam }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+修改合流的主视频流 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em region\+ID} & region\+ID \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_ad9fbe9111472b624255976c998a7a16f}\label{interface_c_c_streamer_basic_ad9fbe9111472b624255976c998a7a16f}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!set\+Server\+Domain\+:area\+:@{set\+Server\+Domain\+:area\+:}}
+\index{set\+Server\+Domain\+:area\+:@{set\+Server\+Domain\+:area\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{set\+Server\+Domain\+:area\+:()}{setServerDomain:area:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) set\+Server\+Domain\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{domain }\item[{area:(N\+S\+String $\ast$)}]{area }\end{DoxyParamCaption}}
+
+设置访问域名  设置访问域名 
+\begin{DoxyParams}{Parameters}
+{\em domain} & 课堂域名 \\
+\hline
+{\em area} & 区域参数 $\vert$-\/ 国内：\+H\+B、\+H\+D、\+HN $\vert$ 亚洲：\+D\+NY $\vert$ 美国：\+M\+D、\+MX $\vert$ 欧洲：\+O\+Z\+D、\+O\+ZX -\/$\vert$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a8bb923e9c31c4bb3a75e22117464d0aa}\label{interface_c_c_streamer_basic_a8bb923e9c31c4bb3a75e22117464d0aa}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!shared\+Streamer@{shared\+Streamer}}
+\index{shared\+Streamer@{shared\+Streamer}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{shared\+Streamer()}{sharedStreamer()}}
+{\footnotesize\ttfamily + (instancetype) shared\+Streamer \begin{DoxyParamCaption}{ }\end{DoxyParamCaption}}
+
+初始化\+C\+C\+Streamer\+Basic实例 \mbox{\Hypertarget{interface_c_c_streamer_basic_ad9f91717c4dd487f254ace9a7237af4d}\label{interface_c_c_streamer_basic_ad9f91717c4dd487f254ace9a7237af4d}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!start\+Live\+:@{start\+Live\+:}}
+\index{start\+Live\+:@{start\+Live\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{start\+Live\+:()}{startLive:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) start\+Live\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+开启直播 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a1a7e5e90d65f3a07b6de817b120e6f2a}\label{interface_c_c_streamer_basic_a1a7e5e90d65f3a07b6de817b120e6f2a}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!start\+Live\+With\+Record\+:completion\+:@{start\+Live\+With\+Record\+:completion\+:}}
+\index{start\+Live\+With\+Record\+:completion\+:@{start\+Live\+With\+Record\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{start\+Live\+With\+Record\+:completion\+:()}{startLiveWithRecord:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) start\+Live\+With\+Record\+: \begin{DoxyParamCaption}\item[{(B\+O\+OL)}]{record }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+开启直播 
+\begin{DoxyParams}{Parameters}
+{\em record} & 是否开启直播录制 \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a719419e4a1d870d984373391e67eec27}\label{interface_c_c_streamer_basic_a719419e4a1d870d984373391e67eec27}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!start\+Preview\+:@{start\+Preview\+:}}
+\index{start\+Preview\+:@{start\+Preview\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{start\+Preview\+:()}{startPreview:()}}
+{\footnotesize\ttfamily -\/ (void) start\+Preview\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+(1000)  开始预览  开启摄像头开启预览，在推流开始之前开启 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a1371108bb07a2af44edfda771ab62683}\label{interface_c_c_streamer_basic_a1371108bb07a2af44edfda771ab62683}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!stop\+Live\+:@{stop\+Live\+:}}
+\index{stop\+Live\+:@{stop\+Live\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{stop\+Live\+:()}{stopLive:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) stop\+Live\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+停止直播 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a67d4c1109da3c868368a0af1dc66ddf5}\label{interface_c_c_streamer_basic_a67d4c1109da3c868368a0af1dc66ddf5}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!stop\+Preview\+:@{stop\+Preview\+:}}
+\index{stop\+Preview\+:@{stop\+Preview\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{stop\+Preview\+:()}{stopPreview:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) stop\+Preview\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+停止预览(login out 包含该操作) \begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a8ccee83dc711f33ce27abb63140efab2}\label{interface_c_c_streamer_basic_a8ccee83dc711f33ce27abb63140efab2}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!stream\+:audio\+State\+:completion\+:@{stream\+:audio\+State\+:completion\+:}}
+\index{stream\+:audio\+State\+:completion\+:@{stream\+:audio\+State\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{stream\+:audio\+State\+:completion\+:()}{stream:audioState:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) stream\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{audioState:(B\+O\+OL)}]{audio }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+设置流音频的状态 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em audio} & 音频流状态(开启/关闭) \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_ad36a7eef2a31f2e909d3159e6ba607ce}\label{interface_c_c_streamer_basic_ad36a7eef2a31f2e909d3159e6ba607ce}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!stream\+:video\+State\+:completion\+:@{stream\+:video\+State\+:completion\+:}}
+\index{stream\+:video\+State\+:completion\+:@{stream\+:video\+State\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{stream\+:video\+State\+:completion\+:()}{stream:videoState:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) stream\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{videoState:(B\+O\+OL)}]{video }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+设置流视频的状态 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em video} & 视频流状态(开启/关闭) \\
+\hline
+{\em completion} & 成功闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a10f88cc1192212c402fbf441e58f0e21}\label{interface_c_c_streamer_basic_a10f88cc1192212c402fbf441e58f0e21}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!subcribe\+With\+Stream\+:quality\+Level\+:completion\+:@{subcribe\+With\+Stream\+:quality\+Level\+:completion\+:}}
+\index{subcribe\+With\+Stream\+:quality\+Level\+:completion\+:@{subcribe\+With\+Stream\+:quality\+Level\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{subcribe\+With\+Stream\+:quality\+Level\+:completion\+:()}{subcribeWithStream:qualityLevel:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) subcribe\+With\+Stream\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{qualityLevel:(int)}]{level }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+订阅某人画面(不需要观看的时候要取消订阅) 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em level} & 画面质量(0\+:\+Best\+Quality,1\+:\+Better\+Quality, 2\+:\+Standard, 3\+:\+Better\+Speed, 4\+:\+Best\+Speed) \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_abcce3e26c170dbec38736c07d35df8d6}\label{interface_c_c_streamer_basic_abcce3e26c170dbec38736c07d35df8d6}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!unmix\+:@{unmix\+:}}
+\index{unmix\+:@{unmix\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{unmix\+:()}{unmix:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) unmix\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+取消合屏 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a9c3e78ba904db41009fe422519f91e54}\label{interface_c_c_streamer_basic_a9c3e78ba904db41009fe422519f91e54}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!un\+Publish\+:@{un\+Publish\+:}}
+\index{un\+Publish\+:@{un\+Publish\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{un\+Publish\+:()}{unPublish:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) un\+Publish\+: \begin{DoxyParamCaption}\item[{(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+结束推流 
+\begin{DoxyParams}{Parameters}
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a84d647ce0824c172ae3a9ee95676ccb6}\label{interface_c_c_streamer_basic_a84d647ce0824c172ae3a9ee95676ccb6}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!unsubscribe\+With\+Stream\+:completion\+:@{unsubscribe\+With\+Stream\+:completion\+:}}
+\index{unsubscribe\+With\+Stream\+:completion\+:@{unsubscribe\+With\+Stream\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{unsubscribe\+With\+Stream\+:completion\+:()}{unsubscribeWithStream:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) unsubscribe\+With\+Stream\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+取消订阅某人画面 
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_af73255187458b1385508cef508131458}\label{interface_c_c_streamer_basic_af73255187458b1385508cef508131458}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!update\+External\+Output\+:completion\+:@{update\+External\+Output\+:completion\+:}}
+\index{update\+External\+Output\+:completion\+:@{update\+External\+Output\+:completion\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{update\+External\+Output\+:completion\+:()}{updateExternalOutput:completion:()}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) update\+External\+Output\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{url }\item[{completion:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+变更第三方推流地址 
+\begin{DoxyParams}{Parameters}
+{\em url} & 地址 \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+操作结果 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_a55bf0d02dbd791b32f53a0ea55680f04}\label{interface_c_c_streamer_basic_a55bf0d02dbd791b32f53a0ea55680f04}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!user\+Logout\+:response\+:@{user\+Logout\+:response\+:}}
+\index{user\+Logout\+:response\+:@{user\+Logout\+:response\+:}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{user\+Logout\+:response\+:()}{userLogout:response:()}}
+{\footnotesize\ttfamily -\/ (void) user\+Logout\+: \begin{DoxyParamCaption}\item[{(N\+S\+String $\ast$)}]{session\+Id }\item[{response:(C\+C\+Comletion\+Block)}]{completion }\end{DoxyParamCaption}}
+
+退出房间 
+\begin{DoxyParams}{Parameters}
+{\em session\+Id} & session\+Id \\
+\hline
+{\em completion} & 回调闭包 \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{interface_c_c_streamer_basic_aa682504571afd589ebd01253fa47f016}\label{interface_c_c_streamer_basic_aa682504571afd589ebd01253fa47f016}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!call\+Stop\+Lian\+Mai\+By\+Student@{call\+Stop\+Lian\+Mai\+By\+Student}}
+\index{call\+Stop\+Lian\+Mai\+By\+Student@{call\+Stop\+Lian\+Mai\+By\+Student}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{call\+Stop\+Lian\+Mai\+By\+Student}{callStopLianMaiByStudent}}
+{\footnotesize\ttfamily -\/ (B\+O\+OL) call\+Stop\+Lian\+Mai\+By\+Student\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}, {\ttfamily [nonatomic]}, {\ttfamily [assign]}}
+
+是否是自己下麦 \mbox{\Hypertarget{interface_c_c_streamer_basic_aa37da66cdd8a8790bfafd4b7bd5cac1d}\label{interface_c_c_streamer_basic_aa37da66cdd8a8790bfafd4b7bd5cac1d}} 
+\index{C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}!subed\+Stream@{subed\+Stream}}
+\index{subed\+Stream@{subed\+Stream}!C\+C\+Streamer\+Basic@{C\+C\+Streamer\+Basic}}
+\subsubsection{\texorpdfstring{subed\+Stream}{subedStream}}
+{\footnotesize\ttfamily -\/ (N\+S\+Mutable\+Array$\ast$) subed\+Stream\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}, {\ttfamily [nonatomic]}, {\ttfamily [strong]}}
+
+流管理 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+C\+Streamer\+Basic.\+h\end{DoxyCompactItemize}

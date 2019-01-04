@@ -1,0 +1,104 @@
+\hypertarget{interface_c_c_stream_view}{}\section{C\+C\+Stream\+View Class Reference}
+\label{interface_c_c_stream_view}\index{C\+C\+Stream\+View@{C\+C\+Stream\+View}}
+
+
+流视图  
+
+
+
+
+{\ttfamily \#import $<$C\+C\+Stream\+View.\+h$>$}
+
+Inheritance diagram for C\+C\+Stream\+View\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_c_c_stream_view}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(id) -\/ \hyperlink{interface_c_c_stream_view_a0a8eebb75951ae2ae5ae7ff9ec498b3d}{init\+With\+Stream\+:}
+\item 
+\mbox{\Hypertarget{interface_c_c_stream_view_a77d49f2c879cdd8c0db134857df0b03a}\label{interface_c_c_stream_view_a77d49f2c879cdd8c0db134857df0b03a}} 
+(id) -\/ {\bfseries init\+With\+Pre\+View\+:stream\+:}
+\item 
+\mbox{\Hypertarget{interface_c_c_stream_view_a64194f8f54e0e1e9d2192fe2f94491bc}\label{interface_c_c_stream_view_a64194f8f54e0e1e9d2192fe2f94491bc}} 
+(id) -\/ {\bfseries init\+With\+Stream\+:video\+View\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_stream_view_a93cd41f06e817749a0ea635151333688}{switch\+To\+Stream\+:}
+\item 
+(void) -\/ \hyperlink{interface_c_c_stream_view_a459e2ceb67d1f1c40690d64b6ea609bb}{set\+Camera\+View\+Transform\+:}
+\item 
+\mbox{\Hypertarget{interface_c_c_stream_view_a58ecfef01533b88dc54ea3939590a8d2}\label{interface_c_c_stream_view_a58ecfef01533b88dc54ea3939590a8d2}} 
+(U\+I\+Image $\ast$) -\/ {\bfseries snapshot}
+\item 
+(void) -\/ \hyperlink{interface_c_c_stream_view_acc6bbb88b8529b7e2621ca78bcdee643}{set\+Camera\+View\+Mirror\+:}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{interface_c_c_stream_view_a258b3c6eef0d353d7bca24e4f61f7f78}\label{interface_c_c_stream_view_a258b3c6eef0d353d7bca24e4f61f7f78}} 
+\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$ \hyperlink{interface_c_c_stream_view_a258b3c6eef0d353d7bca24e4f61f7f78}{stream}
+\begin{DoxyCompactList}\small\item\em 该视图对应流\+ID \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interface_c_c_stream_view_aff0922102b8ef404e6968887efc4388a}\label{interface_c_c_stream_view_aff0922102b8ef404e6968887efc4388a}} 
+C\+C\+Stream\+View\+Fill\+Mode \hyperlink{interface_c_c_stream_view_aff0922102b8ef404e6968887efc4388a}{fill\+Mode}
+\begin{DoxyCompactList}\small\item\em 视图填充方式 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interface_c_c_stream_view_a26608e3bfad777afca8b2566ee71f21b}\label{interface_c_c_stream_view_a26608e3bfad777afca8b2566ee71f21b}} 
+C\+G\+Size \hyperlink{interface_c_c_stream_view_a26608e3bfad777afca8b2566ee71f21b}{video\+View\+Size}
+\begin{DoxyCompactList}\small\item\em 视频画面大小(动态的) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interface_c_c_stream_view_a76413209ee4b57512e0df74ecddd4a71}\label{interface_c_c_stream_view_a76413209ee4b57512e0df74ecddd4a71}} 
+U\+I\+View $\ast$ {\bfseries video\+View}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+流视图 
+
+\subsection{Method Documentation}
+\mbox{\Hypertarget{interface_c_c_stream_view_a0a8eebb75951ae2ae5ae7ff9ec498b3d}\label{interface_c_c_stream_view_a0a8eebb75951ae2ae5ae7ff9ec498b3d}} 
+\index{C\+C\+Stream\+View@{C\+C\+Stream\+View}!init\+With\+Stream\+:@{init\+With\+Stream\+:}}
+\index{init\+With\+Stream\+:@{init\+With\+Stream\+:}!C\+C\+Stream\+View@{C\+C\+Stream\+View}}
+\subsubsection{\texorpdfstring{init\+With\+Stream\+:()}{initWithStream:()}}
+{\footnotesize\ttfamily -\/ (id) init\+With\+Stream\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\end{DoxyParamCaption}}
+
+流视图生成方法
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & 流 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+流视图 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_c_c_stream_view_acc6bbb88b8529b7e2621ca78bcdee643}\label{interface_c_c_stream_view_acc6bbb88b8529b7e2621ca78bcdee643}} 
+\index{C\+C\+Stream\+View@{C\+C\+Stream\+View}!set\+Camera\+View\+Mirror\+:@{set\+Camera\+View\+Mirror\+:}}
+\index{set\+Camera\+View\+Mirror\+:@{set\+Camera\+View\+Mirror\+:}!C\+C\+Stream\+View@{C\+C\+Stream\+View}}
+\subsubsection{\texorpdfstring{set\+Camera\+View\+Mirror\+:()}{setCameraViewMirror:()}}
+{\footnotesize\ttfamily -\/ (void) set\+Camera\+View\+Mirror\+: \begin{DoxyParamCaption}\item[{(B\+O\+OL)}]{mirror }\end{DoxyParamCaption}}
+
+设置相机镜像反转 \mbox{\Hypertarget{interface_c_c_stream_view_a459e2ceb67d1f1c40690d64b6ea609bb}\label{interface_c_c_stream_view_a459e2ceb67d1f1c40690d64b6ea609bb}} 
+\index{C\+C\+Stream\+View@{C\+C\+Stream\+View}!set\+Camera\+View\+Transform\+:@{set\+Camera\+View\+Transform\+:}}
+\index{set\+Camera\+View\+Transform\+:@{set\+Camera\+View\+Transform\+:}!C\+C\+Stream\+View@{C\+C\+Stream\+View}}
+\subsubsection{\texorpdfstring{set\+Camera\+View\+Transform\+:()}{setCameraViewTransform:()}}
+{\footnotesize\ttfamily -\/ (void) set\+Camera\+View\+Transform\+: \begin{DoxyParamCaption}\item[{(C\+G\+Affine\+Transform)}]{transform }\end{DoxyParamCaption}}
+
+设置流的方向
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & 方向 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interface_c_c_stream_view_a93cd41f06e817749a0ea635151333688}\label{interface_c_c_stream_view_a93cd41f06e817749a0ea635151333688}} 
+\index{C\+C\+Stream\+View@{C\+C\+Stream\+View}!switch\+To\+Stream\+:@{switch\+To\+Stream\+:}}
+\index{switch\+To\+Stream\+:@{switch\+To\+Stream\+:}!C\+C\+Stream\+View@{C\+C\+Stream\+View}}
+\subsubsection{\texorpdfstring{switch\+To\+Stream\+:()}{switchToStream:()}}
+{\footnotesize\ttfamily -\/ (void) switch\+To\+Stream\+: \begin{DoxyParamCaption}\item[{(\hyperlink{interface_c_c_stream}{C\+C\+Stream} $\ast$)}]{stream }\end{DoxyParamCaption}}
+
+切换流数据源 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+C\+Stream\+View.\+h\end{DoxyCompactItemize}

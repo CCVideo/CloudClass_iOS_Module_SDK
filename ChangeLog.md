@@ -1,72 +1,142 @@
-# ChangeLog
 
---- version 3.3.0 ---
 
-## 一、 CCBarleyLibrary
+[TOC]
 
-### 功能修改
-无；
+# 《组件化SDK变更说明》
 
-### 接口变更 
-无；
+# version 3.0.0 
+> 版本 3.0.0   时间：2018-07-16
 
-## 二、 CCChatLibrary
+### 一、功能拆分
+1、对基础版SDK、及全功能版SDK做了组件化分离；
 
-### 功能修改
-无；
+# version 3.1.0
+> 版本 3.1.0   时间：2018-09-12
+### 一、新增功能
+1、增加了排麦、举手、进入房间提醒
+2、支持橡皮檫，激光笔，荧光笔。
+3、直播时间
 
-### 接口变更 
-无；
+# version_3.2.0
+> 版本 3.2.0   时间：2018-11-20
 
-## 三、 CCClassRoomBasic
+### 一、新增功能
+1、老师可以撤销所有人画笔；
+2、增加助教角色；
+3、增加文档同步；
 
-### 功能修改
- 增加异常监听上报功能；
- 
-### 接口变更 
+### 二、修改API
+无
 
-```C++
+### 三、新增API
+
+1、CCDocLibrary 库
+```objc
+/** 学生撤销 */
+- (void)revokeLastDrawByStudent;
+```
+
+2、CCClassRoomBasic 库
+```objc
 /*!
- * @method
- * @abstract 异常检测
- * @param exception 崩溃异常
- * @param log log记录
+ @method
+ @abstract 订阅音频流
+ @param stream 流
+ @param completion 回调
  */
+- (void)playAudio:(CCStream*)stream completion:(CCComletionBlock)completion;
+
+/*!
+ @method
+ @abstract 取消订阅音频流
+ @param stream 流
+ @param completion 回调
+ */
+- (void)pauseAudio:(CCStream*)stream completion:(CCComletionBlock)completion;
+
+/*!
+ @method
+ @abstract 订阅视频流
+ @param stream 流
+ @param completion 回调
+ */
+- (void)playVideo:(CCStream*)stream completion:(CCComletionBlock)completion;
+
+/*!
+ @method
+ @abstract 取消订阅音频流
+ @param stream 流
+ @param completion 回调
+ */
+- (void)pauseVideo:(CCStream*)stream completion:(CCComletionBlock)completion;
+```
+
+# version_3.3.0
+> 版本 3.3.0   时间：2018-12-18
+
+## CCBarleyLibrary
+
+### 一、功能修改
+1、无；
+
+### 二、接口变更 
+1、无；
+
+## CCChatLibrary
+
+### 一、功能修改
+1、无；
+
+### 二、接口变更 
+1、无；
+
+## CCClassRoomBasic
+
+### 一、功能修改
+ 1、增加异常监听上报功能；
+
+### 二、接口变更 
+1、新增API
+```objc
+/*!
+* @method
+* @abstract 异常检测
+* @param exception 崩溃异常
+* @param log log记录
+    */
 + (void)setCrashListen:(BOOL)exception log:(BOOL)log;
 
 
 /*!
- * @method
- * @abstract log上报
- */
+* @method
+* @abstract log上报
+    */
 - (void)reportLogInfo;
-
 ```
 
-## 四、 CCDocLibrary
+## CCDocLibrary
 
-### 功能修改
+### 一、功能修改
 1、增加房间文档获取；
 2、增加房间文档取消关联；
 3、增加文档翻页
 4、文档加载流程优化为分步加载；
 
-### 接口变更 
+### 二、接口变更 
 
-```C++
+1、新增接口
+
+```objc
 /** 文档环境初始化 */
 - (void)initDocEnvironment;
-/** 设置文档竖屏支持优先（主要反映在白板部分） */
+  /** 设置文档竖屏支持优先（主要反映在白板部分） */
 - (void)setDocPortrait:(BOOL)portrait;
-/** 开始加载文档 */
+  /** 开始加载文档 */
 - (void)startDocView;
-/** 设置文档区域背景色 */
+  /** 设置文档区域背景色 */
 - (void)setDocBackGroundColor:(UIColor *)color;
-```
 
-## 五、文档相关
-
-```C++
+#pragma mark -- 文档相关
 /*!
  @method
  @abstract 获取房间机构文档
@@ -100,18 +170,13 @@
 
 /** 获取当前文档 */
 - (NSString *)docCurrentDocId;
-```
-
-## 六、文档切换相关API
-
-```C++
+#pragma mark -- 文档切换相关API
 /** 切换到白板 */
 - (void)docPageToWhiteBoard;
-/** 切换到另一个文档 */
+  /** 切换到另一个文档 */
 - (void)docChangeTo:(CCDoc *)doc;
-/** 向前翻页 */
+  /** 向前翻页 */
 - (void)docPageToFront;
-/** 回退翻页 */
+  /** 回退翻页 */
 - (void)docPageToBack;
 ```
-

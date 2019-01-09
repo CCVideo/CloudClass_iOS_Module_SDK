@@ -12,21 +12,13 @@
 		<data>
 		fTw7OrGHqT6z1+TsqT8XO62FtWk=
 		</data>
-		<key>Headers/VersionLog.rtf</key>
-		<data>
-		HqKi2oYN3axwoQOxb0QNiejV5dA=
-		</data>
 		<key>Info.plist</key>
 		<data>
-		D/SzO2YP9Z+8tptVqNfzuZ6OClQ=
+		a+lbZqcIiCwEOAfwzhBetXvevSc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		g7QScGVsuM+xhRIgt5VwGyc2kNU=
-		</data>
-		<key>VersionLog.rtf</key>
-		<data>
-		HqKi2oYN3axwoQOxb0QNiejV5dA=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -53,17 +45,6 @@
 			P2mug9vIQN/CL/WjceFJ26mhyvwuOdSTxxokH+vDpDU=
 			</data>
 		</dict>
-		<key>Headers/VersionLog.rtf</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			HqKi2oYN3axwoQOxb0QNiejV5dA=
-			</data>
-			<key>hash2</key>
-			<data>
-			VyvdZL3afSIjQdPu3OmPUyLlSpxYqWlFqK6wsXTyxw0=
-			</data>
-		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
@@ -73,17 +54,6 @@
 			<key>hash2</key>
 			<data>
 			wApQG8NoF176/W43lDQvgZf4Av50Lm9X6sxlUioQbeo=
-			</data>
-		</dict>
-		<key>VersionLog.rtf</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			HqKi2oYN3axwoQOxb0QNiejV5dA=
-			</data>
-			<key>hash2</key>
-			<data>
-			VyvdZL3afSIjQdPu3OmPUyLlSpxYqWlFqK6wsXTyxw0=
 			</data>
 		</dict>
 	</dict>

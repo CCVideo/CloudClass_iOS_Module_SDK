@@ -156,6 +156,25 @@ object 参数说明：
 | ---- | ---- | -------- | ---- |
 | open | BOOL | 是否开启文档手势 | 必选   |
 
+## 1.9 文档加载状态监听
+1、文档加载监听
+```objc
+/** 文档加载状态监听 */
+- (void)setOnDpCompleteListener:(CCDocLoadBlock)OnDpCompleteListener;
+```
+
+## 1.10 插播音视频相关
+1、设置player容器
+```objc
+//设置 player frame
+- (void)setVideoPlayerFrame:(CGRect)playerFrame;
+```
+2、修改player位置大小
+```objc
+//设置 player 容器
+- (BOOL)setVideoPlayerContainer:(UIView *)playerContainer;
+```
+
 
 # 2 权限相关
 

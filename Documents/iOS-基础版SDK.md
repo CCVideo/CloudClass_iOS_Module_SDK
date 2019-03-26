@@ -15,14 +15,14 @@ CC基础版SDK 是一个适用于iOS平台的云课堂SDK，使用此SDK可以�
 ### 1.2 阅读对象
 本文档为技术文档，需要阅读者：
 
-* 具备基本的iOS开发能力
+* 具备基本的iOS开发能
 
 * 准备接入CC视频的云课堂SDK相关功能
 
 ### 1.3 SDK架构
 * 支持的CPU架构有armv7,arm64
 
-* 支持的最低系统版本iOS8
+* 支持的最低系统版本iOS9
 
 * 模拟器支持：ipad air及以上版本，iphone 5s及以上版本模拟器；
 
@@ -75,15 +75,30 @@ CC基础版SDK 是一个适用于iOS平台的云课堂SDK，使用此SDK可以�
 
 首先，下载最新版本的组件化基础版SDK: [CloudClass_iOS_Base_SDK](https://github.com/CCVideo/CloudClass_iOS_Base_SDK)
 
+下载WebRTC库[WebRTC下载](http://liveclass.csslcloud.net/SDK/RTCSDK.zip)集成
+
 ### 3.1 导入framework
 | 名称                         | 描述       |
 | :------------------------- | :------- |
 | CCClassRoomBasic.framework | 云课堂业务SDK |
+| CCBarleyLibrary.framework  | 云课堂业务SDK |
+| CCChatLibrary.framework    | 云课堂业务SDK |
+| CCDocLibrary.framework     | 云课堂业务SDK |
+| CCFuncTool.framework       | 云课堂业务SDK |
+| WebRTC.framework           | 云课堂业务SDK |
+| DocUI.bundle               | 云课堂资源库   |
 
 
 
 ### 3.2 framework添加Embedded Binaries
-由于framework是动态库需要将CCClassRoomBasic.framework添加到Embedded Binaries
+由于framework是动态库需要将
+CCClassRoomBasic.framework、
+CCBarleyLibrary.framework、
+CCChatLibrary.framework、
+CCDocLibrary.framework 、
+CCFuncTool.framework、
+WebRTC.framework 
+添加到Embedded Binaries
 
 ### 3.3 配置依赖系统库
 
@@ -101,7 +116,7 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 - (void)createBasic
 {
  	CCEncodeConfig *config = [[CCEncodeConfig alloc] init];
-    config.reslution = CCResolution_HIGH;
+    config.reslution = CCResolution_LOW;
     
     self.streamerBasic = [CCStreamerBasic sharedStreamer];
     self.streamerBasic.videoMode = CCVideoPortrait;
@@ -323,6 +338,41 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 - (BOOL)getRoomServerWithAccountID:(NSString *)accountId completion:(CCComletionBlock)completion;
 ```
 
+### 3.12 流状态监听
+1、开启状态监听
+```objc
+/**
+ * @abstract 流状态检测监听事件
+ * @param completion 回调
+ */
+- (BOOL)setListenOnStreamStatus:(CCComletionBlock)completion;
+```
+2、取消状态监听
+```objc
+/**
+ * @abstract 流检测监听取消
+ */
+- (void)cancelListenStreamStatus;
+```
+
+### 3.13 麦克风声音监听
+1、开启mic声音监听
+
+```objc
+/**
+ * @abstract 麦克风音量监听事件
+ * @param completion 回调
+ */
+- (BOOL)setListenOnMicVoice:(CCComletionBlock)completion;
+```
+2、取消声音监听
+
+```objc
+/**
+ * @abstract 本地音量监听取消
+ */
+- (void)cancelListenMicVoice;
+```
 
 ## 4.功能使用
 ### 4.1 预览
@@ -383,7 +433,7 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 - (BOOL)removeExternalOutput:(NSString *)url completion:(CCComletionBlock)completion;
 ```
 
-### 4.7 切换摄像头
+### 4.7 切换摄像头 -- 废弃
 
 切换摄像头，前置摄像头和后置摄像头：
 

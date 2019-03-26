@@ -50,7 +50,7 @@ ios端SDK目前支持了基础版SDK、白板插件、聊天插件以及排麦�
 ### 2.1 开发环境
 * Xcode : iOS 开发IDE
 * 支持的CPU架构有armv7,arm64
-* 支持的最低系统版本iOS8
+* 支持的最低系统版本iOS9
 * 模拟器支持：ipad air及以上版本，iphone 5s及以上版本模拟器；
 * 开发所需相关账号请咨询CC视频客户人员提供；
 
@@ -94,17 +94,26 @@ ios端SDK目前支持了基础版SDK、白板插件、聊天插件以及排麦�
 
 首先，需要下载最新版本的SDK，下载地址为：[CloudClass_iOS_Base_SDK](https://github.com/CCVideo/CloudClass_iOS_Base_SDK)
 
+下载WebRTC库[下载地址](http://liveclass.csslcloud.net/SDK/RTCSDK.zip)集成到工程内；
+
 ### 3.1 导入framework
-| 名称                         | 描述           |
-| :------------------------- | :----------- |
-| CCClassRoomBasic.framework | CC音视频核心jar包  |
-| CCDocLibrary.framework     | CC白板插件核心jar包 |
-| CCChatLibrary.framework    | CC聊天插件核心jar包 |
-| CCBarleyLibrary.framework  | CC排麦插件核心jar包 |
+| 名称                         | 描述          |
+| :------------------------- | :---------- |
+| CCClassRoomBasic.framework | CC音视频核心SDK  |
+| CCDocLibrary.framework     | CC白板插件核心SDK |
+| CCChatLibrary.framework    | CC聊天插件核心SDK |
+| CCBarleyLibrary.framework  | CC排麦插件核心SDK |
+| WebRTC.framework           | CC业务核心SDK   |
 
 ### 3.2 framework添加Embedded Binaries
 
-由于framework是动态库需要将CCClassRoomBasic.framework、CCDocLibrary.framework  、CCChatLibrary.framework、CCBarleyLibrary.framework 添加到Embedded Binaries；
+由于framework是动态库需要将
+CCClassRoomBasic.framework、
+CCDocLibrary.framework  、
+CCChatLibrary.framework、
+CCBarleyLibrary.framework、
+WebRTC.framework 
+添加到Embedded Binaries；
 
 ### 3.3 配置依赖库
 

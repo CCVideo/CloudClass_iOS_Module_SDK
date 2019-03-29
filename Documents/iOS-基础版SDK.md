@@ -418,28 +418,47 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 ```objc
 - (BOOL)unsubscribeWithStream:(CCStream *)stream completion:(CCComletionBlock)completion;
 ```
-### 4.6 添加RTMP推流/取消RTMP推流
+### 4.6 流信息监听
 
-添加RTMP流到服务端：
-* 添加RTMP流方法
+1、注册监听
 ```objc
-- (BOOL)addExternalOutput:(NSString*)url completion:(CCComletionBlock)completion;
+/**
+ * @abstract 流状态检测监听事件
+ * @param completion 回调
+ */
+- (BOOL)setListenOnStreamStatus:(CCComletionBlock)completion;
 ```
 
-取消RTMP流到服务端：
+2、取消监听
 
-* 取消添加RTMP流方法
 ```objc
-- (BOOL)removeExternalOutput:(NSString *)url completion:(CCComletionBlock)completion;
+/**
+ * @abstract 流检测监听取消
+ */
+- (void)cancelListenStreamStatus;
 ```
 
-### 4.7 切换摄像头 -- 废弃
+### 4.7 麦克风音量监听
 
-切换摄像头，前置摄像头和后置摄像头：
+1、开启检测
 
-* 切换摄像头方法
 ```objc
-- (BOOL)setCameraType:(AVCaptureDevicePosition)pos;
+/**
+ * @abstract 麦克风音量监听事件
+ * @param completion 回调
+ */
+- (BOOL)setListenOnMicVoice:(CCComletionBlock)completion;
+
+```
+
+2、取消检测
+
+```objc
+/**
+ * @abstract 本地音量监听取消
+ */
+- (void)cancelListenMicVoice;
+
 ```
 
 ### 4.8 开启视频/关闭视频

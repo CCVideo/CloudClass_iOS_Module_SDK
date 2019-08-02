@@ -118,8 +118,65 @@
     }
 }
 
-- (IBAction)touchCopu:(id)sender {
+- (IBAction)touchCopu:(id)sender
+{
+    NSString *url = @"http://class.csslcloud.net/index/talker/?roomid=9370AFFBCE7888939C33DC5901307461&userid=83F203DAC2468694";
+    [self parseCodeStrAfter:url];
 }
+
+
+-(void)parseCodeStrAfter:(NSString *)result
+{
+    NSLog(@"result = %@",result);
+    NSURL *url = [NSURL URLWithString:result];
+    NSString *host = url.host;
+    
+    CCStreamerBasic *basC = [CCStreamerBasic sharedStreamer];
+    [basC setServerDomain:host area:nil];
+    
+    NSRange rangeRoomId = [result rangeOfString:@"roomid="];
+    NSRange rangeUserId = [result rangeOfString:@"userid="];
+    
+    WS(ws)
+    if (!StrNotEmpty(result) || rangeRoomId.location == NSNotFound || rangeUserId.location == NSNotFound)
+    {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"扫描错误" message:@"没有识别到有效的二维码信息" preferredStyle:(UIAlertControllerStyleAlert)];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+        }];
+        [alertController addAction:okAction];
+        
+        [ws presentViewController:alertController animated:YES completion:nil];
+    } else {
+        NSString *roomId = [result substringWithRange:NSMakeRange(rangeRoomId.location + rangeRoomId.length, rangeUserId.location - 1 - (rangeRoomId.location + rangeRoomId.length))];
+        NSString *userId = @"";
+        NSString *role = @"";
+        
+        userId = [result substringFromIndex:rangeUserId.location + rangeUserId.length];
+        NSArray *slience = [result componentsSeparatedByString:@"/"];
+        
+        if (slience.count == 6)
+        {
+            role = slience[4];
+        }
+        NSLog(@"roomId = %@,userId = %@,slicence = %@",roomId,userId,slience);
+        NSLog(@"roomId = %@,userId = %@",roomId,userId);
+        SaveToUserDefaults(LIVE_USERID,userId);
+        SaveToUserDefaults(LIVE_ROOMID,roomId);
+        
+        if (![role isEqualToString:@"talker"] && ![role isEqualToString:@"presenter"] && ![role isEqualToString:@"assistant"])
+        {
+            NSLog(@"CCLoginScanViewController------error!!");
+            return;
+        }
+        
+        NSDictionary *userInfo = @{@"userID":userId, @"roomID":roomId, @"role":role, @"authtype":@(0)};
+        [ws.navigationController popViewControllerAnimated:NO];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ScanSuccess" object:nil userInfo:userInfo];
+    }
+}
+
 
 - (CCRole)roleFromRoleString:(NSString *)roleString
 {

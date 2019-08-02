@@ -7,7 +7,6 @@ CC基础版SDK 是一个适用于iOS平台的云课堂SDK，使用此SDK可以�
 | :-------- | :----------------------- | :--- |
 | 推流        | 支持推流到服务器                 |      |
 | 拉流        | 支持从服务器订阅流                |      |
-| 获取流状态     | 支持获取流的状态(发报数、收报数、丢包数、延时) |      |
 | 前后摄像头切换   | 支持手机前后摄像头切换              |      |
 | 后台播放      | 支持直播退到后台只播放音频            |      |
 | 支持https协议 | 支持接口https请求              |      |
@@ -48,7 +47,20 @@ CC基础版SDK 是一个适用于iOS平台的云课堂SDK，使用此SDK可以�
 ```
 
 ```
-4. 添加需要的系统库:VideoToolbox.framework、libstdc++.tbd、libicucore.tbd
+4. 添加需要的系统库:
+ libz.thd、
+ libstdc++.thd、
+ libicucore.thd、
+ AudioToolbox.framework, 
+ VideoToolBox.framework, 
+ Accelerate.framework, 
+ SystemConfiguration.framework, 
+ libc++.tbd, libresolv.tbd, 
+ CoreMedia.framework, 
+ CoreTelephony.framework, 
+ AVFoundation.framework, 
+ CoreML.framework;
+
 ```
 
 ```
@@ -73,9 +85,9 @@ CC基础版SDK 是一个适用于iOS平台的云课堂SDK，使用此SDK可以�
 基本的直播流程可参考Demo的 loginAction 功能函数；
 
 
-首先，下载最新版本的组件化基础版SDK: [CloudClass_iOS_Base_SDK](https://github.com/CCVideo/CloudClass_iOS_Base_SDK)
+首先，下载最新版本的组件化基础版SDK: [CloudClass_iOS_Module_SDK](https://github.com/CCVideo/CloudClass_iOS_Module_SDK)
 
-下载WebRTC库[WebRTC下载](http://liveclass.csslcloud.net/SDK/RTCSDK.zip)集成
+下载WebRTC库[WebRTC下载](http://liveclass.csslcloud.net/SDK/HDSRTC_4.2.zip)集成
 
 ### 3.1 导入framework
 | 名称                         | 描述       |
@@ -102,9 +114,24 @@ WebRTC.framework
 
 ### 3.3 配置依赖系统库
 
-工程需要下列系统库:libz.thd、libstdc++.thd、libicucore.thd、VideoToolBox.framework
+工程需要下列系统库:
+libz.thd、
+libstdc++.thd、
+libicucore.thd、
+AudioToolbox.framework, 
+VideoToolBox.framework, 
+Accelerate.framework, 
+SystemConfiguration.framework, 
+libc++.tbd, 
+libresolv.tbd, 
+CoreMedia.framework,
+CoreTelephony.framework, 
+AVFoundation.framework, 
+CoreML.framework;
+
 ### 3.4 创建SDK实例
 
+#### 3.4.1 流服务组件初始化
 在需要使用SDK的文件引入头文件
 
 ```objc
@@ -115,14 +142,15 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 ```objc
 - (void)createBasic
 {
- 	CCEncodeConfig *config = [[CCEncodeConfig alloc] init];
+ 	  CCEncodeConfig *config = [[CCEncodeConfig alloc] init];
     config.reslution = CCResolution_LOW;
     
     self.streamerBasic = [CCStreamerBasic sharedStreamer];
-    self.streamerBasic.videoMode = CCVideoPortrait;
     [self.streamerBasic addObserver:self];
 }
 ```
+#### 3.4.2 无排麦组件流监听处理
+
 系统代理回调
 
 ```objc
@@ -131,14 +159,7 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 #pragma mark - 流
 - (void)onServerDisconnected
 {
-    [self.streamerBasic leave:^(BOOL result, NSError *error, id info) {
-        
-    }];
-    WS(ws);
-    dispatch_async(dispatch_get_main_queue(), ^{
-      //退出当前控制器
-      [ws.navigationController popViewControllerAnimated:NO];
-    });
+
 }
 
 - (void)onStreamAdded:(CCStream*)stream
@@ -178,7 +199,6 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
   [self.stremer subcribeWithStream:stream qualityLevel:0 completion:^(BOOL result, NSError *error, id info) {
         if (result)
         {
-            [weakSelf.streamView showStreamView:info];
         }
         else
         {
@@ -186,12 +206,96 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
         }
     }];
 }
+
+//解码完成，视图渲染在该函数渲染
+- (void)onStreamFrameDecoded:(CCStream *)stream
+{
+	//渲染后的视图
+    CCStreamView *view = [[CCStreamView alloc] initWithStream:stream];;
+
+}
 ```
+#### 3.4.3 依靠排麦组件流监听处理
+1、添加事件监听
+```objc
+-(void)addObserver
+{
+//房间事件通知监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveSocketEvent:) name:CCNotiReceiveSocketEvent object:nil];
+    
+//需要开始推流通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(publish) name:CCNotiNeedStartPublish object:nil];
+//停止推流通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopPublish) name:CCNotiNeedStopPublish object:nil];
+    
+//流可以订阅通知 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SDKNeedsubStream:) name:CCNotiNeedSubscriStream object:nil];
+//流需要取消订阅通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SDKNeedUnsubStream:) name:CCNotiNeedUnSubcriStream object:nil];   
+}
+
+- (void)SDKNeedsubStream:(NSNotification *)notify
+{
+  NSDictionary *dicInfo = notify.userInfo;
+   
+   CCStream *stream = dicInfo[@"stream"];
+   if ([stream.userID isEqualToString:self.stremer.userID])
+   {
+       //自己的流不订阅
+       self.localStream = stream;
+       return;
+   }
+   
+   if (stream.type == CCStreamType_Mixed)
+   {
+       self.mixedStream = stream;
+       return;
+   }
+   
+   dispatch_async(dispatch_get_global_queue(0, 0), ^{
+       [self autoSub:stream];
+   });   
+}
+//订阅
+- (void)autoSub:(CCStream *)stream
+{
+    [self.stremer subcribeWithStream:stream completion:^(BOOL result, NSError *error, id info) {
+        [self cc_updateAudioSession];
+        if (result){
+
+
+        }
+        else
+        {
+
+        }
+    }];
+}
+//渲染
+- (void)onStreamFrameDecoded:(CCStream *)stream
+{
+    //主线程更新
+    dispatch_async(dispatch_get_main_queue(), ^{
+   	 CCStreamView *view = [[CCStreamView alloc] initWithStream:stream];;
+    });
+}
+
+```
+#### 3.4.4 流渲染函数
+
+```objc
+- (void)onStreamFrameDecoded:(CCStream *)stream
+{    
+    CCStreamView *view = [[CCStreamView alloc] initWithStream:stream];;
+}
+```
+
+
 ### 3.5 加入直播间和直播间开始结束的接口
 加入直播间的接口
 ```objc
     CCEncodeConfig *config = [[CCEncodeConfig alloc] init];
-    config.reslution = CCResolution_HIGH;
+    config.reslution = CCResolution_LOW;
     //具体参见demo
     NSString *authSessionID = self.info[@"data"][@"sessionid"];
     NSString *user_id = self.info[@"data"][@"userid"];
@@ -237,8 +341,43 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 }
 ```
 
-### 3.6 推流调用接口
-推流
+### 3.6 推流相关调用
+#### 3.6.1 创建本地流
+```objc
+#pragma mark -- 创建本地流
+/*!
+ @method
+ @abstract 创建本地流
+ @param createVideo 流是否创建视频
+ @param front 设备相机
+ */
+- (void)createLocalStream:(BOOL)createVideo cameraFront:(BOOL)front;
+
+```
+#### 3.6.2 开启本地流预览
+```objc
+#pragma mark - 开启预览
+/*!
+ @method (1000)
+ @abstract 开始预览
+ @discussion 开启摄像头开启预览，在推流开始之前开启
+ @param completion 回调
+ */
+- (void)startPreview:(CCComletionBlock)completion;
+
+```
+#### 3.6.3 关闭本地流预览
+```objc
+#pragma mark - 停止预览
+/*!
+ @method
+ @abstract 停止预览(login out 包含该操作)
+ @return 操作结果
+ */
+- (BOOL)stopPreview:(CCComletionBlock)completion;
+
+```
+#### 3.6.4 推流
 ```objc
 - (void)publish
 {
@@ -255,9 +394,7 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
     }];
 }
 ```
-
-### 3.7 结束推流接口
-
+#### 3.6.5 结束推流
 ```objc
 - (void)unpublish
 {
@@ -276,8 +413,9 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 
 ```
 
-### 3.8 订阅流接口调用
 
+### 3.7 拉流相关掉用
+#### 3.7.1 订阅流
 ```objc
 - (void)autoSub:(CCStream *)stream
 {
@@ -285,7 +423,7 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
     [self.stremer subcribeWithStream:stream qualityLevel:0 completion:^(BOOL result, NSError *error, id info) {
         if (result)
         {
-            [weakSelf.streamView showStreamView:info];
+				//拉流成功
         }
         else
         {
@@ -295,9 +433,7 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 }
 
 ```
-
-### 3.9 取消订阅流接口调用
-
+#### 3.7.2 取消订阅流
 ```objc
 - (void)autoUnSub:(CCStream *)stream
 {
@@ -316,16 +452,7 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 
 ```
 
-### 3.10 切换摄像头接口调用
-
-```objc
-- (void)changeCamera
-{
-    [self.stremer setCameraType:self.cameraIsBack ? AVCaptureDevicePositionBack : AVCaptureDevicePositionFront];
-}
-```
-
-### 3.11 获取城市节点列表
+### 3.8 获取城市节点列表
 
 ```objc
 /*!
@@ -338,7 +465,9 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 - (BOOL)getRoomServerWithAccountID:(NSString *)accountId completion:(CCComletionBlock)completion;
 ```
 
-### 3.12 流状态监听
+### 3.9 流状态监听
+#### 3.9.1 流状态监听API及实例
+
 1、开启状态监听
 ```objc
 /**
@@ -347,6 +476,18 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
  */
 - (BOOL)setListenOnStreamStatus:(CCComletionBlock)completion;
 ```
+
+```objc
+//实例说明
+[self.stremer setListenOnStreamStatus:^(BOOL result, NSError *error, id info) {
+   NSDictionary *dicInfo = (NSDictionary *)info;
+   NSString *action = info[@"action"];
+   NSLog(@"listen_on_streame_info-------:%@",info);
+
+}];
+
+```
+
 2、取消状态监听
 ```objc
 /**
@@ -355,7 +496,99 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 - (void)cancelListenStreamStatus;
 ```
 
-### 3.13 麦克风声音监听
+```objc
+//实例说明
+[self.stremer cancelListenStreamStatus];
+```
+#### 3.9.2 流状态监听-数据返回说明
+```objc
+//1、流数据返回数据格式
+{
+    action = streamInfo;  //标记该条信息为：流信息
+    bandWidth = 0;			//标记带宽数据：推流有效
+    delay = 93;				//订阅流延时
+    status = 1001;			//订阅流状态码
+    stream = "<CCStream: 0x1c82624c0>"; //检测的流对象
+    type = 1;             //流类型：  1 订阅流 0 推流
+    isback = 0; 				//设备是否在后台 0 否 1 是
+    streamException = 1； //1:推流端异常。2:订阅端异常 （如果流异常则会有该字段）
+}
+//2、网络状态返回数据格式
+{
+    action = netStatus; //标记该条信息为：网络状态统计
+    delay = 93;         //订阅流延时
+    netState = "93.000000";  //网络延时
+    packetLost = "0.000000"; //丢包率
+}
+//3、流状态 status 说明
+status：1001 开始检测 | 1002 检测中 | 1003 黑流，无视频数据
+```
+
+#### 3.9.3 流状态监听-数据实例
+1、推流数据返回
+```objc
+
+2019-06-27 10:45:21.505391+0800 CCClassRoom[12236:4353539] listen_on_streame_info-------:{
+    action = netStatus;
+    delay = 71;
+    netState = "368.029694";
+    packetLost = "0.019802";
+}
+2019-06-27 10:45:23.511954+0800 CCClassRoom[12236:4352790] listen_on_streame_info-------:{
+    action = streamInfo;
+    bandWidth = 200;
+    delay = 0;
+    status = 1001;
+    stream = "<CCStream: 0x1cc27dbc0>";
+    type = 0;
+}
+```
+2、订阅流数据返回
+```objc
+2019-06-27 10:43:31.121973+0800 CCClassRoom[12236:4352790] listen_on_streame_info-------:{
+    action = streamInfo;  //标记该条信息为：流信息
+    bandWidth = 0;			//标记带宽数据：推流有效
+    delay = 93;				//订阅流延时
+    status = 1001;			//订阅流状态码
+    stream = "<CCStream: 0x1c82624c0>"; //检测的流对象
+    type = 1;             //流类型：  1 订阅流 0 推流
+}
+2019-06-27 10:43:31.122268+0800 CCClassRoom[12236:4352521] listen_on_streame_info-------:{
+    action = netStatus; //标记该条信息为：网络状态统计
+    delay = 93;         //订阅流延时
+    netState = "93.000000";  //网络延时
+    packetLost = "0.000000"; //丢包率
+}
+```
+#### 3.9.4 流状态监听-流异常处理
+1、推流异常 < type == 0>
+```objc
+	判断返回数据的 ‘isback’ 数据返回值：
+	1、 isback = 1 //app在后台			不做任何处理；
+	
+	2、 isback = 0 //app在前台
+
+		接下来判断 status 数据（判断流异常原因）：
+		2.1 status = 1003 
+			2.1.1 可以切到音频
+			2.1.2 可以断开重推
+
+```
+2、订阅流异常 < type == 1>
+
+```objc
+	1、status = 1003
+		接下来判断 streamException 数据（判断流异常原因）：
+		1.1 streamException = 1 推流端异常，本地不做处理；
+		1.2 streamException = 2 
+			1.2.1 订阅端异常，取消订阅，再次订阅；
+			1.2.2 可以尝试切到音频
+```
+
+
+
+
+### 3.10 麦克风声音监听
 1、开启mic声音监听
 
 ```objc
@@ -417,6 +650,11 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 * 取消拉流方法
 ```objc
 - (BOOL)unsubscribeWithStream:(CCStream *)stream completion:(CCComletionBlock)completion;
+
+视图渲染函数：
+//解码完成进行流视图渲染
+- (void)onStreamFrameDecoded:(CCStream *)stream;
+
 ```
 ### 4.6 流信息监听
 
@@ -463,36 +701,33 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 
 ### 4.8 开启视频/关闭视频
 
-开启本地视频流，也就是相机采集的视频：
-
-* 开启相机视频方法
+* 开启关闭视频方法
 
 ```objc
-- (void)enableVideo;
-```
-
-关闭本地视频，也就是关闭相机采集的视频：
-
-* 关闭相机视频方法
-```objc
-- (void)disableVideo;
+/*!
+ @method
+ @abstract 设置视频状态(开始直播之后生效)
+ @param opened 视频状态
+ @param userID 学生ID(为空表示操作自己的视频)
+ 
+ @return 操作结果
+ */
+- (BOOL)setVideoOpened:(BOOL)opened userID:(NSString *)userID;
 ```
 ### 4.9 开启音频/关闭音频
 
-开启本地视频流的音频，也就是相机采集的音频流：
-
-* 开启本地音频方法
+* 开启关闭音频方法
 
 ```objc
-- (void)enableAudio;
-```
-
-关闭本地视频流的音频，也就是关闭相机采集的音频流：
-
-* 关闭本地音频方法
-
-```objc
-- (void)disableAudio;
+/*!
+ @method
+ @abstract 设置音频状态(开始直播之后才生效)
+ @param opened 音频状态
+ @param userID 学生ID(为空表示操作自己的音频)
+ 
+ @return 操作结果
+ */
+- (BOOL)setAudioOpened:(BOOL)opened userID:(NSString *)userID;
 ```
 
 ### 4.10 被动监听事件
@@ -557,41 +792,42 @@ import <CCClassRoomBasic/CCClassRoomBasic.h>
 }
 ```
 
-### 4.11 单条流音视频处理
+### 4.11 单条流音视频处理（是否接收远程流相关信息）
+
 ```objc
-#pragma mark -- 音视频操作
 /*!
  @method
- @abstract 订阅音频流
- @param stream 流
- @param completion 回调
+ @abstract 设置流视频的状态
+ @param stream  流
+ @param video   视频流状态(开启/关闭)
+ @param completion 成功闭包
+  @return 操作结果
  */
-- (void)playAudio:(CCStream*)stream completion:(CCComletionBlock)completion;
-
+- (BOOL)changeStream:(CCStream *)stream videoState:(BOOL)video completion:(CCComletionBlock)completion;
+#pragma mark - 设置流音频的状态
 /*!
  @method
- @abstract 取消订阅音频流
- @param stream 流
- @param completion 回调
- */- (void)pauseAudio:(CCStream*)stream completion:(CCComletionBlock)completion;
-
-/*!
- @method
- @abstract 订阅视频流
- @param stream 流
- @param completion 回调
+ @abstract 设置流音频的状态
+ @param stream  流
+ @param audio   音频流状态(开启/关闭)
+ @param completion 回调闭包
+ @return 操作结果
  */
-- (void)playVideo:(CCStream*)stream completion:(CCComletionBlock)completion;
-/*!
- @method
- @abstract 取消订阅音频流
- @param stream 流
- @param completion 回调
- */
-- (void)pauseVideo:(CCStream*)stream completion:(CCComletionBlock)completion;
-#pragma mark - 直播录制相关
+- (BOOL)changeStream:(CCStream *)stream audioState:(BOOL)audio completion:(CCComletionBlock)completion;
 ```
 
+### 4.12 流服务重连
+当出现推拉流异常，可以尝试调用该API进行流的恢复；
+```objc
+#pragma mark - 流服务器重连
+/*!
+ @method
+ @abstract 流服务器重连
+ @param completion 回调闭包
+ @return 操作结果
+ */
+- (BOOL)streamServerReConnect:(CCComletionBlock)completion;
+```
 
 
 ## 5.API查询

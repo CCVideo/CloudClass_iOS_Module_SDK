@@ -9,6 +9,10 @@
 #import "CCRoom.h"
 
 @interface CCRoom ()
+//单例room model
++ (CCRoom *)shareRoomHDS;
+//房间数据销毁
+- (void)roomDestory;
 
 @property (assign, nonatomic, readwrite) CCClassType room_class_type;//连麦方式
 @property (strong, nonatomic, readwrite) NSString *room_desc;//房间描述
@@ -61,9 +65,15 @@
 @property (assign, nonatomic, readwrite)NSInteger  room_pubcdn_switch;
 /** 房间开启实时画笔功能 */
 @property(nonatomic,assign,readwrite)BOOL room_timely_pencil;
+//@abstract 房间码率限制
+@property(nonatomic,assign,readwrite)NSInteger room_bitrate_limit;
+//房间服务类型
+@property(nonatomic,assign,readwrite)CCRoomType room_server_type;
 
 @property (assign, nonatomic) NSTimeInterval lastPusherTime;//speak_context、room_context过来的时间戳，防止先发后到状态刷新错误
 @property (assign, nonatomic) NSTimeInterval liveStartTime;
+//服务器时间与本地时间偏移
+@property (assign, nonatomic) NSTimeInterval liveTimeoffset;
 
 //Chenfy..NEW
 @property (strong, nonatomic) NSDictionary *room_userSettings; //房间用户信息配置
@@ -83,6 +93,8 @@
 @property (assign, nonatomic)NSTimeInterval lastDocUpdateTime;//为了保持文档同步，做的记录最新文档更新时间
 
 - (void)configureWith:(NSDictionary *)dic;
+- (void)configureWith:(NSDictionary *)dic server:(NSString *)server;
+
 + (CCRole)roleFromStr:(NSString *)str;
 + (NSString *)stringFromRole:(CCRole)role;
 

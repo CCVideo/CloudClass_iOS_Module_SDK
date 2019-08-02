@@ -189,8 +189,25 @@
     [_scanLine removeFromSuperview];
     _scanLine = nil;
 }
+//http://cloudclass.csslcloud.net/index/talker/?roomid=07DA77DF94A04DE69C33DC5901307461&userid=5938F047E5F562F0
+//http://cloudclass.csslcloud.net/index/talker/?roomid=B89BF8C8D7F1838C9C33DC5901307461&userid=78BE7906F3EBC8C6
 
 -(void)parseCodeStr:(NSString *)result
+{
+    NSURL *url = [NSURL URLWithString:result];
+    NSString *host = [url host];
+    NSString *bothString = @"cloudclass.csslcloud--";
+    if ([host containsString:bothString])
+    {
+        [self parseCodeStringBoth:result];
+    }
+    else
+    {
+        [self parseCodeStrAfter:result];
+    }
+}
+
+-(void)parseCodeStringBoth:(NSString *)result
 {
     WS(weakSelf);
     NSString *originUrl = result;
@@ -218,7 +235,8 @@
     [task resume];
 }
 
--(void)parseCodeStrAfter:(NSString *)result {
+-(void)parseCodeStrAfter:(NSString *)result
+{
     NSLog(@"result = %@",result);
     NSURL *url = [NSURL URLWithString:result];
     NSString *host = url.host;
@@ -275,31 +293,11 @@
         }
         [self stopSession];
         CCLog(@"%@", roomId);
-//        [[CCStreamer sharedStreamer] getRoomDescWithRoonID:roomId completion:^(BOOL result, NSError *error, id info) {
-//            CCLog(@"%s__%d__%@__%@__%@", __func__, __LINE__, @(result), error, info);
-//            if (result)
-//            {
-//                NSString *result = info[@"result"];
-//                if ([result isEqualToString:@"OK"])
-//                {
-//                    NSString *name = info[@"data"][@"name"];
-//                    NSString *desc = info[@"data"][@"desc"];
-//                    SaveToUserDefaults(LIVE_ROOMNAME, name);
-//                    SaveToUserDefaults(LIVE_ROOMDESC, desc);
-                    NSDictionary *userInfo = @{@"userID":userId, @"roomID":roomId, @"role":role, @"authtype":@(0)};
-                    [ws.navigationController popViewControllerAnimated:NO];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"ScanSuccess" object:nil userInfo:userInfo];
-//                }
-//                else
-//                {
-//                    [ws.navigationController popViewControllerAnimated:NO];
-//                }
-//            }
-//            else
-//            {
-//                [ws.navigationController popViewControllerAnimated:YES];
-//            }
-//        }];
+
+    
+        NSDictionary *userInfo = @{@"userID":userId, @"roomID":roomId, @"role":role, @"authtype":@(0)};
+        [ws.navigationController popViewControllerAnimated:NO];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ScanSuccess" object:nil userInfo:userInfo];
     }
 }
 

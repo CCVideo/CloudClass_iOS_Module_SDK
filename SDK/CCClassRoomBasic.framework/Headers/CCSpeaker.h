@@ -24,40 +24,74 @@
 
 #import <Foundation/Foundation.h>
 
-#import "CCStreamerBasic.h"
+#import "CCStream.h"
 
 @interface CCSpeaker : NSObject
 //LiveClass
-/**
- @property
- @abstract 最大带宽
+//创建流管理组建
++ (CCSpeaker *)shareSpeakerHDS;
+//清楚组件数据
+- (void)speakerDestory;
+/*!
+ 是否是自己下麦
  */
-@property (assign, nonatomic) int maxAudioBand;
+@property (assign, nonatomic) BOOL callStopLianMaiByStudent;//学生自己下麦
 /**
  @property
  @abstract 可订阅的流
  */
-@property (strong, nonatomic) NSMutableArray *subAbleStreams; //可订阅
+@property (strong, nonatomic) NSMutableArray *streamsCanSub; //可订阅
 /**
  @property
  @abstract 已通知订阅的流
  */
-@property (strong, nonatomic) NSMutableArray *calledSubAbleStreams;//已通知
+@property (strong, nonatomic) NSMutableArray *streamsNotify;//已通知
 /**
  @property
  @abstract 已订阅的流
  */
-@property (strong, nonatomic) NSMutableArray *subStreams; //已订阅
+@property (strong, nonatomic) NSMutableArray *streamsSubed; //已订阅
 /**
  @property
  @abstract 已删除的流
  */
-@property (strong, nonatomic) NSMutableArray *removedStreams; //已删除
+@property (strong, nonatomic) NSMutableArray *streamsRemove; //已删除
 /**
  @property
  @abstract 所有流
  */
-@property (strong, nonatomic) NSMutableArray *allStreams;    //所有流
+@property (strong, nonatomic) NSMutableArray *streamsAll;    //所有流
+
+//正在订阅的流的流ID
+@property (strong, nonatomic) NSMutableArray *subStreamIDs;
+//已经移除的流的流ID
+@property (strong, nonatomic) NSMutableArray *removedStreamIDs;
+//已经通知订阅的流的流ID
+@property (strong, nonatomic) NSMutableArray *notifyStreamIDs;
+
+- (void)onStreamIdSub:(NSString *)sid;
+- (void)onStreamIdNotify:(NSString *)sid;
+- (void)onStreamIdRemove:(NSString *)sid;
+
+- (void)onStreamIdSub_remove:(NSString *)sid;
+- (void)onStreamIdNotify_remove:(NSString *)sid;
+- (void)onStreamIdRemove_remove:(NSString *)sid;
+
+//流管理API
+- (void)onStreamCanSubAdd:(CCStream *)stream;
+- (void)onStreamCanSubRemove:(CCStream *)stream;
+
+- (void)onStreamNotifyAdd:(CCStream *)stream;
+- (void)onStreamNotifyRemove:(CCStream *)stream;
+
+- (void)onStreamSubedAdd:(CCStream *)stream;
+- (void)onStreamSubedRemove:(CCStream *)stream;
+
+- (void)onStreamRemoveAdd:(CCStream *)stream;
+- (void)onStreamRemoveRemove:(CCStream *)stream;
+
+- (void)onStreamAllAdd:(CCStream *)stream;
+- (void)onStreamAllRemove:(CCStream *)stream;
 
 /**
  @property
@@ -69,11 +103,6 @@
  @abstract 混合流
  */
 @property (strong, nonatomic) CCStream *mixedStream;
-/**
- @property
- @abstract 是否已订阅
- */
-@property (assign, nonatomic) BOOL isSub;
 
 /*!
  @method
@@ -81,7 +110,7 @@
  @param streamID 流id
  @return 操作结果
  */
-- (CCStream *)getStreamWithID:(NSString *)streamID;
+- (CCStream *)streamWithStreamID:(NSString *)streamID;
 
 /*!
  @method
@@ -89,26 +118,38 @@
  @param streamID 流id
  @return 操作结果
  */
-- (CCStream *)getSubscribeStreamWithID:(NSString *)streamID;
+- (CCStream *)streamSubedWithStreamID:(NSString *)streamID;
+
+/*!
+ @method
+ @abstract 获取未订阅的流
+ @param streamID 流id
+ @return 操作结果
+ */
+- (CCStream *)streamCanSubWithStreamID:(NSString *)streamID;
+
+
 /*!
  @method
  @abstract 获取已经移除的流
  @param streamID 流id
  @return 操作结果
  */
-- (CCStream *)getRemovedStremWithID:(NSString *)streamID;
+- (CCStream *)streamRemovedWithStreamID:(NSString *)streamID;
+
 /*!
  @method
  @abstract 删除指定的流
  @param object 流对象
  */
-- (void)removeStreamFromRemovedStream:(CCStream *)object;
+- (void)streamRemoveFromRemovedStream:(CCStream *)object;
+
 /*!
  @method
  @abstract 删除指定的流
  @param object object
  */
-- (void)removeStreamdFromAllStreams:(CCStream *)object;
+- (void)streamRemoveFromAllStreams:(CCStream *)object;
 
 /*!
  @method
@@ -121,16 +162,15 @@
  @method
  @abstract 释放所有的流
  */
-- (void)realsesAllStream;
+- (void)releaseAllStreams;
+
 
 /*!
  @method
  @abstract 获取错误信息
  @return 操作结果
  */
-- (NSString *)getErrorMsgFrom:(NSDictionary*)dic;
+- (NSString *)errorMessageFromInfo:(NSDictionary*)dic;
 
-/** 移除缓存数据 */
-- (void)clearCacheDatas;
 
 @end

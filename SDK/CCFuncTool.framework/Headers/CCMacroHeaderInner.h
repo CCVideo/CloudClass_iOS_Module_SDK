@@ -95,6 +95,9 @@ NSLog(__VA_ARGS__);\
 #define API_STREAMSUB @"/api/atlas/stream/subscribe"
 #define API_STREAMUNSUB @"/api/atlas/stream/unsubscribe"
 #define API_GETSERVERLIST @"/api/dispatch"
+#define API_GETSERVERDETECT @"/api/detect"
+#define API_GETVIDEOPLAYURL @"/api/v1/serve/video/playurl"
+
 #define API_GETROOMINFO @"/api/room/room_desc"
 #define API_ROOMSETTING @"/own/api/room/update"
 #define API_LEAVE @"/api/atlas/stream/break"

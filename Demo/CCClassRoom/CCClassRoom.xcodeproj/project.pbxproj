@@ -61,7 +61,6 @@
 		4265C4861ED2806800552261 /* CCCollectionViewCellSpeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 4265C4851ED2806800552261 /* CCCollectionViewCellSpeak.m */; };
 		426715761ED7C0F800C77E04 /* CCExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 426715751ED7C0F800C77E04 /* CCExceptionHandler.m */; };
 		4268EE4A1E3310EA0022F1C8 /* CCPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4268EE491E3310EA0022F1C8 /* CCPlayViewController.m */; };
-		427046371EFBA2E00000AF5E /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427046361EFBA2E00000AF5E /* Bugly.framework */; };
 		42748D951EA9F52C00596AC7 /* ZZCircleProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 42748D941EA9F52C00596AC7 /* ZZCircleProgress.m */; };
 		4278F3781ED678CE00B9AA52 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4278F3771ED678CE00B9AA52 /* libz.tbd */; };
 		4278F3891ED6B98C00B9AA52 /* SULogboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4278F3861ED6B98C00B9AA52 /* SULogboard.m */; };
@@ -207,7 +206,6 @@
 		426715751ED7C0F800C77E04 /* CCExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCExceptionHandler.m; sourceTree = "<group>"; };
 		4268EE481E3310EA0022F1C8 /* CCPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlayViewController.h; sourceTree = "<group>"; };
 		4268EE491E3310EA0022F1C8 /* CCPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPlayViewController.m; sourceTree = "<group>"; };
-		427046361EFBA2E00000AF5E /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		42748D931EA9F52C00596AC7 /* ZZCircleProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCircleProgress.h; sourceTree = "<group>"; };
 		42748D941EA9F52C00596AC7 /* ZZCircleProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCircleProgress.m; sourceTree = "<group>"; };
 		4278F3771ED678CE00B9AA52 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -277,7 +275,6 @@
 				429FD44A1F723F4A00D2888E /* GLKit.framework in Frameworks */,
 				4278F3781ED678CE00B9AA52 /* libz.tbd in Frameworks */,
 				420DFC981E49D6CE0026B031 /* libstdc++.tbd in Frameworks */,
-				427046371EFBA2E00000AF5E /* Bugly.framework in Frameworks */,
 				42BD09A51E306C450067F7B7 /* libicucore.tbd in Frameworks */,
 				42EFE4CF20F72694008BB4BD /* CCBarleyLibrary.framework in Frameworks */,
 				42BD09A11E306C100067F7B7 /* VideoToolbox.framework in Frameworks */,
@@ -340,7 +337,6 @@
 				4243C5931E764CB300568C69 /* CCBaseTableViewController.m */,
 				42FC8E2C1F4135B90030EE7D /* CCWeakProxy.h */,
 				42FC8E2D1F4135B90030EE7D /* CCWeakProxy.m */,
-				427046361EFBA2E00000AF5E /* Bugly.framework */,
 			);
 			path = until;
 			sourceTree = "<group>";
@@ -656,6 +652,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -914,7 +911,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing DreamWindows Digital Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 2473188821@qq.com (5FMS6W5HDD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = P92BH8WWP5;
@@ -945,13 +942,15 @@
 					"\"${PODS_ROOT}/Headers/Public/Toast\"",
 				);
 				INFOPLIST_FILE = CCClassRoom/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.class.room1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.class.room;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -961,7 +960,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing DreamWindows Digital Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 2473188821@qq.com (5FMS6W5HDD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = P92BH8WWP5;
 				ENABLE_BITCODE = NO;
@@ -991,13 +990,15 @@
 					"\"${PODS_ROOT}/Headers/Public/Toast\"",
 				);
 				INFOPLIST_FILE = CCClassRoom/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.class.room1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.class.room;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};

@@ -9,7 +9,13 @@
 #ifndef CCMacroHeader_h
 #define CCMacroHeader_h
 
-#define PUBLISHTIMEOUT 40
+//角色定义
+#define KKEY_CCRole_Teacher         @"presenter"
+#define KKEY_CCRole_Student         @"talker"
+#define KKEY_CCRole_Watcher         @"audience"
+#define KKEY_CCRole_Inspector       @"inspector"
+#define KKEY_CCRole_Assistant       @"assistant"
+
 //网络检测
 typedef void(^CCNetDomainBlcok)(BOOL result,float time ,NSString *domain);
 /*!
@@ -45,7 +51,11 @@ typedef NS_ENUM(NSInteger,CCRecordType) {
     CCRecordType_Resume,//继续录制
     CCRecordType_End    //停止录制
 };
-
+//服务类型
+typedef NS_ENUM(NSInteger,CCRoomType) {
+    CCRoomType_Atlas,   //atlas
+    CCRoomType_Atlas_1  //atlas_1
+};
 /**
  @brief 异步请求闭包回调
  
@@ -72,13 +82,15 @@ typedef enum{
  * @constant CCRole_Watcher     观看者
  * @constant CCRole_Inspector   隐身者
  * @constant CCRole_Assistant   助教者
+ * @constant CCRole_UnKnow      占位
  */
 typedef enum{
     CCRole_Teacher,
     CCRole_Student,
     CCRole_Watcher,
     CCRole_Inspector,
-    CCRole_Assistant
+    CCRole_Assistant,
+    CCRole_UnKnow //占位
 }CCRole;
 /*!
  * @brief    skocket.io被动通知事件枚举
@@ -135,6 +147,7 @@ typedef enum{
  * @constant CCSocketEvent_UserExit 有用户离开房间
  * @constant CCSocketEvent_PublishMessage 公聊消息
  * @constant CCSocketEvent_UserHandUp 用户举手
+ * @constant CCSocketEvent_UserCustomUpdate 用户自定义状态更行
  */
 typedef enum{
     CCSocketEvent_Chat,
@@ -192,6 +205,7 @@ typedef enum{
     CCSocketEvent_UserExit,
     CCSocketEvent_PublishMessage,
     CCSocketEvent_UserHandUp,
+    CCSocketEvent_UserCustomUpdate
     
 }CCSocketEvent;
 /*!

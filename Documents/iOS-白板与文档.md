@@ -166,13 +166,15 @@ object 参数说明：
 ## 1.10 插播音视频相关
 1、设置player容器
 ```objc
-//设置 player frame
-- (void)setVideoPlayerFrame:(CGRect)playerFrame;
+//设置 player 容器
+- (BOOL)setVideoPlayerContainer:(UIView *)playerContainer;
+
 ```
 2、修改player位置大小
 ```objc
-//设置 player 容器
-- (BOOL)setVideoPlayerContainer:(UIView *)playerContainer;
+ //设置 player frame
+- (void)setVideoPlayerFrame:(CGRect)playerFrame;
+
 ```
 
 
@@ -292,6 +294,7 @@ object 参数说明：
 - (BOOL)unReleatedDoc:(NSString *)docID roomID:(NSString *)roomID userID:(NSString *)userID completion:(CCComletionBlock)completion;
 ```
 ## 3.4 文档切换、翻页相关
+
 ### 3.4.1 doc切为白板
 ```objc
 /** 切换到白板 */
@@ -316,14 +319,23 @@ object 参数说明：
 - (void)docPageToBack;
 ```
 
-### 3.4.5 获取当前文档id
-
-如果是白板则返回『』
+### 3.4.5 获取当前文档
 ```objc
-/** 获取当前文档 */
-- (NSString *)docCurrentDocId;
+/** 获取当前Doc */
+- (CCDoc *)docCurrentPPT;
 ```
 
+### 3.4.6 获取当前文档页码
+```objc
+/** 获取文档当前页码 */
+- (NSInteger)docCurrentPage;
+```
+
+### 3.4.7 文档跳页
+```objc
+/** 跳转到某一页 */
+- (void)docSkip:(CCDoc *)doc toPage:(NSInteger)page;
+```
 
 
 # 4. 事件消息通知

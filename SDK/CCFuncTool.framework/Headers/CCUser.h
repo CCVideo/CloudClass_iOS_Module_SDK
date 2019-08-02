@@ -77,6 +77,11 @@
 @property (strong, nonatomic, readonly) NSString *user_streamID;
 /*!
  @property
+ @abstract 用户ID
+ */
+@property (strong, nonatomic, readonly) NSString *user_uid;
+/*!
+ @property
  @abstract 是否禁言
  */
 @property (assign, nonatomic, readonly) BOOL      user_chatState;
@@ -111,4 +116,10 @@
  @abstract 是否设置为讲师
  */
 @property (assign, nonatomic, readonly) BOOL      user_AssistantState;
+/*!
+ @property
+ @abstract 用户自定义字段
+ */
+@property (assign, nonatomic, readonly) NSInteger user_custom;
+
 @end

@@ -40,7 +40,9 @@
 //推流重试
 #define PUBLISH_RETRY    0
 /*********************************************/
-static BOOL gl_preview_can_click = YES;
+static BOOL gl_pub_sub_close = NO;
+//判断应用层是否使用排麦组件
+static BOOL gl_use_paimai = YES;
 
 @interface CCPlayViewController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate, CCStreamerBasicDelegate, UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic,strong)CCStreamShowView     *streamView;
@@ -96,6 +98,7 @@ typedef NS_ENUM(NSInteger, SDK_Function) {
 //基础功能枚举
 typedef NS_ENUM(NSInteger,CCBaseFunType) {
     CCBaseFunType_exit,
+    CCBaseFunType_createLocalStream,
     CCBaseFunType_previewStart,
     CCBaseFunType_liveStart,
     CCBaseFunType_publishStart,
@@ -106,6 +109,9 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     CCBaseFunType_cameraChangeFrontBack,
     CCBaseFunType_micChange,
     CCBaseFunType_cameraChange,
+    CCBaseFunType_atlasReconnect,
+    CCBaseFunType_setRegion, //设置主视频
+    CCBaseFunType_userCustom
 };
 
 @implementation CCPlayViewController
@@ -171,29 +177,51 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
 //画板竖屏
 #define DOC_FRAME_POR_BIG    (CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
 /*******************************/
-
 - (CCDocVideoView *)ccVideoView
 {
     if (!_ccVideoView) {
-        CGRect frame = CGRectZero;
-        if (Func_DOC_Normal)
-        {
-            /** 画板尺寸标准：9/16 */
-            frame = CGRectMake(0, 0, SCREEN_WIDTH, (9/16.0)*(SCREEN_WIDTH));
-        }
-        else
-        {
-            /** 画板尺寸自己调整 */
-            frame = DOC_FRAME_POR_BIG;
-        }
-        _ccVideoView = [[CCDocVideoView alloc]initWithFrame:frame];
-        _ccVideoView.tag = 1000;
-        [_ccVideoView addObserverNotify];
+        
+    CGRect frame = CGRectZero;
+    if (Func_DOC_Normal)
+    {
+        /** 画板尺寸标准：9/16 */
+        frame = CGRectMake(0, 0, SCREEN_WIDTH, (9/16.0)*(SCREEN_WIDTH));
     }
+    else
+    {
+        /** 画板尺寸自己调整 */
+        frame = DOC_FRAME_POR_BIG;
+    }
+    _ccVideoView = [[CCDocVideoView alloc]initWithFrame:frame];
+    _ccVideoView.tag = 1000;
+    [_ccVideoView addObserverNotify];
     
     [_ccVideoView setVideoPlayerContainer:self.view];
     [_ccVideoView setVideoPlayerFrame:CGRectMake(20, 20, 200, 200)];
+    }
+    return _ccVideoView;
+}
 
+- (CCDocVideoView *)createNewVideoView
+{
+    CGRect frame = CGRectZero;
+    if (Func_DOC_Normal)
+    {
+        /** 画板尺寸标准：9/16 */
+        frame = CGRectMake(0, 0, SCREEN_WIDTH, (9/16.0)*(SCREEN_WIDTH));
+    }
+    else
+    {
+        /** 画板尺寸自己调整 */
+        frame = DOC_FRAME_POR_BIG;
+    }
+    _ccVideoView = [[CCDocVideoView alloc]initWithFrame:frame];
+    _ccVideoView.tag = 1000;
+    [_ccVideoView addObserverNotify];
+    
+    [_ccVideoView setVideoPlayerContainer:self.view];
+    [_ccVideoView setVideoPlayerFrame:CGRectMake(20, 20, 200, 200)];
+    
     return _ccVideoView;
 }
 
@@ -203,11 +231,13 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     float need = [info[@"need"] floatValue];
     float fabs = [info[@"fabs"] floatValue];
     
-    NSString *mesg = [NSString stringWithFormat:@"now:<%f>-need:<%f>-fabs:<%f>",now,need,fabs];
-    UIAlertView *alert = [UIAlertView bk_showAlertViewWithTitle:@"video_sync" message:mesg cancelButtonTitle:@"取消" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        
-    }];
-    [alert show];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *mesg = [NSString stringWithFormat:@"now:<%f>-need:<%f>-fabs:<%f>",now,need,fabs];
+        UIAlertView *alert = [UIAlertView bk_showAlertViewWithTitle:@"video_sync" message:mesg cancelButtonTitle:@"取消" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            
+        }];
+        [alert show];
+    });
 }
 
 #pragma mark
@@ -216,12 +246,10 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
 {
     //基础sdk
     self.stremer = [CCStreamerBasic sharedStreamer];
-    self.stremer.videoMode = CCVideoChangeByInterface;
-    self.stremer.videoMode = CCVideoPortrait;
     [self.stremer addObserver:self];
     
     //排麦
-    self.stremer.isUsePaiMai = YES;
+    self.stremer.isUsePaiMai = gl_use_paimai;
     [self.stremer addObserver:self.ccBarelyManager];
     [self.ccBarelyManager addBasicClient:self.stremer];
     //白板
@@ -231,53 +259,89 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
 
 - (void)cc_updateAudioSession
 {
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionAllowBluetooth error:nil];
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    return;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryMultiRoute withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionAllowBluetooth error:nil];
+//        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    });
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-    [self cc_updateAudioSession];
     
     [self initUI];
     self.isLandSpace = YES;
     self.cameraPosition = AVCaptureDevicePositionFront;
     [self addObserver_push];
-    [self addObserver];
     [self initBaseSDKComponent];
     WeakSelf(weakSelf);
     [self.stremer setListenOnStreamStatus:^(BOOL result, NSError *error, id info) {
         NSDictionary *dicInfo = (NSDictionary *)info;
-        NSMutableDictionary *dic = [dicInfo mutableCopy];
-        [dic setObject:@"sid" forKey:@"stream"];
-        
-        NSLog(@"\n -------");
-        NSLog(@"\n Blacklisten-:%d er:%@ info:%@",result,error,[weakSelf objToString:dic]);
+        NSString *action = info[@"action"];
+        NSLog(@"listen_on_streame_info-------:%@",info);
+
+        if (![action isEqualToString:@"streamInfo"])
+        {
+            return ;
+        }
+
+        NSInteger type = [info[@"type"]integerValue];
+        if (type == 1)
+        {
+            [weakSelf streamCheck_remote:dicInfo];
+        }
+        else
+        {
+            [weakSelf streamListenPubRetry:info];
+        }
     }];
     
     [self loginAction];
 }
+//仅订阅音频
+- (void)streamListenPubRetry:(NSDictionary *)info
+{
+    int status = [info[@"status"]intValue];
+    if (status == 1003)
+    {
+        //1、停止推流
+        [self.stremer unPublish:^(BOOL result, NSError *error, id info) {
+            NSLog(@"00000-unPublish----%d--%@--%@---",result,error,info);
+            
+            [self stopPreView];
+            //2、创建本地音频流
+            [self.stremer createLocalStream:NO cameraFront:NO];
+            [self startPreView];
+            
+            //3、重新推流
+            [self.stremer publish:^(BOOL result, NSError *error, id info) {
+                NSLog(@"00000-pubRetry----%d--%@--%@---",result,error,info);
+            }];
+        }];
+    }
+}
+- (void)streamListenSubRetry:(NSDictionary *)info
+{
+    //该处需要取消订阅 ，重新订阅
+}
 
+#pragma mark --
+- (void)streamCheck_remote:(NSDictionary *)info
+{
+    NSInteger status = [info[@"status"]integerValue];
+    if (status == 1003)
+    {
+//        [self atlas_ServerReconnect];
+    }
+}
 
 - (NSString *)objToString:(id)obj
 {
     NSData *data = [NSJSONSerialization dataWithJSONObject:obj options:0 error:nil];
     NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     return str;
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-//    [self removeObserver];
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -305,6 +369,7 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     }];
     
     self.pickerViewData = @[@"退出",
+                            @"创建本地流",
                             @"开启预览",
                             @"开启直播",
                             @"开始推流",
@@ -314,7 +379,10 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
                             @"获取链接状态",
                             @"切换摄像头",
                             @"开启或者关闭麦克风",
-                            @"开启或者关闭摄像头"];
+                            @"开启或者关闭摄像头",
+                            @"ATLAS 重连",
+                            @"Set Region",
+                            @"User Custom"];
     self.tableView = [UITableView new];
     self.tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.tableView];
@@ -414,7 +482,11 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
 - (void)tableView_BASE:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = indexPath.row;
-    if (row == CCBaseFunType_previewStart)
+    if (row == CCBaseFunType_createLocalStream)
+    {
+        [self createLocalStream];
+    }
+    else if (row == CCBaseFunType_previewStart)
     {
         [self startPreView];
     }
@@ -458,6 +530,20 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     {
         [self changeVideo];
     }
+    else if(row == CCBaseFunType_atlasReconnect)
+    {
+        [self atlas_ServerReconnect];
+    }
+    else if(row == CCBaseFunType_setRegion)
+    {
+        [self streamSetRegion];
+    }
+    else if(row == CCBaseFunType_userCustom)
+    {
+        [self.stremer updateUserCustom:666 userId:self.room.user_id completion:^(BOOL result, NSError *error, id info) {
+            NSLog(@"user custom update!");
+        }];
+    }
 }
 
 - (void)changeCamera
@@ -469,27 +555,18 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
 - (void)changeAudio
 {
     self.audioClose = !self.audioClose;
-    if (self.audioClose)
-    {
-        [self.preView.stream disableAudio];
-    }
-    else
-    {
-        [self.preView.stream enableAudio];
-    }
+    [self.stremer setAudioOpened:!self.audioClose userID:nil];
 }
 
 - (void)changeVideo
 {
     self.videoCLose = !self.videoCLose;
-    if (self.videoCLose)
-    {
-        [self.preView.stream disableVideo];
-    }
-    else
-    {
-        [self.preView.stream enableVideo];
-    }
+    [self.stremer setVideoOpened:!self.videoCLose userID:nil];
+}
+
+- (void)createLocalStream
+{
+    [self.stremer createLocalStream:YES cameraFront:YES];
 }
 
 - (void)startPreView
@@ -511,14 +588,13 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
         }
         else
         {
-            [weakSelf showError:error];
+            [CCTool showError:error];
         }
     }];
 }
 
 - (void)startLive
 {
-    __weak typeof(self) weakSelf = self;
     [self.stremer startLive:^(BOOL result, NSError *error, id info) {
         if (result)
         {
@@ -526,14 +602,13 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
         }
         else
         {
-            [weakSelf showError:error];
+            [CCTool showError:error];
         }
     }];
 }
 
 - (void)stopLive
 {
-    __weak typeof(self) weakSelf = self;
     [self.stremer stopLive:^(BOOL result, NSError *error, id info) {
         if (result)
         {
@@ -541,7 +616,7 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
         }
         else
         {
-            [weakSelf showError:error];
+            [CCTool showError:error];
         }
     }];
 }
@@ -554,17 +629,19 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
         {
             weakSelf.localStreamID = weakSelf.stremer.localStreamID;
             NSLog(@"%s__%d", __func__, __LINE__);
+            [self.ccBarelyManager updateUserState:self.room.user_id roomID:self.room.room_id publishResult:YES streamID:weakSelf.localStreamID completion:^(BOOL result, NSError *error, id info) {
+
+            }];
         }
         else
         {
-            [weakSelf showError:error];
+            [CCTool showError:error];
         }
     }];
 }
 
 - (void)unpublish
 {
-    __weak typeof(self) weakSelf = self;
     [self.stremer unPublish:^(BOOL result, NSError *error, id info) {
         if (result)
         {
@@ -572,7 +649,7 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
         }
         else
         {
-            [weakSelf showError:error];
+            [CCTool showError:error];
         }
     }];
 }
@@ -587,23 +664,53 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
         }
         else
         {
-            [weakSelf showError:error];
+            [CCTool showError:error];
         }
     }];
 }
 
-- (void)leave
-{
+- (void)leave_copy
+{    
 //    [self loading_Add:@"正在退出....!"];
     __weak typeof(self) weakSelf = self;
     [self.ccVideoView removeObserverNotify];
     self.ccVideoView = nil;
+    NSLog(@"-------leave---click---");
+
     [self.stremer userLogout:self.token response:^(BOOL result, NSError *error, id info) {
+        NSLog(@"----leave------userLogout---");
+
+    }];
+    [self.stremer leave:^(BOOL result, NSError *error, id info) {
+        NSLog(@"----leave------leave---");
+    }];
+    [weakSelf.stremer clearData];
+    //            [weakSelf loading_Remove];
+    [weakSelf.navigationController popViewControllerAnimated:YES];
+}
+- (void)leave
+{
+    //    [self loading_Add:@"正在退出....!"];
+    __weak typeof(self) weakSelf = self;
+    
+    [self.ccVideoView removeObserverNotify];
+    if (self.ccVideoView)
+    {
+        [self.ccVideoView docRelease];
+        self.ccVideoView = nil;
+    }
+    NSLog(@"-------leave---click---");
+    
+    [self.stremer unPublish:^(BOOL result, NSError *error, id info) {
+        
+    }];
+    [self.stremer userLogout:self.token response:^(BOOL result, NSError *error, id info) {
+        NSLog(@"----leave------userLogout---");
         [self.stremer leave:^(BOOL result, NSError *error, id info) {
-            NSLog(@"%s__%d", __func__, __LINE__);
-            [weakSelf.stremer realsesAllStream];
+            NSLog(@"----leave------leave---");
             [weakSelf.stremer clearData];
-//            [weakSelf loading_Remove];
+            [self removeObserver];
+            //[weakSelf loading_Remove];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }];
     }];
@@ -614,21 +721,37 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     //该功能暂未开放
 }
 
+//设置主视频流
+- (void)streamSetRegion
+{
+    [[CCStreamerBasic sharedStreamer]setRegion:self.localStreamID completion:^(BOOL result, NSError *error, id info) {
+        
+    }];
+}
+
 #pragma mark - 流
 - (void)onServerDisconnected
 {
     NSLog(@"%s__%d", __func__, __LINE__);
-    WS(ws);
-    dispatch_async(dispatch_get_main_queue(), ^{
-//        [ws.navigationController popViewControllerAnimated:NO];
-    });
+    [CCTool showMessage:@"流服务连接断开！"];
 }
 
-- (void)onStreamAdded:(CCStream*)stream
+- (void)SDKNeedsubStream:(NSNotification *)notify
 {
-    //TODO..REMOVE
-    return;
-    NSLog(@"onStreamAdded --%s__%d__%@", __func__, __LINE__, stream.streamID);
+    if (gl_pub_sub_close) return;
+
+    NSLog(@"-sdk---sub---:%@",notify);
+    NSDictionary *dicInfo = notify.userInfo;
+    NSString *sid = dicInfo[@"streamID"];
+    NSInteger role = [dicInfo[@"role"]integerValue];
+    NSString *name = dicInfo[@"name"];
+    NSString *ID = dicInfo[@"id"];
+#pragma unused(role,name,ID)
+    if (!gl_use_paimai)
+    {
+        return;
+    }
+    CCStream *stream = [self.stremer getStreamWithStreamID:sid];
     if ([stream.userID isEqualToString:self.stremer.userID])
     {
         //自己的流不订阅
@@ -640,50 +763,126 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
         self.mixedStream = stream;
         return;
     }
-    sleep(1.f);
+    [self showRole:stream role:role];
+    self.tempStream = stream;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [self autoSub:stream];
+    });
+}
+
+- (void)onStreamAdded:(CCStream*)stream
+{
+    if (gl_pub_sub_close) return;
+    
+    NSLog(@"ZZZZZZZ---onStreamAdded --%s__%d__%@--role<%d>", __func__, __LINE__, stream.streamID,stream.role);
+    if (gl_use_paimai)
+    {
+        return;
+    }
+    if ([stream.userID isEqualToString:self.stremer.userID])
+    {
+        //自己的流不订阅
+        self.localStream = stream;
+        return;
+    }
+    if (stream.type == CCStreamType_Mixed)
+    {
+        self.mixedStream = stream;
+        return;
+    }
+    [self showRole:stream role:0];
     self.tempStream = stream;
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [self autoSub:stream];
     });
 }
-
-- (void)onStreamRemoved:(CCStream*)stream
+#pragma mark --展示
+- (void)showRole:(CCStream *)stream role:(NSInteger)roleType
 {
-    NSLog(@"%s__%d", __func__, __LINE__);
-    NSLog(@"onStreamRemoved --%s__%d__%@", __func__, __LINE__, stream.streamID);
+    CCRole role;
+    if (stream)
+    {
+        role = stream.role;
+    }
+    else
+    {
+        role = roleType;
+    }
+    NSString *roleString = [CCRoom stringFromRole:role];
+    NSString *streamAdd = [NSString stringWithFormat:@"streamadd-role-<%@>",roleString];
+    [CCTool  showToast:streamAdd];
+}
+
+- (void)SDKNeedUnsubStream:(NSNotification *)notify
+{
+    if (gl_pub_sub_close) return;
+
+    NSLog(@"-sdk---unsub---:%@",notify);
+    NSDictionary *dicInfo = notify.userInfo;
+    NSString *sid = dicInfo[@"streamID"];
+    NSInteger role = [dicInfo[@"role"]integerValue];
+    NSString *name = dicInfo[@"name"];
+    NSString *ID = dicInfo[@"id"];
+#pragma unused(role,name,ID)
+    if (!gl_use_paimai)
+    {
+        return;
+    }
+    CCStream *stream = [self.stremer getStreamWithStreamID:sid];
     if ([stream.userID isEqualToString:self.stremer.userID])
     {
         //自己的流没有订阅
         return;
     }
-//    sleep(1.f);
+    [self autoUnSub:stream];
+}
+
+- (void)onStreamRemoved:(CCStream*)stream
+{
+    if (gl_pub_sub_close) return;
+
+    NSLog(@"%s__%d", __func__, __LINE__);
+    NSLog(@"ZZZZZZZ---onStreamRemoved --%s__%d__%@", __func__, __LINE__, stream.streamID);
+    if (gl_use_paimai)
+    {
+        return;
+    }
+    if ([stream.userID isEqualToString:self.stremer.userID])
+    {
+        //自己的流没有订阅
+        return;
+    }
     [self autoUnSub:stream];
 }
 
 - (void)onStreamError:(NSError *)error forStream:(CCStream *)stream
 {
     NSLog(@"%s__%d__%@__%@", __func__, __LINE__, error, stream.streamID);
+    [CCTool showError:error];
 }
 
 - (void)autoSub:(CCStream *)stream
 {
     NSLog(@"%s__%d__%@", __func__, __LINE__, stream.streamID);
     __weak typeof(self) weakSelf = self;
-    [self.stremer subcribeWithStream:stream qualityLevel:0 completion:^(BOOL result, NSError *error, id info) {
+    [self.stremer subcribeWithStream:stream completion:^(BOOL result, NSError *error, id info) {
         [self cc_updateAudioSession];
         if (result)
         {
             NSLog(@"PLAY___sub success %s__%d__%@__%@___%@", __func__, __LINE__, stream.streamID, @(result),info);
-            [weakSelf.streamView showStreamView:info];
-            
         }
         else
         {
             NSLog(@"PLAY___sub fail %s__%d__%@__%@__%@", __func__, __LINE__, stream.streamID, @(result),info);
-            [weakSelf showError:error];
+            [CCTool showError:error];
         }
     }];
+}
+
+- (void)onStreamFrameDecoded:(CCStream *)stream
+{
+    [self.streamView showStreamView:stream];
 }
 
 - (void)autoUnSub:(CCStream *)stream
@@ -698,7 +897,7 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
         }
         else
         {
-            [weakSelf showError:error];
+            [CCTool showError:error];
             if (error.code == 6003)
             {
                 //正在订阅中
@@ -728,10 +927,9 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     self.accountId = self.viewerId;
     self.roomId = GetFromUserDefaults(LIVE_ROOMID);
     
-    NSString *aid = @"83F203DAC2468694";
-    NSString *sid = @"AD9C66E8B9DDBB2B9683D3C5CA6E374CB9EFC0C96892CF0DD3E32CEAE7F57EE869F88A0BAB54A77BD03846F895DAB4B3";
+    NSString *aid = @"6634678BEDA5BB7D";
+    NSString *sid = @"BC4E4ECD033FCEA3BAB1C353CD452736C965F98D3441215377878C7CD1426D05924D3394E1CBF840DF201C04F92246BF";
     
-
     aid = self.viewerId;
     sid = self.token;
     
@@ -765,7 +963,6 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     if (row == SDK_Function_ChatSDK) {
         [self com_chat];
     }
-  
     if (row == SDK_Function_PM_CCClassType_Named) {
         [self com_pm_named];
     }
@@ -814,7 +1011,7 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     NSString *user_id = self.info[@"data"][@"userid"];
     docController.user_id = user_id;
     docController.wipeAll = wipeAll;
-    docController.ccVideoView = self.ccVideoView;
+    docController.ccVideoView = [self createNewVideoView];
     docController.stremer = self.stremer;
     [self.navigationController pushViewController:docController animated:YES];
 }
@@ -837,7 +1034,7 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     {
         if (isShow)
         {
-            [self showMessage:@"房间没有开启直播！"];
+            [CCTool showMessage:@"房间没有开启直播！"];
         }
         return NO;
     }
@@ -845,7 +1042,7 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     {
         if (isShow)
         {
-            [self showMessage:@"房间连麦模式不匹配！"];
+            [CCTool showMessage:@"房间连麦模式不匹配！"];
         }
         return NO;
     }
@@ -885,13 +1082,13 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
 {
     CCClassType classType = self.room.room_class_type;
     if (classType == CCClassType_Named) {
-        [self showMessage:@"举手连麦"];
+        [CCTool showMessage:@"举手连麦"];
     }
     if (classType == CCClassType_Auto) {
-        [self showMessage:@"自由连麦"];
+        [CCTool showMessage:@"自由连麦"];
     }
     if (classType == CCClassType_Rotate) {
-        [self showMessage:@"自动连麦"];
+        [CCTool showMessage:@"自动连麦"];
     } 
 }
 
@@ -904,9 +1101,23 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     [self.ccBarelyManager handsUp:^(BOOL result, NSError *error, id info) {
         if(!result)
         {
-            [weakSelf showError:error];
+            [CCTool showError:error];
         }
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+    [self addObserver];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self removeObserver];
 }
 
 #pragma mark -- 接收
@@ -916,6 +1127,9 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startPublish) name:CCNotiNeedStartPublish object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopPublish) name:CCNotiNeedStopPublish object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needLogout) name:CCNotiNeedLoginOut object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SDKNeedsubStream:) name:CCNotiNeedSubscriStream object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SDKNeedUnsubStream:) name:CCNotiNeedUnSubcriStream object:nil];
 }
 -(void)removeObserver
 {
@@ -926,9 +1140,10 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
 {
     WS(weakSelf);
     //申请连麦成功，开始推流
+    [self.stremer createLocalStream:YES cameraFront:YES];
     [self com_startPreview:^(BOOL result, NSError *error, id info) {
         if (!result) {
-            [weakSelf showError:error];
+            [CCTool showError:error];
             return ;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -946,7 +1161,7 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
             }
             else
             {
-                [weakSelf showError:error];
+                [CCTool showError:error];
             }
         }];
     }];
@@ -955,26 +1170,15 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
 - (void)com_startPreview:(CCComletionBlock)completion
 {
     //只开启一次预览，知道退出房间时再关闭预览
-    if (self.preView)
-    {
+    __weak typeof(self) weakSelf = self;
+    [self.stremer startPreview:^(BOOL result, NSError *error, id info) {
+        CCStreamView *view = info;
+        weakSelf.preView = view;
         if (completion)
         {
-            completion(YES, nil, self.preView);
+            completion(YES, nil, weakSelf.preView);
         }
-        return;
-    }
-    else
-    {
-        __weak typeof(self) weakSelf = self;
-        [self.stremer startPreview:^(BOOL result, NSError *error, id info) {
-            CCStreamView *view = info;
-            weakSelf.preView = view;
-            if (completion)
-            {
-                completion(YES, nil, weakSelf.preView);
-            }
-        }];
-    }
+    }];
 }
 
 - (void)stopPublish
@@ -992,21 +1196,21 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
         }
         else
         {
-            [weakSelf showError:error];
+            [CCTool showError:error];
         }
     }];
 }
 
 - (void)needLogout
 {
-    [self.stremer realsesAllStream];
+
 }
 //用户下麦
 - (void)com_pm_xiamai
 {
     if (!self.stremer.localStreamID || self.stremer.localStreamID.length == 0)
     {
-        [self showMessage:@"目前没有上麦！"];
+        [CCTool showMessage:@"目前没有上麦！"];
         return;
     }
     WS(weakSelf);
@@ -1037,13 +1241,15 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     {
         NSLog(@"%d", __LINE__);
         WS(weakSelf);
-        [UIAlertView bk_showAlertViewWithTitle:@"消息" message:@"收到老师上麦邀请" cancelButtonTitle:@"拒绝" otherButtonTitles:@[@"接受"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            NSLog(@"chenfy--%ld",(long)buttonIndex);
-            if (buttonIndex == 1)
-            {
-                [weakSelf com_accept_invite];
-            }
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIAlertView bk_showAlertViewWithTitle:@"消息" message:@"收到老师上麦邀请" cancelButtonTitle:@"拒绝" otherButtonTitles:@[@"接受"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                NSLog(@"chenfy--%ld",(long)buttonIndex);
+                if (buttonIndex == 1)
+                {
+                    [weakSelf com_accept_invite];
+                }
+            }];
+        });
     }
     else if (event == CCSocketEvent_ReciveCancleLianmaiInvite)
     {
@@ -1071,28 +1277,28 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     {
         NSString *val = value[@"value"];
         NSString *smessage = [NSString stringWithFormat:@"收到消息:%@",val];
-        [self showMessage:smessage];
+        [CCTool showMessage:smessage];
     }
     else if(event == CCSocketEvent_UserJoin)
     {
         CCUser *user = value[@"user"];
         NSString *uname = user.user_name;
         NSString *msg = [NSString stringWithFormat:@"<%@> 加入房间!",uname];
-        [self showMessage:msg];
+        [CCTool showMessage:msg];
     }
     else if(event == CCSocketEvent_UserExit)
     {
         CCUser *user = value[@"user"];
         NSString *uname = user.user_name;
         NSString *msg = [NSString stringWithFormat:@"<%@> 离开房间!",uname];
-        [self showMessage:msg];
+        [CCTool showMessage:msg];
     }
     else if(event == CCSocketEvent_UserHandUp)
     {
         CCUser *user = value[@"user"];
         NSString *name = user.user_name;
         NSString *str = [NSString stringWithFormat:@"<%@> 举手了！",name];
-        [self showMessage:str];
+        [CCTool showMessage:str];
     }
     else if (event == CCSocketEvent_ReciveDrawStateChanged)
     {
@@ -1111,6 +1317,14 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
         {
             //被设为讲师..客户开展后续自己的业务
         }
+    }
+    else if(event == CCSocketEvent_UserCustomUpdate)
+    {
+        NSDictionary *info = noti.userInfo;
+        CCUser *user= info[@"user"];
+        NSString *message = [NSString stringWithFormat:@"userid--:%@--custom--:%ld",user.user_id,(long)user.user_custom];
+        [CCTool showMessage:message];
+        NSLog(@"user custom update!");
     }
 }
 
@@ -1138,31 +1352,16 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     if ([msg isKindOfClass:[NSString class]] || [msg isKindOfClass:[NSMutableString class]])
     {
         NSString *socketMsg = [NSString stringWithFormat:@"收到聊天message-:%@",msg];
-        [self showMessage:socketMsg];
+        [CCTool showMessage:socketMsg];
     }
     else
     {
         NSString *imageUrl = msg[@"content"];
         NSString *imageMessage = [NSString stringWithFormat:@"收到聊天Pic-:%@",imageUrl];
-        [self showMessage:imageMessage];
+        [CCTool showMessage:imageMessage];
     }
 }
 
-#pragma mark - show message
-- (void)showMessage:(NSString *)msg
-{
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"消息" message:msg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确认", nil];
-    [alert show];
-}
-
-#pragma mark - show error
-- (void)showError:(NSError *)error
-{
-    NSString *mes = [NSString stringWithFormat:@"%@\n%@", @(error.code), error.domain];
-    [UIAlertView bk_showAlertViewWithTitle:@"" message:mes cancelButtonTitle:@"知道了" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        
-    }];
-}
 
 #pragma mark -
 - (void)didReceiveMemoryWarning
@@ -1176,33 +1375,87 @@ typedef NS_ENUM(NSInteger,CCBaseFunType) {
     [self removeObserver];
 }
 
+#pragma mark --
+#pragma mark -- loading 加载框
 - (void)loading_Add
 {
     [self loading_Add:nil];
 }
 - (void)loading_Add:(NSString *)message
 {
-    if (!message || message.length == 0)
-    {
-        message = @"正在登录...";
-    }
-    [self loading_Remove];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        _loadingView = [[LoadingView alloc] initWithLabel:message];
-        [self.view addSubview:_loadingView];
-        
-        [_loadingView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
-        }];
-    });
+    [CCTool loadingAddTo:self.view message:message];
 }
 - (void)loading_Remove
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_loadingView removeFromSuperview];
-    });
+    [CCTool loadingRemove];
 }
 
+#pragma mark --
+#pragma mark --sockets delegate 事件
+/** socket连接失败 */
+- (void)onFailed
+{
+    [CCTool showToast:@"socket连接失败！"];
+}
 
+/** socket连接成功 */
+- (void)onSocketConnected:(NSString *)nsp
+{
+    [CCTool showToast:@"socket连接成功！"];
+}
+
+/** socket重连 */
+- (void)onsocketReconnectiong
+{
+    [CCTool showToast:@"socket重连......！"];
+}
+
+/** socket断开(同时开始重连) */
+- (void)onconnectionClosed
+{
+    [CCTool showToast:@"socket断开重连！"];
+}
+
+/** socket重连成功 */
+- (void)onSocketReconnected:(NSString *)nsp
+{
+    [CCTool showToast:@"socket重连成功！"];
+}
+
+#pragma mark -- 断开重连
+static bool gl_sub_error_show = false;
+
+- (void)atlas_ServerReconnect
+{
+    if (gl_sub_error_show == true)
+    {
+        return;
+    }
+    gl_sub_error_show = true;
+    
+    NSLog(@"%s__%d", __func__, __LINE__);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIAlertView bk_showAlertViewWithTitle:@"提示" message:@"将要断开流服务,请确认是否重连？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"重连"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            
+            gl_sub_error_show = false;
+            if (buttonIndex == 1)
+            {
+                //重连
+                NSLog(@"onServerDisconnected --- 重连！");
+                [[CCStreamerBasic sharedStreamer]streamServerReConnect:^(BOOL result, NSError *error, id info) {
+                    if (result)
+                    {
+                        return ;
+                    }
+                    if (error.code == 301)
+                    {
+                        [CCTool showError:error];
+                    }
+                    NSLog(@"onServerDisconnected-dd___%s__res__%d__error:%@__info:%@__",__func__,result,error,info);
+                }];
+            }
+        }];
+    });
+}
 
 @end

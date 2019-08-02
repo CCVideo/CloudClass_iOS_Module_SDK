@@ -35,6 +35,8 @@
 - (void)removeObserverNotify;
 //设置日志开关
 + (void)setLogState:(BOOL)open;
+//设置白板类型
++ (void)setWhiteBoardTypeOld:(BOOL)old;
 #pragma mark --
 #pragma mark -- 插播音视频相关
 //设置 player 容器
@@ -110,18 +112,21 @@
  */
 - (BOOL)unReleatedDoc:(NSString *)docID roomID:(NSString *)roomID userID:(NSString *)userID completion:(CCComletionBlock)completion;
 
-/** 获取当前文档 */
-- (NSString *)docCurrentDocId;
 #pragma mark -- 文档切换相关API
 /** 切换到白板 */
 - (void)docPageToWhiteBoard;
 /** 切换到另一个文档 */
 - (void)docChangeTo:(CCDoc *)doc;
 /** 向前翻页 */
-- (void)docPageToFront;
+- (BOOL)docPageToFront;
 /** 回退翻页 */
-- (void)docPageToBack;
-
+- (BOOL)docPageToBack;
+/** 获取当前Doc */
+- (CCDoc *)docCurrentPPT;
+/** 获取文档当前页码 */
+- (NSInteger)docCurrentPage;
+/** 跳转到某一页 */
+- (void)docSkip:(CCDoc *)doc toPage:(NSInteger)page;
 #pragma mark -- 回放相关API
 /** 清屏 */
 - (void)clearAllDrawViews;

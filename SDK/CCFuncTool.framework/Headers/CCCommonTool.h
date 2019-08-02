@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CCAFNetworking.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 //唯一标识
 + (NSString *)uniqueMark;
 + (void)deleteUniqueMark;
-
 
 @end
 

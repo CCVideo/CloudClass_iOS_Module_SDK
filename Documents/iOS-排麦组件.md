@@ -271,43 +271,16 @@
  @return 操作结果
  */
 - (BOOL)changeRoomAllKickDown:(CCComletionBlock)completion;
-​````
+
+```
 
 # 3. 排麦通知事件
 
-下面所有的场景都以demo为例，如场景：CCPlayViewController控制器，具体可参考demo实现；
+	下面所有的场景都以demo为例，如场景：CCPlayViewController控制器，具体可参考demo实现；
 
 ## 3.1 监听流服务事件
-这里需要控制器实现‘’CCStreamerBasicDelegate'协议的4个流相关事件，如下：
-​```objc
-/**
- @brief Triggers when client is disconnected from conference server.
- */
-- (void)onServerDisconnected;
-/**
- @brief Triggers when a stream is added.
- @param stream The stream which is added.
- */
-- (void)onStreamAdded:(CCStream*)stream;
-/**
- @brief Triggers when a stream is removed.
- @param stream The stream which is removed.
- */
-- (void)onStreamRemoved:(CCStream*)stream;
-/**
- @brief Triggers when an error happened on a stream.
- @detail This event only triggered for a stream that is being publishing or
- subscribing. SDK will not try to recovery the certain stream when this event
- is triggered. If you still need this stream, please re-publish or
- re-subscribe.
- @param stream The stream which is corrupted. It might be a LocalStream or
- RemoteStream.
- @param error The error happened. Currently, errors are reported by MCU.
- */
-- (void)onStreamError:(NSError *)error forStream:(CCStream *)stream;
-```
-具体实现请参考demo实现；
 
+监听函数根据 3.2 监听事件自己定义；
 
 ## 3.2 学生排麦状态通知（上麦和下麦的回调通知）
 在需要的控制器使用时添加监听事件
@@ -322,6 +295,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopPublish) name:CCNotiNeedStopPublish object:nil];
     //用户需要退出通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needLogout) name:CCNotiNeedLoginOut object:nil];
+        
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SDKNeedsubStream:) name:CCNotiNeedSubscriStream object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SDKNeedUnsubStream:) name:CCNotiNeedUnSubcriStream object:nil];
+    
+
 }
   'startPublish'、'stopPublish'、'needLogout' - '监听事件请参考demo实现'
   'receiveSocketEvent:' - '下面会讲述'

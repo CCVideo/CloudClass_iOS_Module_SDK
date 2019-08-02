@@ -9,15 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
 #pragma mark
 #pragma mark --version 2.0
 typedef NS_ENUM(NSInteger,CCDocLoadType) {
     CCDocLoadTypeLoading, //dp加载中
     CCDocLoadTypeComplete, //加载完成
-    CCDocLoadTypeError //加载失败
+    CCDocLoadTypeErrorDp, //dp加载失败
+    CCDocLoadTypeErrorImage, //图片加载失败
+    CCDocLoadTypeErrorAnimation, //动画加载失败
+    CCDocLoadTypeErrorWB, //白板加载失败
+    CCDocLoadTypeRetryFail  //重试后仍然失败
 };
 //文档加载回调
-typedef void(^CCDocLoadBlock)(CCDocLoadType type ,CGFloat w ,CGFloat h);
+typedef void(^CCDocLoadBlock)(CCDocLoadType type ,CGFloat w ,CGFloat h ,id error);
 
 @interface CCDoc : NSObject
 @property (strong, nonatomic) NSString *docID;

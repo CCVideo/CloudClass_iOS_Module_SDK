@@ -53,23 +53,35 @@ typedef NS_ENUM(NSInteger,CCDocFunc) {
     // Do any additional setup after loading the view.
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //加载展示数据
-        [self.ccVideoView setOnDpCompleteListener:^(CCDocLoadType type, CGFloat w, CGFloat h) {
-            NSLog(@"DpListener---type-<%ld>--w-:%f--h-:%f",(long)type,w,h);
-        }];
-        [self.ccVideoView initDocEnvironment];
-//        [self.ccVideoView setDocPortrait:YES];
-//        [self.ccVideoView setDocBackGroundColor:[UIColor purpleColor]];
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //加载展示数据
+    [self.ccVideoView setOnDpCompleteListener:^(CCDocLoadType type, CGFloat w, CGFloat h, id error) {
+        NSLog(@"DpListener---type-<%ld>--w-:%f--h-:%f---error:%@",(long)type,w,h,error);
+        if (type == CCDocLoadTypeLoading)
+        {
+            [CCTool showToast:@"文档加载中....!"];
+        }
+        if (type == CCDocLoadTypeComplete)
+        {
+            [CCTool showToast:@"文档加载完成!"];
+        }
+    }];
+    [self.ccVideoView initDocEnvironment];
+    //        [self.ccVideoView setDocPortrait:YES];
+    //        [self.ccVideoView setDocBackGroundColor:[UIColor purpleColor]];
+
+    if (self.wipeAll)
+    {
         [self.ccVideoView startDocView];
-    });
+    }
+    else
+    {
+        [self.ccVideoView startDocView];
+    }
 }
 
 - (void)initUI
@@ -143,7 +155,6 @@ typedef NS_ENUM(NSInteger,CCDocFunc) {
     [self.stremer addObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveSocketEvent:) name:CCNotiReceiveSocketEvent object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeRotate:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
-
 }
 -(void)removeObserver
 {
@@ -168,12 +179,13 @@ typedef NS_ENUM(NSInteger,CCDocFunc) {
     }
 }
 
-- (void)changeRotate:(NSNotification*)noti {
+- (void)changeRotate:(NSNotification*)noti
+{
     if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationPortrait
         || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationPortraitUpsideDown) {
         //竖屏
         NSLog(@"竖屏");
-        [self.ccVideoView setDocFrame:CGRectMake(0, 0, SCREEN_WIDTH, (9/16.0)*(SCREEN_WIDTH))];
+        [self.ccVideoView setDocFrame:CGRectMake(0, 0, (float)SCREEN_WIDTH, (9/16.0)*((float)SCREEN_WIDTH))];
 //        [self.ccVideoView setDocPortrait:YES];
 //        [self.ccVideoView setDocFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
 //        [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -183,7 +195,7 @@ typedef NS_ENUM(NSInteger,CCDocFunc) {
         NSLog(@"横屏");
         NSLog(@"%f , %f",SCREENH_HEIGHT,SCREEN_WIDTH);
         [self.ccVideoView setDocPortrait:NO];
-        [self.ccVideoView setDocFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
+        [self.ccVideoView setDocFrame:CGRectMake(0, 0, (float)SCREEN_WIDTH, (float)SCREENH_HEIGHT)];
 //        [self.navigationController setNavigationBarHidden:YES animated:YES];
     }
 
@@ -196,6 +208,7 @@ typedef NS_ENUM(NSInteger,CCDocFunc) {
 #pragma mark - UIButton click  Method
 - (void)ruleBtnClick:(UIButton *)sender
 {
+    [self.ccVideoView setDocEditable:YES];
     [self.ccVideoView setCurrentIsEraser:YES];
 }
 
@@ -267,8 +280,8 @@ typedef NS_ENUM(NSInteger,CCDocFunc) {
 {
     if (!_gestureButton) {
         _gestureButton = [UIButton new];
-        [_gestureButton setBackgroundImage:[UIImage imageNamed:@"drag"] forState:UIControlStateNormal];
-        [_gestureButton setBackgroundImage:[UIImage imageNamed:@"drag"] forState:UIControlStateHighlighted];
+        [_gestureButton setBackgroundImage:[UIImage imageNamed:@"rule"] forState:UIControlStateNormal];
+        [_gestureButton setBackgroundImage:[UIImage imageNamed:@"rule_touch"] forState:UIControlStateHighlighted];
         [_gestureButton addTarget:self action:@selector(gestureButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _gestureButton;
@@ -519,8 +532,26 @@ int gl_doc_num = 0;
 
 - (void)btn_5_doc_GetCurrent
 {
-    NSString *doc = [self.ccVideoView docCurrentDocId];
-    NSLog(@"btn_5_doc_GetCurrent___%@",doc);
+    CCDoc *docW = [self.ccVideoView docCurrentPPT];
+    int num = [self.ccVideoView docCurrentPage];
+    NSLog(@"btn_5_doc_GetCurrent___%@",docW.docID);
 }
+
+#pragma mark -- Function Test
+#pragma mark -- 1、测试画板s尺寸调整
+static bool gl_frame_change = true;
+- (void)test_docFrameChange
+{
+    gl_frame_change = !gl_frame_change;
+    if (gl_frame_change)
+    {
+        [self.ccVideoView setDocFrame:CGRectMake(0, 0, 200, 200)];
+    }
+    else
+    {
+        [self.ccVideoView setDocFrame:CGRectMake(0, 0, 300, 300)];
+    }
+}
+
 
 @end

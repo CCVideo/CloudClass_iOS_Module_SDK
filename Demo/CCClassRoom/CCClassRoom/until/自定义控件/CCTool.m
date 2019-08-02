@@ -8,7 +8,57 @@
 
 #import "CCTool.h"
 #import "AppDelegate.h"
+#import <UIAlertView+BlocksKit.h>
+
+@interface CCTool()
+@property(nonatomic,strong)LoadingView *loadingView;
+@end
+
 @implementation CCTool
+
+static CCTool *_tool = nil;
+
++(id)shareInstance
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _tool = [[CCTool alloc]init];
+    });
+    return _tool;
+}
+
++ (void)loadingAddTo:(UIView *)view message:(NSString *)message
+{
+    if (!message || message.length == 0)
+    {
+        message = @"正在登录...";
+    }
+    CCTool *tool = [CCTool shareInstance];
+    
+    [self loadingRemove];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        LoadingView *loadingView = [[LoadingView alloc] initWithLabel:message];
+        [view addSubview:loadingView];
+        tool.loadingView = loadingView;
+        
+        [loadingView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+        }];
+    });
+}
+
++ (void)loadingRemove
+{
+    CCTool *tool = [CCTool shareInstance];
+    if (!tool.loadingView)
+    {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [tool.loadingView removeFromSuperview];
+    });
+}
+
 //创建label
 + (UILabel *)createLabelText:(NSString *)text
 {
@@ -125,5 +175,55 @@
         return UIEdgeInsetsMake(0, 0, 0, 0);
     }
 }
+
++ (UIWindow *)keyWindow
+{
+   UIWindow *kw = [[UIApplication sharedApplication]keyWindow];
+    return kw;
+}
+
++ (void)showToast:(NSString *)message
+{
+    NSLog(@"showToast_____:%@",message);
+    CGRect frame = [[UIScreen mainScreen]bounds];
+    UILabel *labelTips = [CCTool createLabelText:message];
+    labelTips.frame = frame;
+    labelTips.textAlignment = NSTextAlignmentCenter;
+    labelTips.text = message;
+    labelTips.backgroundColor = [UIColor blackColor];
+    labelTips.textColor = [UIColor whiteColor];
+    labelTips.alpha = 0.8;
+    
+    UIWindow *kw = [CCTool keyWindow];
+    [kw addSubview:labelTips];
+    
+    [UIView animateWithDuration:2.0 animations:^{
+        labelTips.alpha = 0;
+    } completion:^(BOOL finished) {
+        [labelTips removeFromSuperview];
+    }];
+}
+
+#pragma mark --消息提示框
++ (void)showMessage:(NSString *)msg
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"消息" message:msg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确认", nil];
+        [alert show];
+    });
+}
+
+#pragma mark - show error
++ (void)showError:(NSError *)error
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *mes = [NSString stringWithFormat:@"%@\n%@", @(error.code), error.domain];
+        [UIAlertView bk_showAlertViewWithTitle:@"" message:mes cancelButtonTitle:@"知道了" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            
+        }];
+    });
+}
+
+
 
 @end

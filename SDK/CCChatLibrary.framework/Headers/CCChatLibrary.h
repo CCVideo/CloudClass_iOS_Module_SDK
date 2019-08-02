@@ -12,6 +12,7 @@
 #import <CCClassRoomBasic/CCClassRoomBasic.h>
 #import "CCChatManager.h"
 
+
 //! Project version number for CCChatLibrary.
 FOUNDATION_EXPORT double CCChatLibraryVersionNumber;
 

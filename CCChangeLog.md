@@ -447,3 +447,249 @@
 
 1、无
 
+
+# version_3.7.0
+> 版本 3.7.0   时间：2019-04-29
+
+## CCBarleyLibrary
+
+### 一、功能修改
+1、内部优化，增加接口调用频率限制；
+
+### 二、接口变更 
+1、无；
+
+
+## CCChatLibrary
+
+### 一、功能修改
+1、内部优化，增加接口调用频率限制；
+
+### 二、接口变更 
+1、无；
+
+## CCClassRoomBasic
+
+### 一、功能修改
+	1、内部优化，增加了断流重推方案；
+	参考demo流服务重连API
+
+	- (BOOL)streamServerReConnect:(CCComletionBlock)completion;
+
+	
+### 二、接口变更
+1、新增接口 
+```objc
+#pragma mark - 流服务器重连
+/*!
+ @method
+ @abstract 流服务器重连
+ @param completion 回调闭包
+ @return 操作结果
+ */
+- (BOOL)streamServerReConnect:(CCComletionBlock)completion;
+```
+
+
+## CCDocLibrary
+
+### 一、功能修改
+1、内部流程优化，优化文档加载速度；
+
+### 二、接口变更 
+
+1、无
+
+
+# version_3.8.0
+> 版本 3.8.0   时间：2019-05-15
+
+## CCBarleyLibrary
+
+### 一、功能修改
+1、无
+### 二、接口变更 
+1、无；
+
+
+## CCChatLibrary
+
+### 一、功能修改
+1、无；
+
+### 二、接口变更 
+1、无；
+
+## CCClassRoomBasic
+
+### 一、功能修改
+	1、增加人员状态同步，用户自定义字段custom
+	
+### 二、接口变更
+1、新增接口 
+```objc
+#pragma mark - 人员状态custom变更
+/*!
+ @method
+ @abstract 更新custom状态
+ @param custom (0~999，初始和默认都为0)
+ @param userid 用户id
+ @param completion 回调
+ @return 操作结果
+ */
+- (BOOL)updateUserCustom:(NSInteger)custom userId:(NSString *)userid completion:(CCComletionBlock)completion;
+```
+
+
+## CCDocLibrary
+
+### 一、功能修改
+1、增加文档加载动画回调；
+
+### 二、接口变更 
+
+1、无
+
+# version_4.0.0
+> 版本 4.0.0   时间：2019-08-01
+
+## CCBarleyLibrary
+
+### 一、功能修改
+1、功能优化处理；
+2、教师端功能接口完善；
+### 二、接口变更 
+```objc
+/*!
+ @method
+ @abstract 助教上麦--助教推流后调用，更新状态为3
+ @param completion 回调
+ */
+- (void)assistLM:(BOOL)published completion:(CCComletionBlock)completion;
+
+/*!
+ @method
+ @abstract 助教下麦--助教下麦，状态变更为0
+ @param completion 回调
+ */
+- (void)assistDM:(CCUser *)user completion:(CCComletionBlock)completion;
+
+#pragma mark -- 讲师下麦
+/*!
+ @method
+ @abstract 老师下麦--老师下麦，状态变更为0
+ @param user 被下麦用户，如果为nil，默认当前g用户
+ @param userId 被谁下麦 | nil 自己下麦
+ @param completion 回调
+ */
+- (void)presentDM:(CCUser *)user byUser:(NSString *)userId completion:(CCComletionBlock)completion;
+
+#pragma mark -- 老师、助教预上麦
+/*!
+ @method
+ @abstract 讲师\助教 -- 状态变更为5
+ @param user 预上麦人员
+ @param completion 回调
+ */
+- (void)rolePreLM:(CCUser *)user completion:(CCComletionBlock)completion;
+
+```
+
+
+## CCChatLibrary
+
+### 一、功能修改
+1、无；
+
+### 二、接口变更 
+1、无；
+
+## CCClassRoomBasic
+
+### 一、功能修改
+	1、创建本地流；
+	2、新增音视频状态开关；
+	3、删除重复修改远程流状态API；
+	
+### 二、接口变更
+1、变更接口 
+```objc
+#pragma mark -- 创建本地流
+/*!
+ @method
+ @abstract 创建本地流
+ @param createVideo 流是否创建视频
+ @param front 设备相机
+ */
+- (void)createLocalStream:(BOOL)createVideo cameraFront:(BOOL)front;
+
+#pragma mark -- 修改流源发送状态
+/*!
+ @method
+ @abstract 设置视频状态(开始直播之后生效)
+ @param opened 视频状态
+ @param userID 学生ID(为空表示操作自己的视频)
+ 
+ @return 操作结果
+ */
+- (BOOL)setVideoOpened:(BOOL)opened userID:(NSString *)userID;
+
+/*!
+ @method
+ @abstract 设置音频状态(开始直播之后才生效)
+ @param opened 音频状态
+ @param userID 学生ID(为空表示操作自己的音频)
+ 
+ @return 操作结果
+ */
+- (BOOL)setAudioOpened:(BOOL)opened userID:(NSString *)userID;
+
+```
+2、删除接口
+```objc
+/*!
+ @method
+ @abstract 订阅音频流
+ @param stream 流
+ @param completion 回调
+ */
+- (void)playAudio:(CCStream*)stream completion:(CCComletionBlock)completion;
+
+/*!
+ @method
+ @abstract 取消订阅音频流
+ @param stream 流
+ @param completion 回调
+ */
+- (void)pauseAudio:(CCStream*)stream completion:(CCComletionBlock)completion;
+
+/*!
+ @method
+ @abstract 订阅视频流
+ @param stream 流
+ @param completion 回调
+ */
+- (void)playVideo:(CCStream*)stream completion:(CCComletionBlock)completion;
+
+/*!
+ @method
+ @abstract 取消订阅音频流
+ @param stream 流
+ @param completion 回调
+ */
+- (void)pauseVideo:(CCStream*)stream completion:(CCComletionBlock)completion;
+```
+
+
+## CCDocLibrary
+
+### 一、功能修改
+1、内部功能优化调整；
+2、新增文档跳页功能；
+### 二、接口变更 
+1、新增接口
+```objc
+/** 跳转到某一页 */
+- (void)docSkip:(CCDoc *)doc toPage:(NSInteger)page;
+```
+

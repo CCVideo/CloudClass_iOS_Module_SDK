@@ -243,9 +243,11 @@
 #pragma mark - show error
 - (void)showError:(NSError *)error
 {
-    NSString *mes = [NSString stringWithFormat:@"%@\n%@", @(error.code), error.domain];
-    [UIAlertView bk_showAlertViewWithTitle:@"" message:mes cancelButtonTitle:@"知道了" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *mes = [NSString stringWithFormat:@"%@\n%@", @(error.code), error.domain];
+        [UIAlertView bk_showAlertViewWithTitle:@"" message:mes cancelButtonTitle:@"知道了" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            
+        }];
+    });
 }
 @end

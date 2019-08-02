@@ -26,11 +26,6 @@ FOUNDATION_EXPORT const unsigned char XXFuncToolVersionString[];
 #import <CCFuncTool/CCCommonTool.h>
 #import <CCFuncTool/XXFileManager.h>
 
-//Popview
-#import <CCFuncTool/PopoverView.h>
-#import <CCFuncTool/PopoverViewCell.h>
-#import <CCFuncTool/PopoverAction.h>
-
 //Third Part
 #import <CCFuncTool/CCReachability.h>
 #import <CCFuncTool/CCAFNetworking.h>

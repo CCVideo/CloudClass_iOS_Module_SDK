@@ -10,7 +10,6 @@
 #import <SDImageCache.h>
 #import "SULogger.h"
 #import "CCExceptionHandler.h"
-#import <Bugly/Bugly.h>
 #import <OpenGLES/ES2/gl.h>
 #import <CCClassRoomBasic/CCClassRoomBasic.h>
 
@@ -23,9 +22,61 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [SDImageCache sharedImageCache].shouldDecompressImages = NO;
-
     [CCStreamerBasic setCrashListen:YES log:YES];
+        
+    [self volueListen];
     return YES;
+}
+
+- (void)volueListen
+{
+    return;
+    
+    AudioSessionInitialize(NULL, NULL, NULL, NULL);
+    AudioSessionSetActive(true);
+    AudioSessionAddPropertyListener(kAudioSessionProperty_CurrentHardwareOutputVolume ,
+                                    volumeListenerCallback,
+                                    (__bridge void *)(self)
+                                    );
+}
+
+void volumeListenerCallback (
+                             void                      *inClientData,
+                             AudioSessionPropertyID    inID,
+                             UInt32                    inDataSize,
+                             const void                *inData
+                             )
+{
+    const float *volumePointer = inData;
+    float volume = *volumePointer;
+    NSLog(@"volumeListenerCallback %f", volume);
+    if (volume < 0.1)
+    {
+        cc_updateAudioSession(false);
+    }
+    else
+    {
+        cc_updateAudioSession(true);
+    }
+}
+static bool gl_open = true;
+
+void cc_updateAudioSession(bool open)
+{
+    if (open && gl_open == false)
+    {
+        gl_open = true;
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionAllowBluetooth error:nil];
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    }
+    
+    if (!open && gl_open == true)
+    {
+        gl_open = false;
+
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategorySoloAmbient withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionAllowBluetooth error:nil];
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    }
 }
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window

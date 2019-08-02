@@ -22,14 +22,6 @@ FOUNDATION_EXPORT const unsigned char CCClassRoomBasicVersionString[];
 #import <CCClassRoomBasic/CCStreamView.h>
 #import <CCClassRoomBasic/CCEncodeConfig.h>
 #import <CCClassRoomBasic/CCStream.h>
-#import <CCClassRoomBasic/CCConnectionStatus.h>
-#import <CCClassRoomBasic/CCIceCandidatePairStats.h>
-#import <CCClassRoomBasic/CCIceCandidateStats.h>
-#import <CCClassRoomBasic/CCVideoBandWidthStatus.h>
-#import <CCClassRoomBasic/CCVideoReceiveStatus.h>
-#import <CCClassRoomBasic/CCVideoSenderStatus.h>
-#import <CCClassRoomBasic/CCAudioReceiveStatus.h>
-#import <CCClassRoomBasic/CCAudioSenderStatus.h>
 
 #endif
 

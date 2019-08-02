@@ -29,7 +29,7 @@ typedef enum{
 /*!
  @brief  推流分辨率
 */
-@property(assign, nonatomic) CCResolution reslution;
+@property(assign, nonatomic)CCResolution reslution;
 /*!
  @brief  视频帧率(10~30   DEFAULT  18)
  */

@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CCFuncTool/CCFuncTool.h>
 
 /*!
  * @brief    用户角色身份枚举
@@ -52,6 +53,10 @@ typedef enum{
  @brief  用户ID
  */
 @property (strong, nonatomic, readonly) NSString *userID;
+/*!
+ @brief  流对应用户角色类型
+ */
+@property (assign, nonatomic, readonly) CCRole role;
 
 /*!
  @method

@@ -128,8 +128,6 @@
 #pragma mark -- 组件化关联
 - (void)initBaseSDKComponent
 {
-    self.stremer.videoMode = CCVideoChangeByInterface;
-    self.stremer.videoMode = CCVideoPortrait;
     //聊天
     [self.stremer addObserver:self.ccChatManager];
     [self.ccChatManager addBasicClient:self.stremer];

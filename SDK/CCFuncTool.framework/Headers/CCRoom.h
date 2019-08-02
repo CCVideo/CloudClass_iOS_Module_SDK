@@ -228,6 +228,12 @@ extern NSString* const CCNotiNeedLoginOut;
 
 /**
  @property
+ @abstract 房间开播时间
+ */
+@property (assign, nonatomic, readonly) NSTimeInterval liveTimeoffset;
+
+/**
+ @property
  @abstract 轮播状态
  */
 @property (assign, nonatomic, readonly) BOOL rotateState;
@@ -354,5 +360,17 @@ extern NSString* const CCNotiNeedLoginOut;
  @abstract 房间开启实时画笔功能
  */
 @property(nonatomic,assign,readonly)BOOL room_timely_pencil;
+/**
+ @property
+ @abstract 房间码率限制
+ */
+@property(nonatomic,assign,readonly)NSInteger room_bitrate_limit;
+/**
+ @property
+ @abstract 房间服务类型
+ */
+@property(nonatomic,assign,readonly)CCRoomType room_server_type;
+
+
 
 @end

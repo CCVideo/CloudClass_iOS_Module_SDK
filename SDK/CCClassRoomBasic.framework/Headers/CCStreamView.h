@@ -54,6 +54,9 @@ typedef enum{
 - (id)initWithStream:(CCStream *)stream;
 - (id)initWithPreView:(UIView *)preView stream:(CCStream *)stream;
 - (id)initWithStream:(CCStream *)stream videoView:(UIView *)videoView;
+
+- (id)initWithLocalStream:(CCStream *)stream;
+
 /** 切换流数据源 */
 -(void)switchToStream:(CCStream *)stream;
 /**

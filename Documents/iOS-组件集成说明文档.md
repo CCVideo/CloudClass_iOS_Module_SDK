@@ -13,7 +13,6 @@ ios端SDK目前支持了基础版SDK、白板插件、聊天插件以及排麦�
 | 功能特性      | 描述                       | 备注   |
 | 推流        | 支持推流到服务器                 |      |
 | 拉流        | 支持从服务器订阅流                |      |
-| 获取流状态     | 支持获取流的状态(发报数、收报数、丢包数、延时) |      |
 | 前后摄像头切换   | 支持手机前后摄像头切换              |      |
 | 后台播放      | 支持直播退到后台只播放音频            |      |
 | 支持https协议 | 支持接口https请求              |      |
@@ -69,7 +68,20 @@ ios端SDK目前支持了基础版SDK、白板插件、聊天插件以及排麦�
 ```
 
 ```
-4. 添加需要的系统库:VideoToolbox.framework、libstdc++.tbd、libicucore.tbd
+4. 添加需要的系统库:
+ libz.thd、
+ libstdc++.thd、
+ libicucore.thd、
+ AudioToolbox.framework, 
+ VideoToolBox.framework, 
+ Accelerate.framework, 
+ SystemConfiguration.framework, 
+ libc++.tbd, libresolv.tbd, 
+ CoreMedia.framework, 
+ CoreTelephony.framework, 
+ AVFoundation.framework, 
+ CoreML.framework;
+
 ```
 
 ```
@@ -92,9 +104,9 @@ ios端SDK目前支持了基础版SDK、白板插件、聊天插件以及排麦�
 
 注：快速集成主要提供的是推流和拉流的功能(核心功能)。白板、聊天以及排麦组件另有开发文档描述。
 
-首先，需要下载最新版本的SDK，下载地址为：[CloudClass_iOS_Base_SDK](https://github.com/CCVideo/CloudClass_iOS_Base_SDK)
+首先，需要下载最新版本的SDK，下载地址为：[CloudClass_iOS_Module_SDK](https://github.com/CCVideo/CloudClass_iOS_Module_SDK)
 
-下载WebRTC库[下载地址](http://liveclass.csslcloud.net/SDK/RTCSDK.zip)集成到工程内；
+下载WebRTC库[下载地址](http://liveclass.csslcloud.net/SDK/HDSRTC_4.2.zip)集成到工程内；
 
 ### 3.1 导入framework
 | 名称                         | 描述          |
@@ -117,7 +129,20 @@ WebRTC.framework
 
 ### 3.3 配置依赖库
 
-工程需要下列系统库:libz.thd、libstdc++.thd、libicucore.thd、VideoToolBox.framework
+工程需要下列系统库:
+ libz.thd、
+ libstdc++.thd、
+ libicucore.thd、
+ AudioToolbox.framework, 
+ VideoToolBox.framework, 
+ Accelerate.framework, 
+ SystemConfiguration.framework, 
+ libc++.tbd, libresolv.tbd, 
+ CoreMedia.framework, 
+ CoreTelephony.framework, 
+ AVFoundation.framework, 
+ CoreML.framework;
+
 
 ### 3.4 组件使用
 组件使用是基于基础版SDK的；
@@ -256,3 +281,5 @@ dyld: Library not loaded: @rpath/CCClassRoomBasic.framework/CCClassRoomBasic
   Reason: image not found
 ```
 解决办法参考3.2
+
+

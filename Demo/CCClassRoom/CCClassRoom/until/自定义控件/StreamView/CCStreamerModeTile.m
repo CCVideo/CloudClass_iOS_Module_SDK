@@ -117,7 +117,6 @@
     {
         CCStreamView *showview = [[CCStreamView alloc] initWithStream:view];
         showview.frame = CGRectMake(0, 0, 90, 160);
-//        [showview setCameraViewMirror:YES];
         [self.data insertObject:showview atIndex:0];
     }
     else

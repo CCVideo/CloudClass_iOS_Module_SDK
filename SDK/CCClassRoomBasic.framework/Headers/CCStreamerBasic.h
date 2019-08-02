@@ -15,10 +15,9 @@
 #import "CCEncodeConfig.h"
 #import "CCStream.h"
 #import <CCFuncTool/CCFuncTool.h>
+#import "CCSpeaker.h"
 
 @class CCStreamView;
-@class CCSpeaker;
-
 /**
  @brief 异步请求闭包回调
  
@@ -56,6 +55,8 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  */
 - (void)onStreamError:(NSError *)error forStream:(CCStream *)stream;
 
+//解码完成
+- (void)onStreamFrameDecoded:(CCStream *)stream;
 /**
  socket连接失败
  */
@@ -134,7 +135,7 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  
  @param par  数据
  */
-- (void)sendPublishMessage:(NSDictionary *)par;
+- (BOOL)sendPublishMessage:(NSDictionary *)par;
 
 /*!
  发送消息(没有消息内容)
@@ -182,10 +183,6 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @brief  推流ID
  */
 @property (strong, nonatomic) NSString *localStreamID;//自己推流的流ID
-/*!
- @brief  流方向
- */
-@property (assign, nonatomic) CCVideoOriMode videoMode;
 
 #pragma mark - observer
 /**
@@ -252,16 +249,6 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
 
 /*!
  * @method
- * @abstract 配置socket重连参数(要在login之前配置)
- @param count 重连次数(5)
- @param delay 重连间隔(1000ms)
- @param delayMax 重连最大间隔(5000ms)
- @return 操作结果
- */
-- (BOOL)configReconnectionAttempts:(NSInteger)count reconnectionDelay:(float)delay reconnectionDelayMax:(float)delayMax;
-
-/*!
- * @method
  * @abstract 设置访问域名
  * @discussion 设置访问域名
  * @param domain 课堂域名
@@ -276,6 +263,15 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  * @result 域名
  */
 - (NSString *)getServerDomain;
+
+#pragma mark -- 创建本地流
+/*!
+ @method
+ @abstract 创建本地流
+ @param createVideo 流是否创建视频
+ @param front 设备相机
+ */
+- (void)createLocalStream:(BOOL)createVideo cameraFront:(BOOL)front;
 
 #pragma mark - 开启预览
 /*!
@@ -322,6 +318,16 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @return 操作结果
  */
 - (BOOL)joinWithConfig:(CCEncodeConfig *)config events:(NSArray *)event completion:(CCComletionBlock)completion;
+
+#pragma mark - 流服务器重连
+/*!
+ @method
+ @abstract 流服务器重连
+ @param completion 回调闭包
+ @return 操作结果
+ */
+- (BOOL)streamServerReConnect:(CCComletionBlock)completion;
+
 #pragma mark - 推流
 /*!
  @method
@@ -345,11 +351,10 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @method
  @abstract 订阅某人画面(不需要观看的时候要取消订阅)
  @param stream    流
- @param level     画面质量(0:BestQuality,1:BetterQuality, 2:Standard, 3:BetterSpeed, 4:BestSpeed)
  @param completion 回调闭包
  @return 操作结果
  */
-- (BOOL)subcribeWithStream:(CCStream *)stream qualityLevel:(int)level completion:(CCComletionBlock)completion;
+- (BOOL)subcribeWithStream:(CCStream *)stream completion:(CCComletionBlock)completion;
 
 #pragma mark - 取消订阅
 /*!
@@ -360,6 +365,16 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @return 操作结果
  */
 - (BOOL)unsubscribeWithStream:(CCStream *)stream completion:(CCComletionBlock)completion;
+
+#pragma mark - 设置位置
+/**
+ @method
+ @abstract 修改合流的主视频流
+ @param streamId 流id
+ @param completion 回调闭包
+ @return 操作结果
+ */
+- (BOOL)setRegion:(NSString *)streamId completion:(CCComletionBlock)completion;
 
 #pragma mark - 退出
 /*!
@@ -378,7 +393,28 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  */
 - (void)userLogout:(NSString *)sessionId response:(CCComletionBlock)completion;
 
-#pragma mark - 设置流视频的状态
+#pragma mark -- 修改流源发送状态
+/*!
+ @method
+ @abstract 设置视频状态(开始直播之后生效)
+ @param opened 视频状态
+ @param userID 学生ID(为空表示操作自己的视频)
+ 
+ @return 操作结果
+ */
+- (BOOL)setVideoOpened:(BOOL)opened userID:(NSString *)userID;
+
+/*!
+ @method
+ @abstract 设置音频状态(开始直播之后才生效)
+ @param opened 音频状态
+ @param userID 学生ID(为空表示操作自己的音频)
+ 
+ @return 操作结果
+ */
+- (BOOL)setAudioOpened:(BOOL)opened userID:(NSString *)userID;
+
+#pragma mark -- 修改远程流接收状态
 /*!
  @method
  @abstract 设置流视频的状态
@@ -387,7 +423,7 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @param completion 成功闭包
   @return 操作结果
  */
-- (BOOL)stream:(CCStream *)stream videoState:(BOOL)video completion:(CCComletionBlock)completion;
+- (BOOL)changeStream:(CCStream *)stream videoState:(BOOL)video completion:(CCComletionBlock)completion;
 #pragma mark - 设置流音频的状态
 /*!
  @method
@@ -397,38 +433,7 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  @param completion 回调闭包
  @return 操作结果
  */
-- (BOOL)stream:(CCStream *)stream audioState:(BOOL)audio completion:(CCComletionBlock)completion;
-
-#pragma mark -- 音视频操作
-/*!
- @method
- @abstract 订阅音频流
- @param stream 流
- @param completion 回调
- */
-- (void)playAudio:(CCStream*)stream completion:(CCComletionBlock)completion;
-
-/*!
- @method
- @abstract 取消订阅音频流
- @param stream 流
- @param completion 回调
- */- (void)pauseAudio:(CCStream*)stream completion:(CCComletionBlock)completion;
-
-/*!
- @method
- @abstract 订阅视频流
- @param stream 流
- @param completion 回调
- */
-- (void)playVideo:(CCStream*)stream completion:(CCComletionBlock)completion;
-/*!
- @method
- @abstract 取消订阅音频流
- @param stream 流
- @param completion 回调
- */
-- (void)pauseVideo:(CCStream*)stream completion:(CCComletionBlock)completion;
+- (BOOL)changeStream:(CCStream *)stream audioState:(BOOL)audio completion:(CCComletionBlock)completion;
 
 #pragma mark - 直播录制相关
 /*!
@@ -509,6 +514,16 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  */
 - (BOOL)getRoomServerList:(NSString *)accountId detect:(BOOL)detect completion:(CCComletionBlock)completion;
 
+#pragma mark - 人员状态custom变更
+/*!
+ @method
+ @abstract 更新custom状态
+ @param custom (0~999，初始和默认都为0)
+ @param userid 用户id
+ @param completion 回调
+ @return 操作结果
+ */
+- (BOOL)updateUserCustom:(NSInteger)custom userId:(NSString *)userid completion:(CCComletionBlock)completion;
 
 #pragma mark - 踢出房间
 /*!
@@ -552,25 +567,20 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
  */
 - (CCUser *)getUserInfoWithStreamID:(NSString *)streamID;
 
-/*!
- @method  释放所有已订阅的流(学生退出超时调用)
+/**
+ @method
+ @abstract 获取用户
+ 
+ @param streamID 流ID
+ @return 用户
  */
-- (void)realsesAllStream;
+- (CCStream *)getStreamWithStreamID:(NSString *)streamID;
 
 /*!
  @method 数据释放
  */
 - (void)clearData;
 
-/*!
- 是否是自己下麦
- */
-@property (assign, nonatomic) BOOL callStopLianMaiByStudent;//学生自己下麦
-/** 流管理 */
-@property (strong, nonatomic) NSMutableArray *subedStream;
-@property (strong, nonatomic) NSMutableArray *removedStream;
-@property (strong, nonatomic) NSMutableArray *allStream;
-@property (strong, nonatomic) NSMutableArray *notiStreamS;
 @property (strong, nonatomic) CCStreamView *preView;
 
 #pragma mark 新旁听功能
@@ -597,5 +607,87 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
 - (void)auditCreateSocketForPlayback:(NSDictionary *)room;
 
 
+#pragma mark --------- 互动相关 ------------
+#pragma mark - 更新房间在线人数
+/*!
+ @method
+ @abstract 更新房间在线人数
+ */
+- (BOOL)updateUserCount;
+
+#pragma mark - 鲜花、奖杯
+/**
+ @method
+ @abstract 奖杯、鲜花
+ @param uid 用户id
+ @param uName 用户名称
+ @param actionType 操作类型 | flower 鲜花 cup 奖杯
+ @param sid 发送者id
+ */
+- (BOOL)rewardUid:(NSString *)uid uName:(NSString *)uName type:(NSString *)actionType sender:(NSString *)sid;
+
+#pragma mark - 公告清除
+/*!
+ @method
+ @abstract 清除公告
+ @param completion 回调结果
+ @return 操作结果
+ */
+- (BOOL)removeAnnouncement:(CCComletionBlock)completion;
+
+#pragma mark - 公告
+/*!
+ @method
+ @abstract 发布公告
+ @param message    公告内容
+ @param completion 结果
+ @return 操作结果
+ */
+- (BOOL)releaseAnnouncement:(NSString *)message completion:(CCComletionBlock)completion;
+
+#pragma mark - 答题卡
+/**
+ @method
+ @abstract 发送答题答案
+ 
+ @param multAns 多选的答案
+ @param singleAns 单选答案
+ @param voteID 答题ID
+ @param publisherID 答题发起者ID
+ */
+- (BOOL)sendVoteSelected:(NSArray *)multAns singleAns:(NSInteger)singleAns voteID:(NSString *)voteID publisherID:(NSString *)publisherID;
+
+#pragma mark - 头脑风暴
+/**
+ @method
+ @abstract 发送头脑风暴答案
+ @param Id 问题id
+ @param title 问题title
+ @param content 问题回答
+ */
+- (BOOL)sendBrainReply:(NSString *)Id title:(NSString *)title text:(NSString *)content;
+
+#pragma mark - 投票
+/**
+ @method
+ @abstract 发送投票答案
+ @param Id 投票id
+ @param title 投票title
+ @param choices 投票回答[0、1、2、3、4]
+ */
+- (BOOL)sendVoteTickedReply:(NSString *)Id title:(NSString *)title choice:(NSArray *)choices;
+
+/*! @abstract 学生答到 */
+- (BOOL)studentNamed;
+
+/*! @abstract 获取答到的学生列表 */
+- (NSArray *)getStudentNamedList;
+
+/*! @abstract 获取老师点名的信息(老师端有效) */
+- (NSDictionary *)getNamedInfo;
+
+#pragma mark - 点名相关
+/*!@abstract 老师开始点名 */
+- (BOOL)startNamed:(NSTimeInterval)duration;
 
 @end

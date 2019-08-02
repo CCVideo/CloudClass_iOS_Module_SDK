@@ -23,8 +23,16 @@
 
 
 #import <Foundation/Foundation.h>
+#import "LoadingView.h"
+#import <Masonry.h>
 
 @interface CCTool : NSObject
+
++(id)shareInstance;
+
++ (void)loadingAddTo:(UIView *)view message:(NSString *)message;
++ (void)loadingRemove;
+
 
 + (UILabel *)createLabelText:(NSString *)text;
 + (UIButton *)createButtonText:(NSString *)text tag:(int)tag;
@@ -36,5 +44,9 @@
 + (CGFloat)tool_MainWindowSafeArea_Left;
 + (CGFloat)tool_MainWindowSafeArea_Right;
 + (UIEdgeInsets)tool_MainWindowSafeArea;
+
++ (void)showToast:(NSString *)message;
++ (void)showMessage:(NSString *)message;
++ (void)showError:(NSError *)error;
 
 @end

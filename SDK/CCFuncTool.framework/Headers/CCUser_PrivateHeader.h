@@ -20,12 +20,15 @@
 @property (strong, nonatomic, readwrite) NSString *user_socketID;
 @property (assign, nonatomic, readwrite) CCUserMicStatus user_status;
 @property (strong, nonatomic, readwrite) NSString *user_streamID;
+@property (strong, nonatomic, readwrite) NSString *user_uid;
 @property (assign, nonatomic, readwrite) BOOL user_chatState;
 @property (assign, nonatomic, readwrite) BOOL user_videoState;
 @property (assign, nonatomic, readwrite) BOOL user_audioState;
 @property (assign, nonatomic, readwrite) BOOL      user_drawState;
 @property (assign, nonatomic, readwrite) BOOL rotateLocked;
 @property (assign, nonatomic, readwrite) BOOL      handup;
-@property (assign, nonatomic, readwrite) BOOL user_AssistantState;
+@property (assign, nonatomic, readwrite) BOOL   user_AssistantState;
+@property (assign, nonatomic, readwrite) NSInteger user_custom;
+
 - (id)initWithInfo:(NSDictionary *)dic;
 @end

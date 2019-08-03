@@ -690,4 +690,6 @@ typedef void(^CCComletionBlock)(BOOL result, NSError *error, id info);
 /*!@abstract 老师开始点名 */
 - (BOOL)startNamed:(NSTimeInterval)duration;
 
+
 @end
+

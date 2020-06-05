@@ -1,0 +1,6 @@
+framework module HDSSup {
+  umbrella header "HDSSup.h"
+
+  export *
+  module * { export * }
+}

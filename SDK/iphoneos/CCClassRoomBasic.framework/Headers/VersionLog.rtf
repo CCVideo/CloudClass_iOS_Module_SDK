@@ -1,0 +1,564 @@
+{\rtf1\ansi\ansicpg936\cocoartf1671\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red255\green255\blue255;\red100\green56\blue32;
+\red0\green0\blue0;\red170\green13\blue145;\red63\green110\blue116;\red92\green38\blue153;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c45600\c0;\csgenericrgb\c100000\c100000\c100000;\csgenericrgb\c39100\c22000\c12500;
+\csgenericrgb\c0\c0\c0;\csgenericrgb\c66500\c5200\c56900;\csgenericrgb\c24700\c43100\c45600;\csgenericrgb\c35900\c14900\c60100;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\deftab593
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \
+\'d2\'bb\'a1\'a2\'b9\'a6\'c4\'dc\'d0\'de\'b8\'c4
+\f1 \cf0 \
+
+\f0 \cf2 \'b6\'fe\'a1\'a2\'bd\'d3\'bf\'da\'b1\'e4\'b8\'fc
+\f1 \cf0 \
+
+\f2 \cf4 \
+#pragma mark
+\f1 \cf0 \
+
+\f2 \cf4 #pragma mark -- version 3.3.0 ----\
+\cf2 /******************************************************************/\
+
+\f1 \cf0 \
+
+\f0 \cf2 \'d2\'bb\'a1\'a2\'b9\'a6\'c4\'dc\'d0\'de\'b8\'c4
+\f2 \
+ 1
+\f0 \'a1\'a2\'d4\'f6\'bc\'d3\'d2\'ec\'b3\'a3\'bc\'e0\'cc\'fd\'c9\'cf\'b1\'a8\'b9\'a6\'c4\'dc\'a3\'bb
+\f1 \cf0 \
+
+\f0 \cf2 \'b6\'fe\'a1\'a2\'bd\'d3\'bf\'da\'b1\'e4\'b8\'fc
+\f2  
+\f1 \cf0 \
+
+\f2 \cf2 /*!
+\f1 \cf0 \
+
+\f2 \cf2  * @method
+\f1 \cf0 \
+
+\f2 \cf2  * @abstract 
+\f0 \'d2\'ec\'b3\'a3\'bc\'ec\'b2\'e2
+\f1 \cf0 \
+
+\f2 \cf2  * @param exception 
+\f0 \'b1\'c0\'c0\'a3\'d2\'ec\'b3\'a3
+\f1 \cf0 \
+
+\f2 \cf2  * @param log log
+\f0 \'bc\'c7\'c2\'bc
+\f1 \cf0 \
+
+\f2 \cf2  */
+\f1 \cf0 \
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+
+\f2 \cf5 + (\cf6 void\cf5 )setCrashListen:(\cf6 BOOL\cf5 )exception log:(\cf6 BOOL\cf5 )log;
+\f1 \cf0 \
+\
+
+\f2 \cf5 \
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+\cf2 /*!
+\f1 \cf0 \
+
+\f2 \cf2  * @method
+\f1 \cf0 \
+
+\f2 \cf2  * @abstract log
+\f0 \'c9\'cf\'b1\'a8
+\f1 \cf0 \
+
+\f2 \cf2  */
+\f1 \cf0 \
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+
+\f2 \cf5 - (\cf6 void\cf5 )reportLogInfo;\
+\
+\
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+\cf4 #pragma mark
+\f1 \cf0 \
+
+\f2 \cf4 #pragma mark -- version 3.4.0 ----\
+\cf2 /******************************************************************/\
+
+\f1 \cf0 \
+
+\f0 \cf2 \'d2\'bb\'a1\'a2\'b9\'a6\'c4\'dc\'d0\'de\'b8\'c4
+\f2 \
+ 	1
+\f0 \'a1\'a2\'c1\'f7\'d7\'b4\'cc\'ac\'bc\'e0\'cc\'fd\'a3\'bb\
+ 	2\'a1\'a2\'c8\'a1\'cf\'fb\'c1\'f7\'d7\'b4\'cc\'ac\'bc\'e0\'cc\'fd\'a3\'bb\
+ 	3\'a1\'a2\'c2\'f3\'bf\'cb\'b7\'e7\'d2\'f4\'c1\'bf\'bc\'ec\'b2\'e2\'a3\'bb\
+ 	4\'a1\'a2\'c8\'a1\'cf\'fb\'c2\'f3\'bf\'cb\'b7\'e7\'d2\'f4\'c1\'bf\'bc\'ec\'b2\'e2\'a3\'bb\
+	5\'a1\'a2\'d4\'f6\'bc\'d3\'b7\'d6\'c1\'f7\'c2\'bc\'d6\'c6\'b9\'a6\'c4\'dc\'a3\'bb\
+	6\'a1\'a2\'d4\'f6\'bc\'d3\'bd\'da\'b5\'e3\'cc\'bd\'b2\'e2\'b9\'a6\'c4\'dc\'a3\'bb\
+
+\f1 \cf0 \
+
+\f0 \cf2 \'b6\'fe\'a1\'a2\'bd\'d3\'bf\'da\'b1\'e4\'b8\'fc
+\f2  
+\f1 \cf0 \
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf2 /**
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @abstract 
+\f0 \'c1\'f7\'d7\'b4\'cc\'ac\'bc\'ec\'b2\'e2\'bc\'e0\'cc\'fd\'ca\'c2\'bc\'fe
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @param completion 
+\f0 \'bb\'d8\'b5\'f7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )setListenOnStreamStatus:(\cf7 CCComletionBlock\cf5 )completion;
+\f1\fs24 \cf0 \
+\
+
+\f2\fs28 \cf2 /**
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @abstract 
+\f0 \'c1\'f7\'bc\'ec\'b2\'e2\'bc\'e0\'cc\'fd\'c8\'a1\'cf\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 void\cf5 )cancelListenStreamStatus;
+\f1\fs24 \cf0 \
+\
+
+\f2\fs28 \cf4 #pragma mark -- 
+\f0 \'b1\'be\'b5\'d8\'d2\'f4\'c1\'bf\'b7\'d6\'b1\'b4\'bc\'ec\'b2\'e2
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /**
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @abstract 
+\f0 \'c2\'f3\'bf\'cb\'b7\'e7\'d2\'f4\'c1\'bf\'bc\'e0\'cc\'fd\'ca\'c2\'bc\'fe
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @param completion 
+\f0 \'bb\'d8\'b5\'f7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )setListenOnMicVoice:(\cf7 CCComletionBlock\cf5 )completion;
+\f1\fs24 \cf0 \
+\
+
+\f2\fs28 \cf2 /**
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @abstract 
+\f0 \'b1\'be\'b5\'d8\'d2\'f4\'c1\'bf\'bc\'e0\'cc\'fd\'c8\'a1\'cf\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 void\cf5 )cancelListenMicVoice;\
+\
+\
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+
+\fs24 \cf4 #pragma mark
+\f1 \cf0 \
+
+\f2 \cf4 #pragma mark -- version 3.5.0 ----\
+\cf2 /******************************************************************/
+\fs28 \cf5 \
+
+\f1\fs24 \cf0 \
+
+\f0 \cf2 \'d2\'bb\'a1\'a2\'b9\'a6\'c4\'dc\'d0\'de\'b8\'c4
+\f2 \
+
+\f0 	\'b2\'bf\'b7\'d6\'b9\'a6\'c4\'dc
+\f2 API
+\f0 \'b7\'cf\'c6\'fa
+\f1 \cf0 \
+
+\f0 \cf2 \'b6\'fe\'a1\'a2\'bd\'d3\'bf\'da\'b1\'e4\'b8\'fc\'a3\'a8\'b7\'cf\'c6\'fa\'a3\'a9
+\f2  \
+
+\f1 \cf0 \
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf4 #pragma mark - 
+\f0 \'c7\'d0\'bb\'bb\'cf\'e0\'bb\'fa
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @abstract 
+\f0 \'c9\'e8\'d6\'c3\'c9\'e3\'cf\'f1\'cd\'b7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @discussion 
+\f0 \'c7\'d0\'bb\'bb\'c9\'e3\'cf\'f1\'cd\'b7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @param pos 
+\f0 \'c9\'e3\'cf\'f1\'cd\'b7\'ce\'bb\'d6\'c3
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  * @result 
+\f0 \'b2\'d9\'d7\'f7\'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )setCameraType:(\cf8 AVCaptureDevicePosition\cf5 )pos;
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 \
+\cf4 #pragma mark -- 
+\f0 \'cd\'c6\'c1\'f7\'ca\'a7\'b0\'dc\'d6\'d8\'cd\'c6
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'d6\'d8\'d0\'c2\'cd\'c6\'c1\'f7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param completion 
+\f0 \'bb\'d8\'b5\'f7\'b1\'d5\'b0\'fc
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @return 
+\f0 \'b2\'d9\'d7\'f7\'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )rePublish:(\cf7 CCComletionBlock\cf5 )completion;\
+\
+\cf4 #pragma mark - 
+\f0 \'bb\'f1\'c8\'a1\'c1\'f7\'d7\'b4\'cc\'ac
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'bb\'f1\'c8\'a1\'c1\'f7\'d7\'b4\'cc\'ac
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param stream 
+\f0 \'c1\'f7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param completion 
+\f0 \'bb\'d8\'b5\'f7\'b1\'d5\'b0\'fc
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @return 
+\f0 \'b2\'d9\'d7\'f7\'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )getConnectionStats:(\cf7 CCStream\cf5  *)stream completion:(\cf7 CCComletionBlock\cf5 )completion;\
+\
+\cf4 #pragma mark - 
+\f0 \'bb\'f1\'c8\'a1\'ce\'bb\'d6\'c3
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'bb\'f1\'c8\'a1\'b2\'bc\'be\'d6\'ce\'bb\'d6\'c3
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param stream 
+\f0 \'c1\'f7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param completion 
+\f0 \'bb\'d8\'b5\'f7\'b1\'d5\'b0\'fc
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @return 
+\f0 \'b2\'d9\'d7\'f7\'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )getRegion:(\cf7 CCStream\cf5  *)stream mixedStream:(\cf7 CCStream\cf5  *)mixedSteam completion:(\cf7 CCComletionBlock\cf5 )completion;\
+
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf4 #pragma mark - 
+\f0 \'c9\'e8\'d6\'c3\'ce\'bb\'d6\'c3
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /**
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'d0\'de\'b8\'c4\'ba\'cf\'c1\'f7\'b5\'c4\'d6\'f7\'ca\'d3\'c6\'b5\'c1\'f7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param stream 
+\f0 \'c1\'f7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param regionID regionID
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param completion 
+\f0 \'bb\'d8\'b5\'f7\'b1\'d5\'b0\'fc
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @return 
+\f0 \'b2\'d9\'d7\'f7\'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )setRegion:(\cf7 CCStream\cf5  *)stream region:(\cf8 NSString\cf5  *)regionID mixedStream:(\cf7 CCStream\cf5  *)mixedSteam completion:(\cf7 CCComletionBlock\cf5 )completion;
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf4 \
+#pragma mark - 
+\f0 \'ba\'cf\'c6\'c1
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'ba\'cf\'c6\'c1
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param completion 
+\f0 \'bb\'d8\'b5\'f7\'b1\'d5\'b0\'fc
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @return 
+\f0 \'b2\'d9\'d7\'f7\'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )mix:(\cf7 CCComletionBlock\cf5 )completion;\
+
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf4 #pragma mark - 
+\f0 \'c8\'a1\'cf\'fb\'ba\'cf\'c6\'c1
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'c8\'a1\'cf\'fb\'ba\'cf\'c6\'c1
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param completion 
+\f0 \'bb\'d8\'b5\'f7\'b1\'d5\'b0\'fc
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @return 
+\f0 \'b2\'d9\'d7\'f7\'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )unmix:(\cf7 CCComletionBlock\cf5 )completion;\
+
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf4 #pragma mark - 
+\f0 \'c9\'e8\'d6\'c3\'b5\'da\'c8\'fd\'b7\'bd\'cd\'c6\'c1\'f7\'b5\'d8\'d6\'b7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'c9\'e8\'d6\'c3\'b5\'da\'c8\'fd\'b7\'bd\'cd\'c6\'c1\'f7\'b5\'d8\'d6\'b7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param url 
+\f0 \'b5\'da\'c8\'fd\'b7\'bd\'cd\'c6\'c1\'f7\'b5\'d8\'d6\'b7
+\f2 (rtmp
+\f0 \'b5\'d8\'d6\'b7
+\f2 )
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param completion 
+\f0 \'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @return 
+\f0 \'b2\'d9\'d7\'f7\'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )addExternalOutput:(\cf8 NSString\cf5 *)url completion:(\cf7 CCComletionBlock\cf5 )completion;\
+
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf4 #pragma mark - 
+\f0 \'d2\'c6\'b3\'fd\'b5\'da\'c8\'fd\'b7\'bd\'cd\'c6\'c1\'f7\'b5\'d8\'d6\'b7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'d2\'c6\'b3\'fd\'b5\'da\'c8\'fd\'b7\'bd\'cd\'c6\'c1\'f7\'b5\'d8\'d6\'b7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param url 
+\f0 \'b5\'da\'c8\'fd\'b7\'bd\'cd\'c6\'c1\'f7\'b5\'d8\'d6\'b7
+\f2 (rtmp
+\f0 \'b5\'d8\'d6\'b7
+\f2 )
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param completion 
+\f0 \'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @return 
+\f0 \'b2\'d9\'d7\'f7\'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )removeExternalOutput:(\cf8 NSString\cf5  *)url completion:(\cf7 CCComletionBlock\cf5 )completion;\
+
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf4 #pragma mark - 
+\f0 \'b1\'e4\'b8\'fc\'b5\'da\'c8\'fd\'b7\'bd\'cd\'c6\'c1\'f7\'b5\'d8\'d6\'b7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'b1\'e4\'b8\'fc\'b5\'da\'c8\'fd\'b7\'bd\'cd\'c6\'c1\'f7\'b5\'d8\'d6\'b7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param url 
+\f0 \'b5\'d8\'d6\'b7
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param completion 
+\f0 \'bb\'d8\'b5\'f7\'b1\'d5\'b0\'fc
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @return 
+\f0 \'b2\'d9\'d7\'f7\'bd\'e1\'b9\'fb
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 BOOL\cf5 )updateExternalOutput:(\cf8 NSString\cf5  *)url completion:(\cf7 CCComletionBlock\cf5 )completion;\
+\
+\cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'bb\'f1\'c8\'a1\'cf\'e0\'bb\'fa\'b6\'d4\'cf\'f3
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @return 
+\f0 \'cf\'e0\'bb\'fa\'b6\'d4\'cf\'f3
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf8 AVCaptureSession\cf5  *)getCaptureSession;\
+\
+\cf2 /*!
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @method
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @abstract 
+\f0 \'b3\'f6\'b7\'a2\'d6\'d8\'c1\'ac
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  @param completion 
+\f0 \'bb\'d8\'b5\'f7\'b1\'d5\'b0\'fc
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf2  */
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 - (\cf6 void\cf5 )reconnectAtlas:(\cf7 CCComletionBlock\cf5 )completion;
+\f1\fs24 \cf0 \
+
+\f2\fs28 \cf5 \
+\
+\
+}

@@ -1,6 +1,0 @@
-framework module CCFuncTool {
-  umbrella header "CCFuncTool.h"
-
-  export *
-  module * { export * }
-}

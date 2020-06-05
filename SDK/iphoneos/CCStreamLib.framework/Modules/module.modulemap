@@ -1,0 +1,6 @@
+framework module CCStreamLib {
+  umbrella header "CCStreamLib.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module CCBarleyLibrary {
+  umbrella header "CCBarleyLibrary.h"
+
+  export *
+  module * { export * }
+}
